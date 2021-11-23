@@ -1,0 +1,8 @@
+
+# this file contains the machine-specific
+# configuration, so there's no point uploading it.
+.dotter/local.toml
+
+# local cache to track changes
+.dotter/cache.toml
+.dotter/cache
