@@ -1,0 +1,5 @@
+[shell.variables]
+install = "brew install"
+uninstall = "brew remove"
+update = "brew update && upgrade"
+autoremove = "brew cleanup"
