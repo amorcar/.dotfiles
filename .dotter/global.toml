@@ -14,11 +14,11 @@ uninstall = "echo not defined"
 update = "echo not defined"
 autoremove = "echo not defined"
 
-[nvim.variables]
-"nvim/init.vim" = "~/.config/nvim/init.vim"
+[nvim.files]
+"nvim/init.vim" = { target = "~/.config/nvim/init.vim", type = "symbolic" }
 
 [git.files]
-"gitignore" = "~/.gitignore"
+"gitconfig" = "~/.gitconfig"
 
 [tmux.files]
 "tmux.conf" = "~/.tmux.conf"
