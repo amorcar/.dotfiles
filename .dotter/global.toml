@@ -42,5 +42,8 @@ scripts = "~/.config/scripts"
 [fd.files]
 "fd.ignore" = "~/.config/fd/ignore"
 
+[bat.files]
+"bat" = "~/.config/bat/config"
+
 [htop.files]
 "htoprc" = "~/.config/htop/htoprc"
