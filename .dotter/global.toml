@@ -14,6 +14,9 @@ uninstall = "echo not defined"
 update = "echo not defined"
 autoremove = "echo not defined"
 
+[nvim.variables]
+"nvim/init.vim" = "~/.config/nvim/init.vim"
+
 [git.files]
 "gitignore" = "~/.gitignore"
 
