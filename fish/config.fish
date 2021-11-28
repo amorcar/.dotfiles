@@ -1,4 +1,7 @@
 fish_add_path "$HOME/.cargo/bin"
+fish_add_path "/opt/homebrew/bin"
+fish_add_path "$HOME/.fzf/bin"
+
 
 # set fish_greeting
 set fish_greeting

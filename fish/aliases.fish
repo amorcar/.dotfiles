@@ -24,6 +24,7 @@ export GREP_COLOR='0;36'
 
 # Get homebrew installed packages sizes
 alias brew_pack_size 'brew list | xargs brew info | grep Cellar'
+# alias brew_pack_size "bash brew list | xargs brew info | grep Cellar | cut -d'/' -f5,6 | sed 's/\/.*\,//' | sed 's/ / - /' | sed 's/...$//'"
 
 # Flush dns
 alias flush_dns "sudo killall -HUP mDNSResponder"
