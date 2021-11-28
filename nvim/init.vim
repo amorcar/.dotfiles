@@ -26,6 +26,7 @@ Plug 'tpope/vim-commentary'
 Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 " Fuzzy finder
 Plug 'airblade/vim-rooter'
@@ -191,6 +192,13 @@ lua << END
       update_in_insert = true,
     }
   )
+  -- local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+  local signs = { Error = "x", Warning = "w", Hint = "h", Information = "i" }
+  for type, icon in pairs(signs) do
+      local hl = "LspDiagnosticsSign" .. type
+      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
+
 END
 "}}}
 
@@ -200,10 +208,9 @@ augroup nord-theme-overrides
   autocmd ColorScheme nord highlight Comment ctermfg=8
   autocmd ColorScheme nord highlight Folded ctermfg=14
 augroup END
-" let s:NMain[3]="0"
 colorscheme nord
-let g:airline_theme='nord'
-
+" let g:airline_theme='nord'
+let g:airline_theme='zenburn'
 " }}}
 
 "{{{ Plugin settings
@@ -255,6 +262,9 @@ let g:airline#extensions#branch#enabled = 1
 "   return strlen(l:branchname) > 0?' '.l:branchname.' ':''
 " endfunction
 
+" indentblankline
+highlight IndentBlanklineChar ctermfg=0
+nnoremap <leader>l :IndentBlanklineToggle<CR>
 "}}}
 
 "{{{ Editor settings
@@ -294,7 +304,8 @@ set hidden
 " set nowrap
 set nojoinspaces
 " Always draw sign column. Prevent buffer moving when adding/deleting sign.
-set signcolumn=yes
+" set signcolumn=yes
+set signcolumn=number
 
 
 " Settings needed for .lvimrc
@@ -421,9 +432,9 @@ if exists('$SUDO_USER')
   set nowritebackup
   set noswapfile
 else
-  set backupdir=~/.config/nvim/tmp/backup//   " keep backup files out of the way
-  set backupdir+=.
-  set directory=~/.config/nvim/tmp/swap//
+  set backupdir=~/.config/nvim/tmp/backup/
+  " set backupdir+=.
+  set directory=~/.config/nvim/tmp/swap/
 endif
 
 " Persistent UNDO files
