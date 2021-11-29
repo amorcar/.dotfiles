@@ -1,0 +1,11 @@
+includes = []
+packages = [
+  "shell",
+  "fish",
+  "tmux",
+  "nvim",
+]
+
+[files]
+
+[variables]
