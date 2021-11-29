@@ -1,13 +1,6 @@
 # My aliases
 alias reload '. ~/.config/fish/config.fish'
 
-alias chrome 'open -a "Google Chrome" -n --args --incognito "~/.config/startpage/tilde/index.html"'
-alias pdf 'open -a Preview -n'
-
-alias cmx 'cmatrix -s -C cyan && clear'
-# lock computer
-alias lock '/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
-
 # simple ip
 alias ip1="ipconfig getifaddr en0"
 alias ip2 "ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
