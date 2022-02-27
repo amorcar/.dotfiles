@@ -31,6 +31,18 @@ if status --is-interactive
   abbr --add --global envim 'nvim ~/.config/nvim/init.vim'
   abbr --add --global etmux 'nvim ~/.tmux.conf'
 
+  if command -v nvim > /dev/null
+    abbr -a vim 'nvim'
+  end
+
+  if command -v tmux > /dev/null
+    abbr -a tm 'tmux'
+  end
+
+  if command -v btm > /dev/null
+    abbr -a btm 'btm --battery'
+  end
+
   if command -v exa > /dev/null
     abbr -a l 'exa'
     abbr -a ls 'exa'
@@ -47,10 +59,6 @@ if status --is-interactive
 
   if command -v zoxide > /dev/null
     abbr -a cd 'z'
-  end
-
-  if command -v btm > /dev/null
-    abbr -a btm 'btm --battery'
   end
 
   abbr --add --global mv 'mv -i'

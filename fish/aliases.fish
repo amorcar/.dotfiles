@@ -22,7 +22,7 @@ alias brew_pack_size 'brew list | xargs brew info | grep Cellar'
 # Flush dns
 alias flush_dns "sudo killall -HUP mDNSResponder"
 
-alias tm "~/.config/scripts/dev-tmux.sh"
+alias tmd "~/.config/scripts/dev-tmux.sh"
 
 alias dnstest 'zsh ~/.config/scripts/dnstest.sh |sort -k 22 -n'
 

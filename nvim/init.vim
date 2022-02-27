@@ -261,6 +261,7 @@ let g:rust_clip_command = 'xclip -selection clipboard'
 let g:airline_section_z = airline#section#create(['%p%% ','%l:%c'])
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 " function! GitBranch()
 "   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 " endfunction
@@ -425,6 +426,8 @@ augroup END
 " Move by line
 nnoremap j gj
 nnoremap k gk
+
+set showtabline=0
 
 "}}}
 
