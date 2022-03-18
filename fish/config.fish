@@ -13,8 +13,6 @@ set -gx EDITOR nvim
 set HISTSIZE 10000
 set HISTCONTROL ignoredups
 
-# configure zoxide
-zoxide init fish | source
 
 # fzf default command
 set FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow'
@@ -58,6 +56,8 @@ if status --is-interactive
   end
 
   if command -v zoxide > /dev/null
+    # configure zoxide
+    zoxide init fish | source
     abbr -a cd 'z'
   end
 

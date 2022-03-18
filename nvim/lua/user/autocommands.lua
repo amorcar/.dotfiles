@@ -7,6 +7,10 @@ u.create_augroup({
 }, 'rust_au')
 
 u.create_augroup({
+    { 'Filetype', 'python', 'set colorcolumn=80' },
+}, 'python_au')
+
+u.create_augroup({
     { 'InsertLeave', '*', 'set nopaste' },
 }, 'pastemode_au')
 
