@@ -6,3 +6,5 @@
 # local cache to track changes
 .dotter/cache.toml
 .dotter/cache
+
+.DS_Store
