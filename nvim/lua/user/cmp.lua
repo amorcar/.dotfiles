@@ -38,6 +38,7 @@ cmp.setup({
   end, { "i", "s" }),
   ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
   ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+  ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
   },
   sources = cmp.config.sources({
     -- TODO: currently snippets from lsp end up getting prioritized -- stop that!
@@ -142,4 +143,5 @@ for type, icon in pairs(signs) do
     local hl = "LspDiagnosticsSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
+
 

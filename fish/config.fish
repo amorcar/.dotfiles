@@ -10,6 +10,9 @@ set fish_greeting
 set -gx EDITOR nvim
 # set -g IGNOREEOF 3
 
+set -g NVM_DIR ~/.nvm
+bass source /opt/homebrew/opt/nvm/nvm.sh
+
 set HISTSIZE 10000
 set HISTCONTROL ignoredups
 
