@@ -12,13 +12,6 @@ function fish_right_prompt -d "Write out the right prompt"
 
 
   # Print a yellow fork symbol when in a subshell
-  #set -l max_shlvl 1
-  #test $TERM = "screen"; and set -l max_shlvl 3
-  #if test $SHLVL -gt $max_shlvl
-  #  #set_color black
-  #  set_color yellow
-  #  echo -n "⑂ "
-  #end
   if set -q TMUX # test -n "$TMUX"
     set_color yellow
     echo -n "⑂ "

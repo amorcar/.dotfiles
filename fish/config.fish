@@ -1,6 +1,7 @@
 fish_add_path "$HOME/.cargo/bin"
 fish_add_path "/opt/homebrew/bin"
 fish_add_path "$HOME/.fzf/bin"
+fish_add_path "/opt/homebrew/Cellar/docker/23.0.5/bin"
 
 
 # set fish_greeting
@@ -11,7 +12,9 @@ set -gx EDITOR nvim
 # set -g IGNOREEOF 3
 
 set -g NVM_DIR ~/.nvm
-bass source /opt/homebrew/opt/nvm/nvm.sh
+bass source /opt/homebrew/opt/nvm/nvm.sh # This loads nvm
+# bass sourcen/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm # This loads nvm bash_completion
+
 
 set HISTSIZE 10000
 set HISTCONTROL ignoredups
@@ -19,6 +22,9 @@ set HISTCONTROL ignoredups
 
 # fzf default command
 set FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow'
+
+# elixir shell
+export ERL_AFLAGS="-kernel shell_history enabled -kernel shell_history_file_bytes 1024000"
 
 # Load aliases
 . ~/.config/fish/aliases.fish
@@ -44,12 +50,12 @@ if status --is-interactive
     abbr -a btm 'btm --battery'
   end
 
-  if command -v exa > /dev/null
-    abbr -a l 'exa'
-    abbr -a ls 'exa'
-    abbr -a ll 'exa -l'
-    abbr -a la 'exa -la'
-    abbr -a tree 'exa -T -L 2'
+  if command -v eza > /dev/null
+    abbr -a l 'eza'
+    abbr -a ls 'eza'
+    abbr -a ll 'eza -l'
+    abbr -a la 'eza -la'
+    abbr -a tree 'eza -T -L 2'
   else
     abbr -a l 'ls'
     abbr -a ll 'ls -lh'

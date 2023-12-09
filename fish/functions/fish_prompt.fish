@@ -34,10 +34,10 @@ function fish_prompt
 
   # prompt like >>>
   echo -n ' '
-  set_color normal
-  echo -n ">"
-  set_color brgreen
-  echo -n ">"
+  # set_color normal
+  # echo -n ">"
+  # set_color brgreen
+  # echo -n ">"
   set_color --bold brgreen
   echo -n ">"
 
