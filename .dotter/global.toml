@@ -16,6 +16,7 @@ autoremove = "echo not defined"
 
 [nvim.files]
 "nvim" = { target = "~/.config/nvim", type = "symbolic" }
+"nvim-custom/custom" = { target = "~/.config/nvim/lua/custom", type = "symbolic" }
 
 [git.files]
 "gitconfig" = "~/.gitconfig"
