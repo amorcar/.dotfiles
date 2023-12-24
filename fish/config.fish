@@ -57,7 +57,7 @@ if status --is-interactive
     abbr -a l 'eza'
     abbr -a ls 'eza'
     abbr -a ll 'eza -l'
-    abbr -a la 'eza -la'
+    abbr -a la 'eza -la --icons=always --git --header'
     abbr -a tree 'eza -T -L 2'
   else
     abbr -a l 'ls'

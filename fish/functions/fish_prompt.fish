@@ -12,27 +12,23 @@ function fish_prompt
   echo -n "[$time_prompt] "
 
   # Display working directory.
-  set_color brgreen # pwd color
+  set_color brgreen
   set pwdLen (string length $PWD)
 
-  if test $pwdLen -le $remaining
-    if test (basename $PWD) != $USER
-      echo -n (basename $PWD)
-    else
-      echo -n (pwd | sed -e "s|^$HOME|~|")
-    end
-    set remaining (math "$remaining - $pwdLen")
+  if test (basename $PWD) != $USER
+    echo -n (basename $PWD)
   else
-    echo -n (prompt_pwd) # abbreviated working directory
-    set remaining 0 # so nothing else is output on this line
+    echo -n (pwd | sed -e "s|^$HOME|~|")
   end
+  set remaining (math "$remaining - $pwdLen")
 
-  # prompt like >>>
+  # display the end of the prompt symbol
   echo -n ' '
   set_color --bold brgreen
   echo -n ">"
 
-  echo -n ' ' # space between PWD and branch name
+  echo -n ' '
 
   set_color normal
+
 end
