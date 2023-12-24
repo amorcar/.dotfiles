@@ -15,7 +15,7 @@ lspconfig.pyright.setup({
 lspconfig.terraformls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  filetype = {'terraform'},
+  filetype = {'terraform', 'tf'},
 })
 
 -- local servers = { "html", "cssls", "clangd"}

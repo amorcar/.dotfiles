@@ -3,6 +3,9 @@ fish_add_path "/opt/homebrew/bin"
 fish_add_path "$HOME/.fzf/bin"
 fish_add_path "/opt/homebrew/Cellar/docker/23.0.5/bin"
 
+# Shell only exists after the 10th consecutive Ctrl-d
+# export IGNOREEOF=10
+
 
 # set fish_greeting
 set fish_greeting

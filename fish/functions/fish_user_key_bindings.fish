@@ -7,4 +7,10 @@ function fish_user_key_bindings
   # fish_vi_key_bindings insert
 
   fzf_key_bindings
+
+
+  # Shell only exists after the 5th consecutive Ctrl-d
+  bind \cd delete-char
+  bind \cd\cd\cd\cd\cd exit
+
 end

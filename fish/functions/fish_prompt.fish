@@ -4,17 +4,12 @@ function fish_prompt
   set vimModeLen 2 # appears at beginning of prompt (described later)
   set remaining (math "$COLUMNS - $vimModeLen")
 
-  # this info is now in the right prompt
-  # git_prompt
-  # virtualenv_prompt
-
-  # prompt like [amorales@~]>
-  # set_color normal
-  # echo -n [
-  # set_color --bold brblue # pwd color
-  # echo -n (whoami)
-  # set_color normal
-  # echo -n @
+  # Display the current time
+  set time_prompt (date +%H:%M)
+  set time_prompt_length (string length time_prompt)
+  set reamining (math "$remaining - $time_prompt_length")
+  set_color brblack
+  echo -n "[$time_prompt] "
 
   # Display working directory.
   set_color brgreen # pwd color
@@ -34,16 +29,9 @@ function fish_prompt
 
   # prompt like >>>
   echo -n ' '
-  # set_color normal
-  # echo -n ">"
-  # set_color brgreen
-  # echo -n ">"
   set_color --bold brgreen
   echo -n ">"
 
-  # prompt like [amorales@~]>
-  # set_color normal
-  # echo -n "]>"
   echo -n ' ' # space between PWD and branch name
 
   set_color normal

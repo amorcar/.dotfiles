@@ -72,6 +72,14 @@ local plugins = {
   },
 
   {
+    'ggandor/leap.nvim',
+    lazy = false,
+    config = function()
+      require('leap').add_default_mappings()
+    end
+  },
+
+  {
     'rust-lang/rust.vim',
     ft = 'rust',
     init = function ()
