@@ -38,7 +38,7 @@ if status --is-interactive
   abbr --add --global eali 'nvim ~/.config/fish/aliases.fish'
   abbr --add --global efish 'nvim ~/.config/fish/config.fish'
   abbr --add --global egitc 'nvim ~/.gitconfig'
-  abbr --add --global envim 'nvim ~/.config/nvim/init.vim'
+  abbr --add --global envim 'nvim ~/.config/nvim/lua/custom/chadrc.lua'
   abbr --add --global etmux 'nvim ~/.tmux.conf'
 
   if command -v nvim > /dev/null
