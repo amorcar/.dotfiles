@@ -50,3 +50,7 @@ scripts = "~/.config/scripts"
 
 [htop.files]
 "htoprc" = "~/.config/htop/htoprc"
+
+[psql.files]
+"psqlrc" = "~/.psqlrc"
+
