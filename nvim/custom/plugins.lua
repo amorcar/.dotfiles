@@ -79,6 +79,7 @@ local plugins = {
     end
   },
 
+  -- RUST
   {
     'rust-lang/rust.vim',
     ft = 'rust',
