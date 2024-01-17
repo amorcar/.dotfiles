@@ -33,6 +33,7 @@ local plugins = {
         'mypy',
         'ruff',
         'pyright',
+        'debugpy',
         'terraform-ls',
       },
     },
@@ -79,6 +80,52 @@ local plugins = {
     end
   },
 
+  -- DEBUGGER
+  {
+    'mfussenegger/nvim-dap',
+  },
+
+  {
+    'theHamsta/nvim-dap-virtual-text',
+    dependencies = 'mfussenegger/nvim-dap',
+  },
+
+  {
+    'rcarriga/nvim-dap-ui',
+    dependencies = 'mfussenegger/nvim-dap',
+    config = function()
+      local dap, dapui = require("dap"), require("dapui")
+      dapui.setup()
+
+      dap.listeners.before.attach.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.launch.dapui_config = function()
+        dapui.open()
+      end
+      -- dap.listeners.before.event_terminated.dapui_config = function()
+      --   dapui.close()
+      -- end
+      -- dap.listeners.before.event_exited.dapui_config = function()
+      --   dapui.close()
+      -- end
+
+    end
+  },
+
+  {
+    'mfussenegger/nvim-dap-python',
+    ft = 'python',
+    dependencies = {
+      'mfussenegger/nvim-dap',
+      'rcarriga/nvim-dap-ui',
+    },
+    config = function(_, opts)
+      local path = '~/.local/share/nvim/mason/packages/debugpy/venv/bin/python'
+      require('dap-python').setup(path)
+    end,
+  },
+
   -- RUST
   {
     'rust-lang/rust.vim',
@@ -99,10 +146,6 @@ local plugins = {
       require('rust-tools').setup(opts)
     end
   },
-
-  -- {
-  --   'mfussenegger/nvim-dap',
-  -- },
 
   {
     'saecki/crates.nvim',

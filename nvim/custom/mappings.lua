@@ -216,13 +216,45 @@ M.dap = {
       '<cmd> DapToggleBreakpoint <CR>',
       'Toggle Breakpoint'
     },
-    ['<leader>dus'] = {
+    ['<leader>dt'] = {
       function ()
-        local widgets = require('dap.vi.widgets');
-        local sidebar = widgets. sidebar(widgets.scopes);
-        sidebar.open();
+        require("dapui").toggle()
       end,
-      'Open debugging sidebar'
+      'Open debugging UI'
+    },
+    ['<leader>dr'] = {
+      function ()
+        require('dap').continue()
+      end,
+      'Start debugging session'
+    },
+    ['<leader>dor'] = {
+      function ()
+        require('dap').repl.open()
+      end,
+      'Open REPL'
+    },
+    ['<leader>dso'] = {
+      function ()
+        require('dap').step_over()
+      end,
+      'Step Over'
+    },
+    ['<leader>dsi'] = {
+      function ()
+        require('dap').step_into()
+      end,
+      'Step Over'
+    },
+  }
+}
+
+M.dap_python = {
+  n = {
+    ['<leader>dpr'] = {
+      function()
+        require('dap-python').test_method()
+      end
     }
   }
 }
