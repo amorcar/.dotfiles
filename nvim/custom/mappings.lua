@@ -35,6 +35,8 @@ M.disabled = {
     ['<A-h>'] = '',
     ['<leader>wk'] = '',
     ['<leader>wK'] = '',
+    ['n'] = '',
+    ['N'] = '',
   },
 
   v = {
@@ -66,6 +68,14 @@ M.general = {
     ["<leader>trn"] = {
       "<cmd> set rnu! <CR>",
       "Toggle relative number"
+    },
+    ["n"] = {
+      "nzz",
+      "Center next search result in screen"
+    },
+    ["N"] = {
+      "Nzz",
+      "Center previous search result in screen"
     },
   },
 
