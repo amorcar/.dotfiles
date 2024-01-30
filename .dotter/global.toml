@@ -27,6 +27,7 @@ autoremove = "echo not defined"
 "fish/config.fish" = "~/.config/fish/config.fish"
 "fish/aliases.fish" = "~/.config/fish/aliases.fish"
 "fish/functions" = "~/.config/fish/functions"
+"fish/completions" = "~/.config/fish/completions"
 
 [alacritty.files]
 "alacritty/alacritty.yml" = "~/.config/alacritty/alacritty.yml"

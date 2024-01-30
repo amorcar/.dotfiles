@@ -3,6 +3,9 @@
   excludesfile = ~/.DS_Store
   ; pager = nvim --cmd 'let g:VIM_MANPAGER = 1' -c MANPAGER -
 
+[init]
+  defaultBranch = main
+
 [merge]
   tool = nvimdiff
 
