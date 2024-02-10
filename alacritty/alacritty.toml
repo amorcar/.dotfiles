@@ -1,0 +1,36 @@
+# Config
+import = [
+  "/Users/amorales/.config/alacritty/colors/nord.toml",
+]
+
+live_config_reload = true
+
+[shell]
+program = "/opt/homebrew/bin/fish"
+
+# [env]
+# TERM = "xterm-256color"
+
+[window]
+dynamic_title = false
+option_as_alt = 'OnlyLeft'
+decorations = "ButtonLess" # "None"
+padding = { x = 5, y = 5 }
+
+[scrolling]
+history = 0
+multiplier = 3
+
+[cursor]
+style = { blinking = "Off"}
+
+[debug]
+render_timer = false
+
+[font]
+size = 14.0
+normal = { family = "Liga SFMono Nerd Font" }
+
+[mouse]
+hide_when_typing = true
+

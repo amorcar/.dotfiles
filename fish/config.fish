@@ -54,6 +54,10 @@ if status --is-interactive
     abbr -a btm 'btm --battery'
   end
 
+  if command -v bartib > /dev/null
+    abbr -a btb 'bartib'
+  end
+
   if command -v eza > /dev/null
     abbr -a l 'eza'
     abbr -a ls 'eza'
