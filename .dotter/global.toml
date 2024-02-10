@@ -30,8 +30,8 @@ autoremove = "echo not defined"
 "fish/completions" = "~/.config/fish/completions"
 
 [alacritty.files]
-"alacritty/alacritty.yml" = "~/.config/alacritty/alacritty.yml"
-"alacritty/colors" = "~/.config/alacritty/colors"
+"alacritty/alacritty.toml" = "~/.config/alacritty/alacritty.toml"
+"alacritty/colors/nord.toml" = "~/.config/alacritty/colors/nord.toml"
 
 [alacritty.variables]
 font_family = "Menlo"
