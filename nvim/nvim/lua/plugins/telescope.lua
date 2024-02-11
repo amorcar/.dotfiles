@@ -8,6 +8,25 @@ return {
     config = function()
       local telescope_builtin = require("telescope.builtin")
 
+      require("telescope").setup({
+        defaults = {
+          sorting_strategy = 'ascending',
+          layout_strategy = "bottom_pane",
+          border = false,
+          preview = false,
+          layout_config = {
+            bottom_pane = {
+              height = 0.3,
+            },
+          },
+        },
+        pickers = {
+          find_files = {
+            find_command = { "rg", "-L", "--files", }
+          },
+        },
+      })
+
       -- bindings
       vim.keymap.set("n", "<C-p>", telescope_builtin.find_files)
       vim.keymap.set("n", "<leader>fo", telescope_builtin.oldfiles)
