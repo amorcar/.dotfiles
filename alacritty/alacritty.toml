@@ -13,12 +13,16 @@ program = "/opt/homebrew/bin/fish"
 
 [window]
 dynamic_title = false
+dynamic_padding = false
 option_as_alt = 'OnlyLeft'
 decorations = "ButtonLess" # "None"
 padding = { x = 5, y = 5 }
 
+# opacity = 0.7
+# blur = true
+
 [scrolling]
-history = 0
+history = 100000
 multiplier = 3
 
 [cursor]
@@ -30,6 +34,11 @@ render_timer = false
 [font]
 size = 14.0
 normal = { family = "Liga SFMono Nerd Font" }
+# "Liga SFMono Nerd Font"
+# "FiraCode Nerd Font Mono"
+# "Cousine Nerd Font"
+# "Courier Prime Code"
+offset = { x = 0, y = 3 }
 
 [mouse]
 hide_when_typing = true
