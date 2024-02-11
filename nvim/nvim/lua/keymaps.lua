@@ -3,6 +3,8 @@
 -------------------------------------------------------------------------------
 -- quick save
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>')
+-- quick close buffer
+vim.keymap.set('n', '<leader>x', '<cmd>bd<cr>')
 
 -- Ctrl+h to stop searching
 vim.keymap.set('v', '<C-h>', '<cmd>nohlsearch<cr>')
