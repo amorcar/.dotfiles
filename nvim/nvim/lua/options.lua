@@ -6,6 +6,8 @@
 vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
 
+vim.opt.timeoutlen = 4000
+
 vim.opt.relativenumber = true
 vim.opt.number = true
 

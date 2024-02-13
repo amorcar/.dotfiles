@@ -29,3 +29,5 @@ vim.keymap.set('c', '%s/', '%sm/')
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
 
+-- escape terminal
+vim.keymap.set('t', '<C-w>h', "<C-\\><C-n><C-w>h",{silent = true})

@@ -10,7 +10,7 @@ return {
 
       require("telescope").setup({
         defaults = {
-          sorting_strategy = 'ascending',
+          sorting_strategy = "ascending",
           layout_strategy = "bottom_pane",
           border = false,
           preview = false,
@@ -22,7 +22,7 @@ return {
         },
         pickers = {
           find_files = {
-            find_command = { "rg", "-L", "--files", }
+            find_command = { "rg", "-L", "--files" },
           },
         },
       })
@@ -36,7 +36,9 @@ return {
       vim.keymap.set("n", "<leader>fth", telescope_builtin.colorscheme)
       vim.keymap.set("n", "<leader>fbg", telescope_builtin.current_buffer_fuzzy_find)
       -- lsp
-      vim.keymap.set("n", "<leader>q", telescope_builtin.diagnostics)
+      vim.keymap.set("n", "<leader>q", function()
+        telescope_builtin.diagnostics({ bufnr = 0 })
+      end)
       vim.keymap.set("n", "<leader>fds", telescope_builtin.lsp_document_symbols)
       -- vim.keymap.set("n", "<leader>gd", telescope_builtin.lsp_definitions)
     end,
