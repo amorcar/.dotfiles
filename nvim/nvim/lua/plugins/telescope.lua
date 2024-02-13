@@ -35,6 +35,7 @@ return {
       vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep)
       vim.keymap.set("n", "<leader>fth", telescope_builtin.colorscheme)
       vim.keymap.set("n", "<leader>fbg", telescope_builtin.current_buffer_fuzzy_find)
+      vim.keymap.set("n", "<C-c>", telescope_builtin.commands)
       -- lsp
       vim.keymap.set("n", "<leader>q", function()
         telescope_builtin.diagnostics({ bufnr = 0 })
