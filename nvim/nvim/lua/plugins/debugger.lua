@@ -8,6 +8,34 @@ return {
 			local dap = require("dap")
 			local dapui = require("dapui")
 
+      local mason_registry = require("mason-registry")
+
+      -- local codelldb = mason_registry.get_package("codelldb")
+      -- local extension_path = codelldb:get_install_path() .. "/extension/"
+      -- local codelldb_path = extension_path .. "adapter/codelldb"
+      -- local liblldb_path = extension_path .. "Ildb/lib/liblldb.dylib"
+
+			dap.adapters.lldb = {
+				type = "executable",
+				command = "/Users/amorales/.local/share/nvim/mason/bin/codelldb",
+        -- command = "/usr/bin/lldb",
+				name = "lldb",
+			}
+
+			dap.configurations.rust = {
+				{
+					name = "Launch",
+					type = "lldb",
+					request = "launch",
+					program = function()
+						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					end,
+					cwd = "${workspaceFolder}",
+					stopOnEntry = false,
+					args = {},
+				},
+			}
+
 			-- set up the UI
 			dapui.setup({
 				layouts = {
@@ -30,7 +58,7 @@ return {
 								size = 0.10,
 							},
 						},
-						position = "left",
+						position = "right",
 						size = 40,
 					},
 					{
@@ -76,6 +104,21 @@ return {
 			vim.keymap.set("n", "<leader>dsu", dap.step_out, {})
 			vim.keymap.set("n", "<Leader>dtr", dap.repl.toggle, {})
 			vim.keymap.set("n", "<leader>dtu", dapui.toggle, {})
+		end,
+	},
+	{
+		"jay-babu/mason-nvim-dap.nvim",
+		dependencies = {
+			"williamboman/mason.nvim",
+		},
+		config = function()
+			require("mason-nvim-dap").setup({
+				ensure_installed = {
+					-- should install debugpy
+					"python",
+					"codelldb",
+				},
+			})
 		end,
 	},
 	{

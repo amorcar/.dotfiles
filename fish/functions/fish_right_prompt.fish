@@ -10,12 +10,11 @@ function fish_right_prompt -d "Write out the right prompt"
 # Print vi mode indicator
   # prompt_vim_mode
 
-
   # Print a yellow fork symbol when in a subshell
-  if set -q TMUX # test -n "$TMUX"
-    set_color yellow
-    echo -n "⑂ "
-  end
+  # if set -q TMUX # test -n "$TMUX"
+  #   set_color yellow
+  #   echo -n "⑂ "
+  # end
 
   # Print a red dot for failed commands.
   if test $exit_code -ne 0
@@ -98,34 +97,8 @@ function fish_right_prompt -d "Write out the right prompt"
   end # end is_git_repository
   set_color normal
 
-  # Print the current git branch name or shortened commit hash in colour.
-  #
-  # Green means the working directory is clean.
-  # Yellow means all changed files have been staged.
-  # Red means there are changed files that are not yet staged.
-  #
-  # Untracked files are ignored.
-  # if test -n "$is_git_repository"
-
-  #   git diff-files --quiet --ignore-submodules 2>/dev/null; or set -l has_unstaged_files
-  #   git diff-index --quiet --ignore-submodules --cached HEAD 2>/dev/null; or set -l has_staged_files
-
-  #   if set -q has_unstaged_files
-  #     set_color red
-  #   else if set -q has_staged_files
-  #     set_color yellow
-  #   else
-  #     set_color green
-  #   end
-
-  #   echo -n "["
-  #   set -l git_branch (git branch 2>/dev/null | sed -n '/\* /s///p')
-  #   echo -n $git_branch
-  #   echo -n "]"
-
-
-  #   set_color black
-  # end
-
-  # set_color normal
+  # show current time
+  set time_prompt (date +%H:%M)
+  set_color brblack
+  echo -n "[$time_prompt] "
 end
