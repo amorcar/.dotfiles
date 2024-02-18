@@ -57,6 +57,8 @@ if status --is-interactive
 
   if command -v bartib > /dev/null
     abbr -a btb 'bartib'
+    abbr -a btbl 'bartib list --today'
+    abbr -a btbr 'bartib report --today'
   end
 
   if command -v eza > /dev/null
