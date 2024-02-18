@@ -23,9 +23,10 @@ function fish_prompt
   set remaining (math "$remaining - $pwdLen")
 
   # display the end of the prompt symbol
-  echo -n ' '
+  # echo -n ' '
   set_color --bold brgreen
-  echo -n ">_"
+  # echo -n ">"
+  echo -n ":"
 
   echo -n ' '
 
