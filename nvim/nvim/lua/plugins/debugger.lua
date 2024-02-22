@@ -59,17 +59,17 @@ return {
 							},
 						},
 						position = "right",
-						size = 40,
+						size = 30,
 					},
 					{
 						elements = {
 							{
 								id = "repl",
-								size = 0.5,
+								size = 0.3,
 							},
 							{
 								id = "console",
-								size = 0.5,
+								size = 0.7,
 							},
 						},
 						position = "bottom",
