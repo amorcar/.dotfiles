@@ -50,7 +50,6 @@ return {
       })
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-      vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, {})
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
       vim.keymap.set("n", "<leader>lca", vim.lsp.buf.code_action, {})
       vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, {})
