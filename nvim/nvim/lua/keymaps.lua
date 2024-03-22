@@ -14,19 +14,19 @@ vim.keymap.set("n", "<C-h>", "<cmd>nohlsearch<cr>")
 vim.keymap.set("n", "<leader><leader>", "<c-^>")
 
 -- always center search results
-vim.keymap.set("n", "n", "nzt", { silent = true })
-vim.keymap.set("n", "N", "Nzt", { silent = true })
-vim.keymap.set("n", "*", "*zt", { silent = true })
-vim.keymap.set("n", "#", "#zt", { silent = true })
-vim.keymap.set("n", "g*", "g*zt", { silent = true })
+vim.keymap.set("n", "n", "nzz", { silent = true })
+vim.keymap.set("n", "N", "Nzz", { silent = true })
+vim.keymap.set("n", "*", "*zz", { silent = true })
+vim.keymap.set("n", "#", "#zz", { silent = true })
+vim.keymap.set("n", "g*", "g*zz", { silent = true })
 
 -- center half-page jumps
-vim.keymap.set("n", "<C-d>", "<C-d>zt")
-vim.keymap.set("n", "<C-u>", "<C-u>zt")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- center jumplist jumps
-vim.keymap.set("n", "<C-o>", "<C-o>zt")
-vim.keymap.set("n", "<C-i>", "<C-i>zt")
+vim.keymap.set("n", "<C-o>", "<C-o>zz")
+vim.keymap.set("n", "<C-i>", "<C-i>zz")
 
 -- "very magic" (less escaping needed) regexes by default
 vim.keymap.set("n", "?", "?\\v")
