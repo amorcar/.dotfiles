@@ -41,8 +41,8 @@ vim.keymap.set("n", "k", "gk")
 vim.keymap.set("t", "<C-w>h", "<C-\\><C-n><C-w>h", { silent = true })
 
 -- move visual lines
-vim.keymap.set("x", "<C-J>", ":m '>+1<CR>gv=gv")
-vim.keymap.set("x", "<C-К>", ":m '<-2<CR>gv=gv")
+-- vim.keymap.set("x", "<C-J>", ":m '>+1<CR>gv=gv")
+-- vim.keymap.set("x", "<C-К>", ":m '<-2<CR>gv=gv")
 
 -- a better J that keeps the cursor in the same place
 vim.keymap.set("n", "J", "mzJ`z")
