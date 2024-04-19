@@ -1,6 +1,6 @@
 # Config
 import = [
-  "/Users/amorales/.config/alacritty/colors/nord.toml",
+  "~/.config/alacritty/colors/nord.toml",
   # "/Users/amorales/.config/alacritty/colors/baitong.toml",
 ]
 
