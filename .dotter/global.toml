@@ -1,57 +1,21 @@
-[helpers]
-
-[default]
-depends = []
-
-[default.files]
-
-[default.variables]
-
-[shell.variables]
-# Local variables: install, uninstall, update, autoremove, user_color
-install = "echo not defined"
-uninstall = "echo not defined"
-update = "echo not defined"
-autoremove = "echo not defined"
-
 [nvim.files]
-"nvim/nvim" = { target = "~/.config/nvim", type = "symbolic" }
-
-[git.files]
-"gitconfig" = "~/.gitconfig"
-
-[tmux.files]
-"tmux.conf" = "~/.tmux.conf"
-
-[fish.files]
-"fish/config.fish" = "~/.config/fish/config.fish"
-"fish/aliases.fish" = "~/.config/fish/aliases.fish"
-"fish/functions" = "~/.config/fish/functions"
-"fish/completions" = "~/.config/fish/completions"
+"nvim/" = { target = "~/.config/nvim/", type = "symbolic" }
 
 [alacritty.files]
-"alacritty/alacritty.toml" = "~/.config/alacritty/alacritty.toml"
-"alacritty/colors/nord.toml" = "~/.config/alacritty/colors/nord.toml"
+"alacritty" = "~/.config/alacritty"
 
-[alacritty.variables]
-font_family = "Menlo"
-font_size = 14
+[psql.files]
+"psql/psqlrc" = "~/.psqlrc"
+
+[shell.files]
+"fish" = "~/.config/fish"
+"github/gitconfig" = "~/.gitconfig"
+"tmux/tmux.conf" = "~/.tmux.conf"
+"shell/bat" = "~/.config/bat/config"
+"shell/bottom.toml" = "~/.config/bottom/bottom.toml"
+"shell/fd.ignore" = "~/.config/fd/ignore"
+"shell/htoprc" = "~/.config/htop/htoprc"
 
 [scripts.files]
 scripts = "~/.config/scripts"
-
-[bottom.files]
-"bottom.toml" = "~/.config/bottom/bottom.toml"
-
-[fd.files]
-"fd.ignore" = "~/.config/fd/ignore"
-
-[bat.files]
-"bat" = "~/.config/bat/config"
-
-[htop.files]
-"htoprc" = "~/.config/htop/htoprc"
-
-[psql.files]
-"psqlrc" = "~/.psqlrc"
 
