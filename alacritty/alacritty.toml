@@ -1,7 +1,7 @@
 # Config
 import = [
   "~/.config/alacritty/colors/nord.toml",
-  # "/Users/amorales/.config/alacritty/colors/baitong.toml",
+  # "~/.config/alacritty/colors/baitong.toml",
 ]
 
 live_config_reload = true

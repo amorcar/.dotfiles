@@ -16,7 +16,7 @@ set -gx EDITOR nvim
 # set -g IGNOREEOF 3
 
 set -g NVM_DIR ~/.nvm
-bass source /opt/homebrew/opt/nvm/nvm.sh # This loads nvm
+# bass source /opt/homebrew/opt/nvm/nvm.sh # This loads nvm
 # bass sourcen/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm # This loads nvm bash_completion
 
 
@@ -39,7 +39,7 @@ if status --is-interactive
   abbr --add --global eali 'nvim ~/.config/fish/aliases.fish'
   abbr --add --global efish 'nvim ~/.config/fish/config.fish'
   abbr --add --global egitc 'nvim ~/.gitconfig'
-  abbr --add --global envim 'nvim ~/.config/nvim/lua/custom/chadrc.lua'
+  abbr --add --global envim 'nvim ~/.config/nvim/init.lua'
   abbr --add --global etmux 'nvim ~/.tmux.conf'
   abbr --add --global essh 'nvim ~/.ssh/config'
   abbr --add --global eala 'nvim ~/.config/alacritty/alacritty.toml'

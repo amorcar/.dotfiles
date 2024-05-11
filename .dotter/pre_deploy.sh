@@ -9,4 +9,4 @@ fi
 
 # install packages in Brewfile
 echo 'installing packages in the Brewfile'
-brew bundle install --file ./Brewfile
+#brew bundle install --file ./Brewfile
