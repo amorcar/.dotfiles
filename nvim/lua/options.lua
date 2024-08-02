@@ -6,6 +6,9 @@
 vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
 
+-- always set local leader second!
+vim.g.maplocalleader = ";"
+
 vim.opt.timeoutlen = 4000
 
 vim.opt.relativenumber = true
