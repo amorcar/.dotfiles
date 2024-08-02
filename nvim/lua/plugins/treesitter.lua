@@ -17,6 +17,7 @@ return {
         "json",
         "yaml",
         "toml",
+        "norg",
       },
       sync_install = false,
       highlight = { enable = true },
