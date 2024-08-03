@@ -1,4 +1,4 @@
--- org mode in vim
+-- note taking in vim
 return {
   "nvim-neorg/neorg",
   name = "neorg",
