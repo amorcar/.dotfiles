@@ -43,6 +43,8 @@ if status --is-interactive
   abbr --add --global etmux 'nvim ~/.tmux.conf'
   abbr --add --global essh 'nvim ~/.ssh/config'
   abbr --add --global eala 'nvim ~/.config/alacritty/alacritty.toml'
+  abbr --add --global twork '~/.config/scripts/work-tmux.sh'
+  abbr --add --global tdev '~/.config/scripts/dev-tmux.sh'
 
   if command -v nvim > /dev/null
     abbr -a vim 'nvim'

@@ -1,28 +1,40 @@
 #!/bin/sh
+SESSION_NAME="main"
+WORKING_DIR="$HOME/Dev/projects/tsp/"
+VENV_PATH=".venv/bin/activate.fish"
 
-session="main"
-wd="~/"
+# Check if the session already exists
+if tmux has-session -t $SESSION_NAME 2>/dev/null; then
+    echo "$SESSION_NAME session exists"
+    if [[ $1 == attach ]]; then
+      tmux attach-session -t $SESSION_NAME
+    fi
+else
+  # Create the tmux session
+  tmux new-session -d -s $SESSION_NAME
 
-# create a new tmux session, starting nvim from a saved session in the new window
-tmux attach-session -t $session && exit 1 || tmux new-session -d -s $session -n main -x "$(tput cols)" -y "$(tput lines)"
+  # First window setup
+  tmux rename-window -t $SESSION_NAME:1 'home'
+  tmux split-window -h -t $SESSION_NAME:1.0 -l 40%
+  tmux split-window -v -t $SESSION_NAME:1.1 -l 10%
 
-tmux splitw -h -p 30
-tmux splitw -v -p 75
-tmux new-window -n scratch
-tmux select-window -t 1
-tmux select-pane -t 0
-tmux splitw -v -p 15
-tmux clock -t 2
-tmux select-pane -t 0
+  tmux set-window-option -t $SESSION_NAME:1 synchronize-panes on
+  tmux send-keys -t $SESSION_NAME:1 "cd $WORKING_DIR" C-m
+  tmux send-keys -t $SESSION_NAME:1 ". $VENV_PATH" C-m
+  tmux set-window-option -t $SESSION_NAME:1 synchronize-panes off
 
-# Finished setup, attach to the tmux session!
-tmux attach-session -t $session
+  tmux send-keys -t $SESSION_NAME:1.0 "clear" C-m
+  tmux send-keys -t $SESSION_NAME:1.0 "nvim -c 'Telescope oldfiles'" C-m
+  tmux send-keys -t $SESSION_NAME:1.1 "clear" C-m
+  tmux send-keys -t $SESSION_NAME:1.2 "clear" C-m
+  tmux clock -t $SESSION_NAME:1.2
 
+  tmux select-window -t 1
+  tmux select-pane -t 1
+  tmux select-pane -t 0
 
+  if [[ $1 == attach ]]; then
+    tmux attach-session -t $SESSION_NAME
+  fi
 
-# Common commands
-# tmux new-window -n window_name
-# tmux splitw -h/v -p 30
-# tmux select-pane -t 0
-# tmux select-window -t 0
-# tmux send-keys -p 0 "ls -lha" C-m
+fi
