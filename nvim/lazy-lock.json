@@ -23,6 +23,7 @@
   "obsidian.nvim": { "branch": "main", "commit": "ae1f76a75c7ce36866e1d9342a8f6f5b9c2caf9b" },
   "onenord": { "branch": "main", "commit": "70b716fd36a18284ad768402523b79ccdadafedf" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
+  "solarized.nvim": { "branch": "main", "commit": "3a197875c76803e4a64d4b1491c6dd0d22b161cd" },
   "telescope": { "branch": "master", "commit": "d90956833d7c27e73c621a61f20b29fdb7122709" },
   "telescope-recent-files.nvim": { "branch": "main", "commit": "5f7baf92b2e0b7bd582e2c0e5241a00cf55a1adb" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
