@@ -11,6 +11,9 @@ vim.g.maplocalleader = ";"
 
 vim.opt.timeoutlen = 4000
 
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
 vim.opt.relativenumber = true
 vim.opt.number = true
 
