@@ -1,0 +1,126 @@
+# [Created by task 2.6.2 2/1/2024 12:53:16]
+# Taskwarrior program configuration file.
+# For more documentation, see https://taskwarrior.org or try 'man task', 'man task-color',
+# 'man task-sync' or 'man taskrc'
+# config reference: https://linux.die.net/man/5/taskrc
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# You can also refence environment variables:
+#   variable=$HOME/task
+#   variable=$VALUE
+
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+# data.location=/Users/amorales/.config/task
+
+# To use the default location of the XDG directories,
+# move this configuration file from ~/.taskrc to ~/.config/task/taskrc and uncomment below
+
+data.location=~/.local/share/task
+hooks.location=~/.config/task/hooks
+
+# Color theme (uncomment one to use)
+include solarized-dark-256.theme
+# include no-color.theme
+
+# colors
+# rule.color.merge=yes
+
+# config
+regex=on
+search.case.sensitive=off
+# calendar.details=full
+weekstart=monday
+calendar.holidays=sparse
+journal.time=on
+due=7
+
+# aliases
+alias.rm=delete
+alias.a=all
+alias.n=next
+alias.t=todo
+alias.i=inbox
+alias.d=completed end:today
+
+default.command=next
+
+# default values for tasks
+default.project=inbox
+uda.priority.default=L
+
+# contexts
+context.work.read=+work or +specter or project:specter
+context.home.read=+personal or +learn or +finances or project:personal or project:learn
+
+# tags urgency
+urgency.user.tag.bug.coefficient=+1.0
+urgency.user.tag.spike.coefficient=-1.0
+urgency.user.tag.backlog.coefficient=-6.5
+urgency.user.tag.later.coefficient=-10.0
+
+# projects urgency
+## work
+urgency.user.project.work.coefficient=+0.0
+### company delivery has special urgency
+urgency.user.project.work.company.delivery.coefficient=+2.0
+
+## personal
+urgency.user.project.me.coefficient=-5.0
+
+# modified next report
+report.next.columns=id,start.age,description,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,urgency
+report.next.labels=ID,Active,Description,Deps,P,Project,Tag,Recur,S,Due,Until,Urg
+report.next.filter=-project:inbox
+
+# custom reports 
+# inbox - show all tasks in the inbox to relocate
+report.inbox.description=Task in the inbox (pending to process)
+report.inbox.columns=id,due.relative,description,urgency
+report.inbox.labels=id,due,description,u
+report.inbox.sort=entry+
+report.inbox.filter=project:inbox
+
+# todo
+report.todo.description=Show the most urgent unblocked pending tasks for today
+report.todo.columns=id,project,due.relative,description,urgency
+report.todo.labels=id,project,due,description,u
+report.todo.sort=urgency-
+report.todo.filter=+TODAY status:PENDING -WAITING -project:inbox
+
+## Custom colors
+color.alternate=
+
+color.completed=gray20
+color.deleted=bold gray9
+color.active=bright green
+color.recurring=bright rgb355
+color.blocking=bold rgb401
+color.blocked=bright rgb430
+
+color.project.inbox=bright blue
+
+# color.uda.priority.H=
+# color.uda.priority.M=
+# color.uda.priority.L=
+
+color.tag.bug=bold
+
+# color.due=yellow
+color.due.today=bold bright red
+color.overdue=bold magenta
+
+# tasksh related
+uda.reviewed.type=date
+uda.reviewed.label=Reviewed
+
+report._reviewed.description=Tasksh review report.  Adjust the filter to your needs.
+report._reviewed.columns=uuid
+report._reviewed.sort=reviewed+,modified+
+report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
+

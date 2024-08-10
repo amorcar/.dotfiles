@@ -16,6 +16,9 @@
 "shell/fd.ignore" = "~/.config/fd/ignore"
 "shell/htoprc" = "~/.config/htop/htoprc"
 
+[org.files]
+task = "~/.config/task"
+
 [scripts.files]
 scripts = "~/.config/scripts"
 
