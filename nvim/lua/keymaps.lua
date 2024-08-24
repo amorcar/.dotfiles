@@ -38,7 +38,7 @@ vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
 
 -- escape terminal
-vim.keymap.set("t", "<C-w>h", "<C-\\><C-n><C-w>h", { silent = true })
+vim.keymap.set("t", "<esc>", "<C-\\><C-n><C-w>h", { silent = true })
 
 -- move visual lines
 -- vim.keymap.set("x", "<C-J>", ":m '>+1<CR>gv=gv")
@@ -51,3 +51,21 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set('n', "<leader>y", "\"+y")
 vim.keymap.set("x", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
+
+-- buffer moves
+vim.keymap.set('n', "[b", ":bprevious<cr>")
+vim.keymap.set('n', "]b", ":bnext<cr>")
+vim.keymap.set('n', "[B", ":bfirst<cr>")
+vim.keymap.set('n', "]B", ":blast<cr>")
+
+-- quicklist moves
+vim.keymap.set('n', "[q", ":cprevious<cr>")
+vim.keymap.set('n', "]q", ":cnext<cr>")
+vim.keymap.set('n', "[Q", ":cfirst<cr>")
+vim.keymap.set('n', "]Q", ":clast<cr>")
+
+-- location moves
+vim.keymap.set('n', "[l", ":lprevious<cr>")
+vim.keymap.set('n', "]l", ":lnext<cr>")
+vim.keymap.set('n', "[L", ":lfirst<cr>")
+vim.keymap.set('n', "]L", ":llast<cr>")
