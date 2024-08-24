@@ -15,14 +15,8 @@
 
 # Use the command 'task show' to see all defaults and overrides
 
-# Files
-# data.location=/Users/amorales/.config/task
-
-# To use the default location of the XDG directories,
-# move this configuration file from ~/.taskrc to ~/.config/task/taskrc and uncomment below
-
-data.location=~/.local/share/task
-hooks.location=~/.config/task/hooks
+data.location=$HOME/.local/share/task
+hooks.location=$HOME/.config/task/hooks
 
 # Color theme (uncomment one to use)
 include solarized-dark-256.theme
@@ -55,43 +49,43 @@ default.project=inbox
 uda.priority.default=L
 
 # contexts
-context.work.read=+work or +specter or project:specter
-context.home.read=+personal or +learn or +finances or project:personal or project:learn
+context.work.read=project:work
+context.home.read=project:personal
 
 # tags urgency
-urgency.user.tag.bug.coefficient=+1.0
-urgency.user.tag.spike.coefficient=-1.0
-urgency.user.tag.backlog.coefficient=-6.5
-urgency.user.tag.later.coefficient=-10.0
+urgency.user.tag.bug.coefficient=+0.8
+urgency.user.tag.spike.coefficient=-0.5
+urgency.user.tag.later.coefficient=-3.0
+urgency.user.tag.backlog.coefficient=-6.0
 
 # projects urgency
+## inbox
+urgency.user.project.inbox.coefficient=-5.0
 ## work
-urgency.user.project.work.coefficient=+0.0
+urgency.user.project.work.coefficient=+0.5
 ### company delivery has special urgency
-urgency.user.project.work.company.delivery.coefficient=+2.0
-
+urgency.user.project.work.company.delivery.coefficient=+0.8
 ## personal
-urgency.user.project.me.coefficient=-5.0
+urgency.user.project.me.coefficient=-2.0
 
 # modified next report
 report.next.columns=id,start.age,description,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,urgency
 report.next.labels=ID,Active,Description,Deps,P,Project,Tag,Recur,S,Due,Until,Urg
-report.next.filter=-project:inbox
-
+report.next.filter=(status:pending -WAITING limit:page) and (!(project:inbox) or +next) and (-backlog or urgency>0)
 # custom reports 
 # inbox - show all tasks in the inbox to relocate
 report.inbox.description=Task in the inbox (pending to process)
 report.inbox.columns=id,due.relative,description,urgency
 report.inbox.labels=id,due,description,u
 report.inbox.sort=entry+
-report.inbox.filter=project:inbox
+report.inbox.filter=(project:inbox) and !(status:canceled) and !(status:deleted)
 
 # todo
 report.todo.description=Show the most urgent unblocked pending tasks for today
 report.todo.columns=id,project,due.relative,description,urgency
 report.todo.labels=id,project,due,description,u
 report.todo.sort=urgency-
-report.todo.filter=+TODAY status:PENDING -WAITING -project:inbox
+report.todo.filter=+TODAY +DUETODAY status:PENDING
 
 ## Custom colors
 color.alternate=
@@ -122,5 +116,6 @@ uda.reviewed.label=Reviewed
 report._reviewed.description=Tasksh review report.  Adjust the filter to your needs.
 report._reviewed.columns=uuid
 report._reviewed.sort=reviewed+,modified+
-report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
+# report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
+report._reviewed.filter=( project:inbox ) and ( -DELETED )
 
