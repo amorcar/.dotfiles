@@ -20,22 +20,22 @@ if [ "$2" == "-d" ]; then
 
     printf "clang $1 $dbgFlag -o $filename && lldb $filename"
 
-    printf "\n\n|---- \e[0;34mDebugging\e[m ----|\n\n"
+    printf "\nD\n"
 
     clang $1 $dbgFlag -o $filename && lldb $filename
 else
     printf "clang $1 $flag -o $filename "
 
-    printf "\n\n|----\e[0;34m Compilation output \e[m----|\n\n"
+    printf "\nCO\n"
 
     clang $1 $flag -o $filename
 
     if [ $? -ne 0 ]; then
-        printf "\n\n|----\e[0;31m\033[1m Errors found \e[m----|\n\n"
+        printf "\nE\n"
         exit
     fi
 
-    printf "\n|----\e[0;34m Running (Input) \e[m----|\n\n"
+    printf "\nR\n"
 
     if [ "${filename:0:1}" != "/" ]; then
         filename="./$filename"
