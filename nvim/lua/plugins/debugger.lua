@@ -18,7 +18,7 @@ return {
 
       dap.adapters.lldb = {
         type = "executable",
-        command = "/Users/amorales/.local/share/nvim/mason/bin/codelldb",
+        command = "~/.local/share/nvim/mason/bin/codelldb",
         -- command = "/usr/bin/lldb",
         name = "lldb",
       }
@@ -111,9 +111,12 @@ return {
     "jay-babu/mason-nvim-dap.nvim",
     dependencies = {
       "williamboman/mason.nvim",
+      "mfussenegger/nvim-dap",
     },
+    event="VeryLazy",
     config = function()
       require("mason-nvim-dap").setup({
+        handlers = {},
         ensure_installed = {
           -- should install debugpy
           "python",

@@ -22,6 +22,8 @@ return {
           "pyright",
           -- terraform
           "terraformls",
+          -- c
+          "clangd",
         },
       })
     end,
@@ -46,6 +48,9 @@ return {
         capabilities = capabilities,
       })
       lspconfig.terraformls.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.clangd.setup({
         capabilities = capabilities,
       })
 
