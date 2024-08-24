@@ -18,6 +18,7 @@ return {
         "yaml",
         "toml",
         "markdown",
+        "c",
       },
       sync_install = false,
       highlight = { enable = true },
