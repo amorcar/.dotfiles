@@ -22,3 +22,5 @@ task = "~/.config/task"
 [scripts.files]
 scripts = "~/.config/scripts"
 
+[bin.files]
+bin = "~/.local/bin"
