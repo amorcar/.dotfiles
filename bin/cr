@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
+# set -xe
 
 if [ -z "$1" ]; then
-    echo "Please give a file to compile and run."
+    echo "missing target"
     exit
 fi
 
 filename="$1"
-filename="${filename%.*}.out"
+filename="${filename%.*}"
 
 # flag="-std=c17 -O2 -Wall -Wextra -Wshadow -Wconversion -Wfloat-equal"
 flag="-Wall"
@@ -16,7 +17,7 @@ dbgFlag="-g -O0"
 
 # debug
 if [ "$2" == "-d" ]; then
-    printf "Using lldb (use r (run) and bt (backtrace))"
+    printf "using lldb (use r (run) and bt (backtrace))"
 
     printf "clang $1 $dbgFlag -o $filename && lldb $filename"
 

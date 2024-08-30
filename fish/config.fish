@@ -1,18 +1,17 @@
+fish_add_path "$HOME/.local/bin"
 fish_add_path "$HOME/.cargo/bin"
 fish_add_path "/opt/homebrew/bin"
 fish_add_path "/opt/homebrew/sbin"
 fish_add_path "$HOME/.fzf/bin"
 fish_add_path "/opt/homebrew/Cellar/docker/23.0.5/bin"
-fish_add_path "$HOME/.config/scripts"
 
+## Environment
 # Shell only exists after the 10th consecutive Ctrl-d
 # export IGNOREEOF=10
-
 
 # set fish_greeting
 set fish_greeting
 
-# Globals
 set -gx EDITOR nvim
 # set -g IGNOREEOF 3
 
@@ -20,16 +19,20 @@ set -g NVM_DIR ~/.nvm
 # bass source /opt/homebrew/opt/nvm/nvm.sh # This loads nvm
 # bass sourcen/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm # This loads nvm bash_completion
 
-
-set HISTSIZE 10000
-set HISTCONTROL ignoredups
+set -gx HISTSIZE 10000
+set -gx HISTCONTROL ignoredups
 
 
 # fzf default command
-set FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow'
+set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow'
 
 # elixir shell
-export ERL_AFLAGS="-kernel shell_history enabled -kernel shell_history_file_bytes 1024000"
+set -gx ERL_AFLAGS "-kernel shell_history enabled -kernel shell_history_file_bytes 1024000"
+# include local headers/libs on C compilation
+# set -gx C_INCLUDE_PATH $HOME/.local/include
+# set -gx CPLUS_INCLUDE_PATH $HOME/.local/include
+# set -gx LIBRARY_PATH $HOME/.local/lib
+
 
 # Load aliases
 . ~/.config/fish/aliases.fish

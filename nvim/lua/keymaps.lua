@@ -38,7 +38,8 @@ vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
 
 -- escape terminal
-vim.keymap.set("t", "<esc>", "<C-\\><C-n><C-w>h", { silent = true })
+vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { silent = true })
+vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>", { silent = true })
 
 -- move visual lines
 -- vim.keymap.set("x", "<C-J>", ":m '>+1<CR>gv=gv")
