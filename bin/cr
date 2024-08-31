@@ -36,13 +36,16 @@ else
         exit
     fi
 
-    printf "\nR\n"
+    if [ "$2" == "-r" ]; then
 
-    if [ "${filename:0:1}" != "/" ]; then
-        filename="./$filename"
+        printf "\nR\n"
+
+        if [ "${filename:0:1}" != "/" ]; then
+            filename="./$filename"
+        fi
+
+        # replace gtime with time on linux operating systems
+        # time '\n|--------|\n\n  real\t%E\n  user\t%U\n  sys\t%S\n  mem\t%MKB\n' $filename
+        $filename
     fi
-
-    # replace gtime with time on linux operating systems
-    # time '\n|--------|\n\n  real\t%E\n  user\t%U\n  sys\t%S\n  mem\t%MKB\n' $filename
-    $filename
 fi

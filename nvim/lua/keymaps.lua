@@ -25,8 +25,8 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- center jumplist jumps
-vim.keymap.set("n", "<C-o>", "<C-o>zz")
-vim.keymap.set("n", "<C-i>", "<C-i>zz")
+-- vim.keymap.set("n", "<C-o>", "<C-o>zz")
+-- vim.keymap.set("n", "<C-i>", "<C-i>zz")
 
 -- "very magic" (less escaping needed) regexes by default
 vim.keymap.set("n", "?", "?\\v")
@@ -36,6 +36,10 @@ vim.keymap.set("c", "%s/", "%sm/")
 -- make j and k move by visual line, not actual line, when text is soft-wrapped
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
+
+-- include numbered movement into jumplist
+vim.keymap.set('n', 'k', [[(v:count > 1 ? "m'" . v:count : "g") . 'k']], { expr = true })
+vim.keymap.set('n', 'j', [[(v:count > 1 ? "m'" . v:count : "g") . 'j']], { expr = true })
 
 -- escape terminal
 vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { silent = true })
@@ -70,3 +74,10 @@ vim.keymap.set('n', "[l", ":lprevious<cr>")
 vim.keymap.set('n', "]l", ":lnext<cr>")
 vim.keymap.set('n', "[L", ":lfirst<cr>")
 vim.keymap.set('n', "]L", ":llast<cr>")
+
+
+-- zooming split windows
+-- noremap Zz <c-w>_ \| <c-w>\|
+-- noremap Zo <c-w>=
+vim.keymap.set('n', "Zz", "<c-w>_ | <c-w>|")
+vim.keymap.set('n', "Zo", "<c-w>=")

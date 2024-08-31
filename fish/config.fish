@@ -82,6 +82,11 @@ if status --is-interactive
     abbr --add --global lh 'ls -lhaFG'
   end
 
+  if command -v task > /dev/null
+    abbr -a t 'task'
+    abbr -a tsh 'tasksh'
+  end
+
   if command -v zoxide > /dev/null
     # configure zoxide
     zoxide init fish | source
