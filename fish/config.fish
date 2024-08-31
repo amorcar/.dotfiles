@@ -85,6 +85,8 @@ if status --is-interactive
   if command -v task > /dev/null
     abbr -a t 'task'
     abbr -a tsh 'tasksh'
+    abbr -a tt 'task t'
+    abbr -a tn 'task n'
   end
 
   if command -v zoxide > /dev/null
