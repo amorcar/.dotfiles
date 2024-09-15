@@ -34,12 +34,14 @@ style = { blinking = "Off"}
 render_timer = false
 
 [font]
-size = 14.0
-normal = { family = "Liga SFMono Nerd Font" }
+normal = { family = "FiraCode Nerd Font Mono" }
+
+# find installed fonts (macOS): fc-list : family | sort -f
 # "Liga SFMono Nerd Font"
 # "FiraCode Nerd Font Mono"
-# "Cousine Nerd Font"
-# "Courier Prime Code"
+# "GohuFont uni14 Nerd Font Mono"
+
+size = 14.0
 offset = { x = 0, y = 3 }
 
 [mouse]
