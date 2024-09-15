@@ -78,7 +78,7 @@ report.inbox.description=Task in the inbox (pending to process)
 report.inbox.columns=id,due.relative,description,urgency
 report.inbox.labels=id,due,description,u
 report.inbox.sort=entry+
-report.inbox.filter=(project:inbox) and !(status:canceled) and !(status:deleted)
+report.inbox.filter=(project:inbox) and (status:pending)
 
 # todo
 report.todo.description=Show the most urgent unblocked pending tasks for today

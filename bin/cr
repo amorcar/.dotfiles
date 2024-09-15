@@ -46,6 +46,6 @@ else
 
         # replace gtime with time on linux operating systems
         # time '\n|--------|\n\n  real\t%E\n  user\t%U\n  sys\t%S\n  mem\t%MKB\n' $filename
-        $filename
+        time $filename
     fi
 fi

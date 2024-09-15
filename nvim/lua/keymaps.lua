@@ -56,15 +56,21 @@ map("t", "<C-w>", "<C-\\><C-n><C-w>", { silent = true })
 map("n", "J", "mzJ`z")
 
 -- leader yank to the system clipboard
-map('n', "<leader>y", "\"+y")
-map("x", "<leader>y", "\"+y")
-map("n", "<leader>Y", "\"+Y")
+map('n', "<leader>cy", "\"+y")
+map("x", "<leader>cy", "\"+y")
+map("n", "<leader>cY", "\"+Y")
 
 -- buffer moves
 map('n', "[b", ":bprevious<cr>")
 map('n', "]b", ":bnext<cr>")
 map('n', "[B", ":bfirst<cr>")
 map('n', "]B", ":blast<cr>")
+
+-- tab moves
+map('n', "[t", ":tprevious<cr>")
+map('n', "]t", ":tnext<cr>")
+map('n', "[T", ":tfirst<cr>")
+map('n', "]T", ":tlast<cr>")
 
 -- quicklist moves
 map('n', "[q", ":cprevious<cr>")

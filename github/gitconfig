@@ -22,10 +22,10 @@
   trustExitCode = true
 
 [diff]
-    tool = nvimdiff
+  tool = nvimdiff
 
 [difftool "nvimdiff"]
-    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [commit]
   verbose = true

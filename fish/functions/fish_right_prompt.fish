@@ -99,6 +99,7 @@ function fish_right_prompt -d "Write out the right prompt"
 
   # show current time
   set time_prompt (date +%H:%M)
-  set_color brblack
+  set_color brgreen
+  # set_color brblack
   echo -n "[$time_prompt] "
 end

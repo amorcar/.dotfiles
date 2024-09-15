@@ -103,5 +103,5 @@ if status --is-interactive
   abbr --add --global tgz 'tar -xvzf' # extract .tar.gz
   abbr --add --global tbz 'tar -xvjf' # extract .tar.bz2
 
-  abbr --add --global wifi "/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep CtlRSSI | tr -s ' ' | cut -d ' ' -f 3"
+  abbr --add --global wifi "networkQuality -v"
 end

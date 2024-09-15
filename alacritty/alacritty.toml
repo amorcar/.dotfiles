@@ -1,8 +1,8 @@
 # Config
 import = [
-  "~/.config/alacritty/colors/nord.toml",
+  # "~/.config/alacritty/colors/nord.toml",
   # "~/.config/alacritty/colors/baitong.toml",
-  # "~/.config/alacritty/colors/solarized_dark.toml",
+  "~/.config/alacritty/colors/solarized_dark.toml",
 ]
 
 live_config_reload = true
