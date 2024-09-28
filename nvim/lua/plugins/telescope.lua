@@ -20,7 +20,7 @@ return {
           preview = false,
           layout_config = {
             bottom_pane = {
-              height = 0.3,
+              height = 0.2,
             },
           },
         },
