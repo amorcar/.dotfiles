@@ -84,6 +84,12 @@ map('n', "]l", ":lnext<cr>")
 map('n', "[L", ":lfirst<cr>")
 map('n', "]L", ":llast<cr>")
 
+-- changelist
+map('n', "[g", "g;")
+map('n', "]g", "g,")
+map('n', "[G", "999g,")
+map('n', "]G", "999g;")
+
 -- faster compilation
 map("n", "<leader>m", ":w | :make<CR>")
 
