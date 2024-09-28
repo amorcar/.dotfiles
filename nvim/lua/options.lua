@@ -32,6 +32,8 @@ vim.opt.wildmode = 'list:longest'
 -- don't suggest files like there:
 vim.opt.wildignore = '.hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.swp,*.o,vendor,dist,_site'
 
+vim.opt.path:append '**'
+
 -- tabs as spaces
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
