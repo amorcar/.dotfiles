@@ -1,7 +1,7 @@
 -- neotree
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-  enable = false,
+  enable = true,
 	name = "neo-tree",
 	branch = "v3.x",
 	dependencies = {
@@ -30,11 +30,11 @@ return {
 				width = 25,
 			},
 		})
-    -- vim.keymap.set(
-    --   'n',
-    --   '<C-b>',
-    --   '<Cmd>Neotree toggle filesystem reveal left<CR>',
-    --   { noremap = true, silent = true }
-    -- )
+    vim.keymap.set(
+      'n',
+      '<leader>b',
+      '<Cmd>Neotree toggle filesystem reveal left<CR>',
+      { noremap = true, silent = true }
+    )
 	end,
 }
