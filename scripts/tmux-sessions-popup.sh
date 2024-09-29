@@ -25,7 +25,20 @@ function main {
         sessions=$(echo "" | fzf --exit-0 --print-query --reverse)
         retval=$?
     else
-        sessions=$(tmux list-sessions -F "#{session_name}" | fzf --exit-0 --print-query --reverse)
+        sessions=$( \
+          tmux list-sessions -F "#{session_name}" |\
+          awk '!/org/{ print $0 }' |\
+          fzf \
+            --exit-0\
+            --print-query\
+            --pointer '*'\
+            --color='current-bg:-1'\
+            --cycle\
+            --border none\
+            --no-scrollbar\
+            --no-separator\
+            --no-info\
+        )
         retval=$?
     fi
 
