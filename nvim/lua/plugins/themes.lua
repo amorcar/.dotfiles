@@ -55,9 +55,9 @@ return {
 				},
 				on_highlights = function(colors, color)
 					-- local darken = color.darken
-					-- local lighten = color.lighten
+					local lighten = color.lighten
 					-- local blend = color.blend
-					-- local shade = color.shade
+					local shade = color.shade
 					-- local tint = color.tint
 					local groups = {
 						Function = { fg = colors.base1 },
@@ -65,6 +65,10 @@ return {
             DiagnosticUnderlineWarn  = { fg = ''},
             DiagnosticUnderlineInfo  = { fg = ''},
             DiagnosticUnderlineHint  = { fg = ''},
+            DiffAdd = { bg = '#0c4e53', fg = '' },
+            DiffDelete = { bg = '#422d33', fg = '', reverse = false},
+            DiffChange = { bg = shade('#204060', 2.5), fg = '' },
+            DiffText = { bg = lighten('#204060', 2.5), fg = '', reverse = false  },
 					}
 
 					return groups
