@@ -55,6 +55,7 @@ return {
       end)
       vim.keymap.set("n", "<leader>fds", telescope_builtin.lsp_document_symbols)
       -- vim.keymap.set("n", "<leader>gd", telescope_builtin.lsp_definitions)
+      vim.keymap.set("n", "<leader>fh", telescope_builtin.help_tags)
     end,
   },
   {
