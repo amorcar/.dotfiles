@@ -19,6 +19,7 @@ return {
         "toml",
         "markdown",
         "c",
+        "sql",
       },
       sync_install = false,
       highlight = { enable = true },
