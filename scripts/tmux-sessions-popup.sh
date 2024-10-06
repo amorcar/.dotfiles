@@ -25,19 +25,25 @@ function main {
         sessions=$(echo "" | fzf --exit-0 --print-query --reverse)
         retval=$?
     else
+        current_session=$(tmux display-message -p '#S')
+
+        if [[ "$current_session" == "personal" ]]; then
+            reverse=true
+        fi
         sessions=$( \
           tmux list-sessions -F "#{session_name}" |\
           awk '!/org/{ print $0 }' |\
           fzf \
-            --exit-0\
-            --print-query\
-            --pointer '*'\
-            --color='current-bg:-1'\
-            --cycle\
-            --border none\
-            --no-scrollbar\
-            --no-separator\
-            --no-info\
+          --exit-0 \
+          --print-query \
+          --pointer '*' \
+          --color='current-bg:-1' \
+          --cycle \
+          --border none \
+          --no-scrollbar \
+          --no-separator \
+          --no-info \
+          ${reverse:+--tac}
         )
         retval=$?
     fi
