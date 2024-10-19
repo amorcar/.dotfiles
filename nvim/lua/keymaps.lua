@@ -91,7 +91,7 @@ map('n', "[G", "999g,")
 map('n', "]G", "999g;")
 
 -- faster compilation
-map("n", "<leader>m", ":w | :make<CR>")
+map("n", "<leader>m", ":w | :make!<CR>")
 
 
 -- zooming split windows
