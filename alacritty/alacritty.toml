@@ -2,7 +2,9 @@
 import = [
   # "~/.config/alacritty/colors/nord.toml",
   # "~/.config/alacritty/colors/baitong.toml",
-  "~/.config/alacritty/colors/solarized_dark.toml",
+  # "~/.config/alacritty/colors/solarized_dark.toml",
+  "~/.config/alacritty/colors/kanagawa_wave.toml",
+  # "~/.config/alacritty/colors/kanagawa_dragon.toml",
 ]
 
 live_config_reload = true
@@ -35,6 +37,8 @@ render_timer = false
 
 [font]
 normal = { family = "FiraCode Nerd Font Mono" }
+size = 14
+offset = { x = 0, y = 3 }
 
 # ligatures: => <= !=
 # find installed fonts (macOS): fc-list : family | sort -f
@@ -42,10 +46,9 @@ normal = { family = "FiraCode Nerd Font Mono" }
 # "FiraCode Nerd Font Mono"
 # "GohuFont uni14 Nerd Font Mono"
 # "ComicShannsMono Nerd Font Mono"
+# "Iosevka NFM Heavy"
 
 
-size = 14.0
-offset = { x = 0, y = 3 }
 
 [mouse]
 hide_when_typing = true
