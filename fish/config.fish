@@ -22,6 +22,7 @@ set -g NVM_DIR ~/.nvm
 set -gx HISTSIZE 10000
 set -gx HISTCONTROL ignoredups
 
+set -gx DIRENV_LOG_FORMAT
 
 # fzf default command
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow'
@@ -105,3 +106,6 @@ if status --is-interactive
 
   abbr --add --global wifi "networkQuality -v"
 end
+
+eval (direnv hook fish)
+eval (uv generate-shell-completion fish)
