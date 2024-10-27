@@ -25,7 +25,6 @@ return {
   {
     "sindrets/diffview.nvim",
     config = function()
-      local diffview = require("diffview")
       vim.keymap.set("n", "<leader>hod", ":DiffviewOpen<CR>", {})
     end,
   },
