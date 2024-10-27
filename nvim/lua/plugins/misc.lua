@@ -18,8 +18,8 @@ return {
       vim.keymap.set("n", "<leader>htd", gs.toggle_deleted, {})
       vim.keymap.set("n", "<leader>hsd", gs.preview_hunk, {})
       -- vim.keymap.set('n', '<leader>hsD', gs.diffthis, {})
-      vim.keymap.set("n", "[c", gs.prev_hunk, {})
-      vim.keymap.set("n", "]c", gs.next_hunk, {})
+      vim.keymap.set("n", "[C", gs.prev_hunk, {})
+      vim.keymap.set("n", "]C", gs.next_hunk, {})
     end,
   },
   {
