@@ -27,7 +27,7 @@ function main {
     else
         current_session=$(tmux display-message -p '#S')
 
-        if [[ "$current_session" == "personal" ]]; then
+        if [[ "$current_session" == "work" ]]; then
             reverse=true
         fi
         sessions=$( \
