@@ -14,6 +14,7 @@ vim.opt.conceallevel = 2
 
 vim.opt.undofile = true -- in ~/.local/state/nvim/undo/
 vim.opt.wildmode = "list:longest,full"
+vim.opt.wildoptions = "fuzzy,pum"
 vim.opt.expandtab = true -- tabs as spaces
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
