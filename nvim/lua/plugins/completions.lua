@@ -53,7 +53,7 @@ return {
         }, {
           { name = "buffer" },
         }),
-        -- experimental = { ghost_text = true },
+        experimental = { ghost_text = false },
       })
     end,
   },
