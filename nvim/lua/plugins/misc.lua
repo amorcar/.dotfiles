@@ -1,6 +1,5 @@
 return {
 	{ "tpope/vim-surround" },
-
 	{ "tpope/vim-commentary" },
 	{
 		"tpope/vim-fugitive",
@@ -54,6 +53,18 @@ return {
 			"sindrets/diffview.nvim", -- optional - Diff integration
 			"nvim-telescope/telescope.nvim", -- optional
 		},
-		config = true,
+		config = function()
+			local neogit = require("neogit")
+			neogit.setup({
+				disable_hint = true,
+				kind = "split",
+				commit_editor = {
+					kind = "split",
+					show_staged_diff = false,
+					staged_diff_split_kind = "split",
+					spell_check = true,
+				},
+			})
+		end,
 	},
 }
