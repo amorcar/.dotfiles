@@ -14,9 +14,8 @@ return {
 			gs.setup()
 			vim.keymap.set("n", "<leader>gbl", gs.blame_line, {})
 			vim.keymap.set("n", "<leader>gtb", gs.toggle_current_line_blame, {})
-			vim.keymap.set("n", "<leader>gtD", gs.toggle_deleted, {})
-			vim.keymap.set("n", "<leader>gtd", gs.preview_hunk, {})
-			-- vim.keymap.set('n', '<leader>gsD', gs.diffthis, {})
+			vim.keymap.set("n", "<leader>gtd", gs.toggle_deleted, {})
+			vim.keymap.set("n", "<leader>ghp", gs.preview_hunk, {})
 			vim.keymap.set("n", "[h", gs.prev_hunk, {})
 			vim.keymap.set("n", "]h", gs.next_hunk, {})
 		end,
@@ -50,3 +49,4 @@ return {
 		end,
 	},
 }
+
