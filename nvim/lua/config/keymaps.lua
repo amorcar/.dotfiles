@@ -2,7 +2,8 @@ local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 map("n", "<leader>w", "<cmd>w<cr>", opts, opts)
-map("n", "<leader>x", "<cmd>bd<cr>", opts, opts)
+map("n", "<leader>xb", "<cmd>bd<cr>", opts, opts)
+map("n", "<leader>xt", "<cmd>tabc<cr>", opts, opts)
 
 map("n", "<C-h>", "<cmd>nohlsearch<cr>", opts)
 
