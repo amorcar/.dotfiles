@@ -17,8 +17,8 @@ return {
 			vim.keymap.set("n", "<leader>gtD", gs.toggle_deleted, {})
 			vim.keymap.set("n", "<leader>gtd", gs.preview_hunk, {})
 			-- vim.keymap.set('n', '<leader>gsD', gs.diffthis, {})
-			vim.keymap.set("n", "[g", gs.prev_hunk, {})
-			vim.keymap.set("n", "]g", gs.next_hunk, {})
+			vim.keymap.set("n", "[h", gs.prev_hunk, {})
+			vim.keymap.set("n", "]h", gs.next_hunk, {})
 		end,
 	},
 	{
