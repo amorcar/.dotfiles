@@ -27,3 +27,6 @@ alias tmd "~/.config/scripts/dev-tmux.sh"
 alias dnstest 'zsh ~/.config/scripts/dnstest.sh |sort -k 22 -n'
 
 alias airport '/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
+
+alias lzd 'lazydocker'
+alias lzs 'lazysql'
