@@ -36,8 +36,10 @@ return {
 		config = function()
 			local neogit = require("neogit")
 			neogit.setup({
-				disable_hint = true,
 				kind = "split",
+        disable_signs = true,
+				disable_hint = true,
+        graph_style = "unicode",
 				commit_editor = {
 					kind = "split",
 					show_staged_diff = false,
