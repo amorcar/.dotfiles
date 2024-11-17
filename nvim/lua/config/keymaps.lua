@@ -79,10 +79,10 @@ map("n", "[L", ":lfirst<cr>zz", opts)
 map("n", "]L", ":llast<cr>zz", opts)
 
 -- changelist
-map("n", "[g", "g;zz", opts)
-map("n", "]g", "g,zz", opts)
-map("n", "[G", "999g,zz", opts)
-map("n", "]G", "999g;zz", opts)
+-- map("n", "[g", "g;zz", opts)
+-- map("n", "]g", "g,zz", opts)
+-- map("n", "[G", "999g,zz", opts)
+-- map("n", "]G", "999g;zz", opts)
 
 -- dont jump directly to the first quick list location
 map("n", "<leader>m", ":w | :make!<CR>", opts)
