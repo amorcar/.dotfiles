@@ -36,9 +36,9 @@ style = { blinking = "Off"}
 render_timer = false
 
 [font]
-normal = { family = "FiraCode Nerd Font Mono" }
+normal = { family = "MesloLGM Nerd Font" }
 size = 14
-offset = { x = 0, y = 3 }
+offset = { x = 0, y = 2 }
 
 # ligatures: => <= !=
 # find installed fonts (macOS): fc-list : family | sort -f
