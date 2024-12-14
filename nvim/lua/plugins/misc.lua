@@ -52,3 +52,27 @@ return {
 	},
 }
 
+	{
+		"kristijanhusak/vim-dadbod-ui",
+		dependencies = {
+			{ "tpope/vim-dadbod", lazy = true },
+			{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true }, -- Optional
+		},
+		cmd = {
+			"DBUI",
+			"DBUIToggle",
+			"DBUIAddConnection",
+			"DBUIFindBuffer",
+		},
+		init = function()
+			-- Your DBUI configuration
+      vim.g.db_ui_execute_on_save = 1
+			vim.g.db_ui_use_nerd_fonts = 1
+      vim.g.db_ui_show_database_icon = 1
+      vim.g.db_ui_winwidth = 35
+      vim.g.db_ui_hide_schemas = { 'pg_toast_temp.*' }
+			vim.keymap.set("n", "<leader>dbt", ":DBUIToggle<cr>" , { desc = "Toggle Dadbod UI" })
+      vim.api.nvim_command("autocmd FileType dbui nmap <buffer> <tab> <Plug>(DBUI_SelectLine)")
+		end,
+	},
+}
