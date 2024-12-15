@@ -20,7 +20,7 @@ dynamic_title = false
 dynamic_padding = false
 option_as_alt = 'OnlyLeft'
 decorations = "ButtonLess" # "None"
-padding = { x = 5, y = 3 }
+padding = { x = 4, y = 5 }
 
 # opacity = 0.7
 # blur = true
@@ -29,8 +29,8 @@ padding = { x = 5, y = 3 }
 history = 100000
 multiplier = 3
 
-[cursor]
-style = { blinking = "Off"}
+[cursor.style]
+blinking = "Off"
 
 [debug]
 render_timer = false
