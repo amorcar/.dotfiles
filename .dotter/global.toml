@@ -4,6 +4,9 @@
 [alacritty.files]
 "alacritty" = "~/.config/alacritty"
 
+[ghostty.files]
+"ghostty" = "~/.config/ghostty"
+
 [psql.files]
 "psql/psqlrc" = "~/.psqlrc"
 
@@ -24,3 +27,6 @@ scripts = "~/.config/scripts"
 
 [bin.files]
 bin = "~/.local/bin"
+
+[sqlfluff.files]
+"sqlfluff/config" = "~/.sqlfluff"
