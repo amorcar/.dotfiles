@@ -1,0 +1,29 @@
+theme = Kanagawa Wave
+font-family = MesloLGS Nerd Font Mono Bold
+font-size = 14
+cursor-style = block
+shell-integration-features = no-cursor
+cursor-style-blink = false
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 3
+# background-opacity = 1
+# background-blur-radius = 20
+scrollback-limit = 100000
+title = " "
+macos-titlebar-style = hidden
+window-padding-balance=true
+window-padding-x = 4
+window-padding-y = 4
+window-padding-color = extend-always
+resize-overlay = never
+resize-overlay-position = bottom-left
+macos-titlebar-proxy-icon = hidden
+macos-option-as-alt = left
+macos-icon = custom-style
+macos-icon-frame = plastic
+macos-icon-ghost-color = dddddd
+macos-icon-screen-color = 000000
+quick-terminal-animation-duration = 0
+quick-terminal-position = bottom
+keybind = ctrl+shift+\=toggle_quick_terminal
+keybind = ctrl+m=csi:0x0d
