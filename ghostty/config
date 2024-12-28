@@ -1,7 +1,8 @@
 theme = Kanagawa Wave
-font-family = MesloLGS Nerd Font Mono Bold
+font-family = JetBrainsMono Nerd Font Mono
 font-size = 14
 cursor-style = block
+shell-integration = fish
 shell-integration-features = no-cursor
 cursor-style-blink = false
 mouse-hide-while-typing = true
@@ -26,4 +27,4 @@ macos-icon-screen-color = 000000
 quick-terminal-animation-duration = 0
 quick-terminal-position = bottom
 keybind = ctrl+shift+\=toggle_quick_terminal
-keybind = ctrl+m=csi:0x0d
+#keybind = ctrl+m=text:\x0D
