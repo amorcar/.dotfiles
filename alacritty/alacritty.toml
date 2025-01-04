@@ -1,4 +1,5 @@
-# Config
+[general]
+live_config_reload = true
 import = [
   # "~/.config/alacritty/colors/nord.toml",
   # "~/.config/alacritty/colors/baitong.toml",
@@ -7,13 +8,14 @@ import = [
   # "~/.config/alacritty/colors/kanagawa_dragon.toml",
 ]
 
-live_config_reload = true
-
-[shell]
+[terminal.shell]
 program = "/opt/homebrew/bin/fish"
 
 # [env]
 # TERM = "xterm-256color"
+
+[mouse]
+hide_when_typing = true
 
 [window]
 dynamic_title = false
@@ -21,7 +23,6 @@ dynamic_padding = false
 option_as_alt = 'OnlyLeft'
 decorations = "ButtonLess" # "None"
 padding = { x = 4, y = 5 }
-
 # opacity = 0.7
 # blur = true
 
@@ -47,9 +48,3 @@ offset = { x = 0, y = 2 }
 # "GohuFont uni14 Nerd Font Mono"
 # "ComicShannsMono Nerd Font Mono"
 # "Iosevka NFM Heavy"
-
-
-
-[mouse]
-hide_when_typing = true
-
