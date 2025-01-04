@@ -46,10 +46,15 @@ if status --is-interactive
   abbr --add --global egitc 'nvim ~/.gitconfig'
   abbr --add --global envim 'nvim ~/.config/nvim/init.lua'
   abbr --add --global etmux 'nvim ~/.tmux.conf'
+  abbr --add --global etask 'nvim ~/.config/task/taskrc'
   abbr --add --global essh 'nvim ~/.ssh/config'
   abbr --add --global eala 'nvim ~/.config/alacritty/alacritty.toml'
-  abbr --add --global twork '~/.config/scripts/work-tmux.sh'
-  abbr --add --global tdev '~/.config/scripts/dev-tmux.sh'
+  abbr --add --global egho 'nvim ~/.config/ghostty/config'
+  # abbr --add --global twork '~/.config/scripts/work-tmux.sh'
+  # abbr --add --global tdev '~/.config/scripts/dev-tmux.sh'
+
+  abbr --add --global gst 'git status'
+
 
   if command -v nvim > /dev/null
     abbr -a vim 'nvim'
