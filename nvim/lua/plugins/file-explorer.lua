@@ -10,6 +10,9 @@ return {
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
 		},
+    keys = {
+      { "<leader>b", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+    },
 		config = function()
 			require("neo-tree").setup({
 				close_if_last_window = true,
@@ -42,7 +45,6 @@ return {
 	-- oil
 	{
 		"stevearc/oil.nvim",
-		opts = {},
 		enable = true,
 		name = "oil",
 		-- Optional dependencies
