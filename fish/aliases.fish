@@ -30,3 +30,5 @@ alias airport '/System/Library/PrivateFrameworks/Apple80211.framework/Versions/C
 
 alias lzd 'lazydocker'
 alias lzs 'lazysql'
+
+alias gbf 'git branch | grep -v "^\*" | fzf --height=20% --reverse --info=inline | xargs git switch'
