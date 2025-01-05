@@ -132,10 +132,15 @@ return {
 						-- TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
 
             -- More uniform colors for the popup menu
-						-- Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
-						-- PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
-						-- PmenuSbar = { bg = theme.ui.bg_m1 },
-						-- PmenuThumb = { bg = theme.ui.bg_p2 },
+            -- add `blend = vim.o.pumblend` to enable transparency
+						Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
+						PmenuExtra = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
+						PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+						PmenuExtraSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+						PmenuSbar = { bg = theme.ui.bg_m1 },
+						PmenuThumb = { bg = theme.ui.bg_p2 },
+            PmenuKind = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
+            PmenuKindSel = { fg = "NONE", bg = theme.ui.bg_p2 },
 					}
 				end,
 				theme = "wave", -- Load "wave" theme when 'background' option is not set

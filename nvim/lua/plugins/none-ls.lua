@@ -14,10 +14,15 @@ return {
 					-- ts
 					null_ls.builtins.formatting.prettier,
 					-- null_ls.builtins.diagnostics.eslint,
+					-- sql
+					null_ls.builtins.formatting.sqlfluff.with({
+						extra_args = { "--dialect", "postgres" },
+					}),
+					null_ls.builtins.diagnostics.sqlfluff.with({
+						extra_args = { "--dialect", "postgres" },
+					}),
 				},
 			})
-
-			vim.keymap.set("n", "<leader>lfm", vim.lsp.buf.format, {})
 		end,
 	},
 	{
@@ -40,6 +45,8 @@ return {
 					-- ts
 					"prettier",
 					"eslint",
+					-- sql
+					"sqlfluff",
 				},
 			})
 		end,

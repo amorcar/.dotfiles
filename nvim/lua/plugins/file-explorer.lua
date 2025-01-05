@@ -52,18 +52,26 @@ return {
 				default_file_explorer = true,
 				columns = {
 					-- "icon",
-					"permissions",
-					"size",
-					"mtime",
+					{ "permissions", highlight = "Identifier" },
+					{ "size", highlight = "String" },
+					{ "mtime", highlight = "Special" },
 				},
-				delete_to_trash = false,
+				delete_to_trash = true,
 				skip_confirm_for_simple_edits = true,
 				prompt_save_on_select_new_entry = true,
 				-- Constrain the cursor to the editable parts of the oil buffer
 				-- Set to `false` to disable, or "name" to keep it on the file names
-				constrain_cursor = "editable",
+				constrain_cursor = "name",
 				-- Set to true to watch the filesystem for changes and reload oil
 				watch_for_changes = false,
+				view_options = {
+					-- Show files and directories that start with "."
+					show_hidden = false,
+					-- Customize the highlight group for the file name
+					highlight_filename = function(entry, is_hidden, is_link_target, is_link_orphan)
+						return nil
+					end,
+				},
 				keymaps = {
 					["gf"] = "actions.select",
 					["gp"] = "actions.preview",

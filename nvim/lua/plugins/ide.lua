@@ -1,6 +1,6 @@
 return {
   "ldelossa/nvim-ide",
-  enable = false,
+  enabled = false,
   name = "nvim-ide",
   lazy = true,
   config = function()

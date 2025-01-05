@@ -1,25 +1,25 @@
 -- enable spell checking for certain file types
 -- ]s to jump to spelling erros, z= to open suggestions
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.txt", "*.md", "*.tex" },
-	callback = function()
-		vim.opt.spell = true
-		vim.opt.spelllang = "en"
-	end,
+  pattern = { "*.txt", "*.md", "*.tex" },
+  callback = function()
+    vim.opt.spell = true
+    vim.opt.spelllang = "en"
+  end,
 })
 
 -- jump to last edit position on opening file
 vim.api.nvim_create_autocmd("BufReadPost", {
-	pattern = "*",
-	callback = function(ev)
-		if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
-			-- except for in git commit messages
-			-- https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
-			if not vim.fn.expand("%:p"):find(".git", 1, true) then
-				vim.cmd('exe "normal! g\'\\""')
-			end
-		end
-	end,
+  pattern = "*",
+  callback = function(ev)
+    if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
+      -- except for in git commit messages
+      -- https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
+      if not vim.fn.expand("%:p"):find(".git", 1, true) then
+        vim.cmd('exe "normal! g\'\\""')
+      end
+    end
+  end,
 })
 
 -- close some filetypes with <q>
@@ -48,3 +48,15 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- resize neovim split when terminal is resized
 vim.api.nvim_command("autocmd VimResized * wincmd =")
+
+-- highlight when yanking text
+-- see: `:help vim.highlight.on_yank()`
+-- vim.api.nvim_create_autocmd("TextYankPost", {
+--   desc = "Highlight when yanking text",
+--   group = vim.api.nvim_create_augroup("highligh-yank", { clear = true }),
+--   callback = function()
+--     vim.highlight.on_yank({ higroup = "Visual", timeout = 250 })
+--   end,
+-- })
+
+-- vim.api.nvim_create_autocmd("Filetype", { pattern = "rust", command = "set colorcolumn=100" })

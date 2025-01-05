@@ -27,7 +27,7 @@ function main {
     else
         current_session=$(tmux display-message -p '#S')
 
-        if [[ "$current_session" == "work" ]]; then
+        if [[ "$current_session" == "main" ]]; then
             reverse=true
         fi
         sessions=$( \
@@ -36,7 +36,7 @@ function main {
           fzf \
           --exit-0 \
           --print-query \
-          --pointer '*' \
+          --pointer '.' \
           --color='current-bg:-1' \
           --cycle \
           --border none \
