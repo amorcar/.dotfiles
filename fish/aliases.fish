@@ -32,3 +32,5 @@ alias lzd 'lazydocker'
 alias lzs 'lazysql'
 
 alias gbf 'git branch | grep -v "^\*" | fzf --height=20% --reverse --info=inline | xargs git switch'
+
+alias tw 'timew'
