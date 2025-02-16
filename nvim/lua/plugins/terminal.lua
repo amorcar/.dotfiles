@@ -5,6 +5,7 @@ return {
     enabled = true,
     config = function()
       require("toggleterm").setup({
+        shell = '/opt/homebrew/bin/fish',
         size = function(term)
           if term.direction == "horizontal" then
             return 20

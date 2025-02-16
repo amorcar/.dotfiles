@@ -53,4 +53,5 @@ vim.opt.exrc = true
 vim.cmd([[
   let g:tmux_navigator_no_mappings = 1
   let g:tmux_navigator_disable_when_zoomed = 1
+  set shell=/bin/zsh
 ]])
