@@ -40,23 +40,43 @@ return {
 			-- bindings
 			vim.keymap.set("n", "<C-p>", function()
 				require("telescope").extensions["recent-files"].recent_files({})
-			end, { noremap = true, silent = true })
-			vim.keymap.set("n", "<leader>ff", telescope_builtin.find_files)
-			vim.keymap.set("n", "<leader>fo", telescope_builtin.oldfiles)
+			end, { noremap = true, silent = true, desc = "open recent files" })
+			vim.keymap.set("n", "<leader>ff", telescope_builtin.find_files, { desc = "find files" })
+			vim.keymap.set("n", "<leader>fo", telescope_builtin.oldfiles, { desc = "find old files" })
 			-- vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep)
-			vim.keymap.set("n", "<leader>fg", require("config.telescope.multigrep").live_multigrep)
-			vim.keymap.set("n", "<leader>fbo", telescope_builtin.buffers)
-			vim.keymap.set("n", "<leader>fbg", telescope_builtin.current_buffer_fuzzy_find)
+			vim.keymap.set(
+				"n",
+				"<leader>fg",
+				require("config.telescope.multigrep").live_multigrep,
+				{ desc = "find grep" }
+			)
+			vim.keymap.set("n", "<leader>fbo", telescope_builtin.buffers, { desc = "find buffers opened" })
+			vim.keymap.set(
+				"n",
+				"<leader>fbg",
+				telescope_builtin.current_buffer_fuzzy_find,
+				{ desc = "find buffers grep" }
+			)
 			vim.keymap.set("n", "<leader>q", function()
 				telescope_builtin.diagnostics({ bufnr = 0 })
-			end)
-			vim.keymap.set("n", "<leader>fsd", telescope_builtin.lsp_document_symbols)
-			vim.keymap.set("n", "<leader>fsp", telescope_builtin.lsp_dynamic_workspace_symbols)
+			end, { desc = "show diagnostics" })
+			vim.keymap.set(
+				"n",
+				"<leader>fds",
+				telescope_builtin.lsp_document_symbols,
+				{ desc = "find document symbols" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>fps",
+				telescope_builtin.lsp_dynamic_workspace_symbols,
+				{ desc = "find project symbols" }
+			)
 			-- vim.keymap.set("n", "<leader>gd", telescope_builtin.lsp_definitions)
-      vim.keymap.set("n", "<leader>fvt", telescope_builtin.colorscheme)
-      vim.keymap.set("n", "<leader>fvc", telescope_builtin.commands)
-			vim.keymap.set("n", "<leader>fvh", telescope_builtin.help_tags)
-			vim.keymap.set("n", "<leader>fvm", telescope_builtin.marks)
+			vim.keymap.set("n", "<leader>fvt", telescope_builtin.colorscheme, { desc = "find vim themes" })
+			vim.keymap.set("n", "<leader>fvc", telescope_builtin.commands, { desc = "find vim commands" })
+			vim.keymap.set("n", "<leader>fvh", telescope_builtin.help_tags, { desc = "find vim help pages" })
+			vim.keymap.set("n", "<leader>fvm", telescope_builtin.marks, { desc = "find vim marks" })
 		end,
 	},
 	{

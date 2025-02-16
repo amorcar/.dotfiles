@@ -69,7 +69,8 @@ function fish_right_prompt -d "Write out the right prompt"
     # Print a "stack symbol" if there are stashed changes.
     if test (git stash list | wc -l) -gt 0
       set_color cyan
-      echo -n "☰ "
+      echo -n "Ξ"
+      # echo -n "☰ "
     end
 
     # Print the username when the user has been changed.

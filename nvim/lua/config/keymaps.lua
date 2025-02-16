@@ -1,6 +1,6 @@
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "yc", "yygccp", { desc = "duplicate and comment line" })
+vim.keymap.set("n", "<leader>yc", "yygccp", { noremap = true, desc = "duplicate and comment line" })
 
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", opts)
 vim.keymap.set("n", "<leader>kb", "<cmd>bd<cr>", opts)
@@ -10,8 +10,8 @@ vim.keymap.set("n", "<leader>kt", "<cmd>tabc<cr>", opts)
 -- vim.keymap.set("n", "<leader><leader>", "<c-^>", opts)
 
 -- always center search results
-vim.keymap.set("n", "n", "nzt", { silent = true })
-vim.keymap.set("n", "N", "Nzt", { silent = true })
+vim.keymap.set("n", "n", "nzz", { silent = true })
+vim.keymap.set("n", "N", "Nzz", { silent = true })
 vim.keymap.set("n", "*", "*zz", { silent = true })
 vim.keymap.set("n", "#", "#zz", { silent = true })
 vim.keymap.set("n", "g*", "g*zz", { silent = true })

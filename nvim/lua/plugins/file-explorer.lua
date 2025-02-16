@@ -11,7 +11,7 @@ return {
 			"MunifTanjim/nui.nvim",
 		},
     keys = {
-      { "<leader>b", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
     },
 		config = function()
 			require("neo-tree").setup({
@@ -34,12 +34,12 @@ return {
 					width = 25,
 				},
 			})
-			vim.keymap.set(
-				"n",
-				"<leader>b",
-				"<Cmd>Neotree toggle filesystem reveal left<CR>",
-				{ noremap = true, silent = true }
-			)
+			-- vim.keymap.set(
+			-- 	"n",
+			-- 	"<leader>e",
+			-- 	"<Cmd>Neotree toggle filesystem reveal left<CR>",
+			-- 	{ noremap = true, silent = true }
+			-- )
 		end,
 	},
 	-- oil

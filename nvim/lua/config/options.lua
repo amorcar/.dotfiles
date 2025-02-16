@@ -35,16 +35,22 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.fillchars:append({ fold = " " })
 function _G.MyFoldText()
-	return vim.fn.getline(vim.v.foldstart) .. " ... " .. vim.fn.getline(vim.v.foldend):gsub("^%s*", "")
+  return vim.fn.getline(vim.v.foldstart) .. " ... " .. vim.fn.getline(vim.v.foldend):gsub("^%s*", "")
 end
+
 vim.opt.foldtext = "v:lua.MyFoldText()"
 -- vim.opt.foldtext = 'v:lua.vim.treesitter.foldtext()'
 
 --- https://vimways.org/2018/the-power-of-diff/
 --- https://stackoverflow.com/questions/32365271/whats-the-difference-between-git-diff-patience-and-git-diff-histogram
 --- https://luppeng.wordpress.com/2020/10/10/when-to-use-each-of-the-git-diff-algorithms/
-vim.opt.diffopt:append("iwhite") -- better diffs (nvim -d) by ignoring whitespace
+vim.opt.diffopt:append("iwhite")              -- better diffs (nvim -d) by ignoring whitespace
 vim.opt.diffopt:append("algorithm:histogram") -- and using a smarter algorithm
 vim.opt.diffopt:append("indent-heuristic")
 
 vim.opt.exrc = true
+
+vim.cmd([[
+  let g:tmux_navigator_no_mappings = 1
+  let g:tmux_navigator_disable_when_zoomed = 1
+]])

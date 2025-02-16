@@ -26,4 +26,4 @@ quick-terminal-animation-duration = 0
 quick-terminal-position = bottom
 keybind = ctrl+shift+\=toggle_quick_terminal
 keybind = cmd+t=unbind
-#keybind = ctrl+m=text:\x0D
+keybind = ctrl+m=text:\x0D
