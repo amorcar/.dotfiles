@@ -50,8 +50,8 @@ vim.opt.diffopt:append("indent-heuristic")
 
 vim.opt.exrc = true
 
+--let g:tmux_navigator_disable_when_zoomed = 0
 vim.cmd([[
   let g:tmux_navigator_no_mappings = 1
-  let g:tmux_navigator_disable_when_zoomed = 1
   set shell=/bin/zsh
 ]])

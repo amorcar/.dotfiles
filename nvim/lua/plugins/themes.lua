@@ -122,7 +122,7 @@ return {
 						LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 						MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 
-            -- Block-like modern Telescope UI
+						-- Block-like modern Telescope UI
 						-- TelescopeTitle = { fg = theme.ui.special, bold = false },
 						-- TelescopePromptNormal = { bg = theme.ui.bg_p1 },
 						-- TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
@@ -131,16 +131,16 @@ return {
 						-- TelescopePreviewNormal = { bg = theme.ui.bg_dim },
 						-- TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
 
-            -- More uniform colors for the popup menu
-            -- add `blend = vim.o.pumblend` to enable transparency
+						-- More uniform colors for the popup menu
+						-- add `blend = vim.o.pumblend` to enable transparency
 						Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
 						PmenuExtra = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
 						PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
 						PmenuExtraSel = { fg = "NONE", bg = theme.ui.bg_p2 },
 						PmenuSbar = { bg = theme.ui.bg_m1 },
 						PmenuThumb = { bg = theme.ui.bg_p2 },
-            PmenuKind = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
-            PmenuKindSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+						PmenuKind = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
+						PmenuKindSel = { fg = "NONE", bg = theme.ui.bg_p2 },
 					}
 				end,
 				theme = "wave", -- Load "wave" theme when 'background' option is not set
@@ -152,6 +152,23 @@ return {
 
 			-- setup must be called before loading
 			vim.cmd("colorscheme kanagawa")
+		end,
+	},
+	{ "RRethy/base16-nvim" },
+	{
+		"alexxGmZ/e-ink.nvim",
+		priority = 1000,
+		config = function()
+			require("e-ink").setup()
+			vim.cmd.colorscheme("e-ink")
+
+			-- choose light mode or dark mode
+			vim.opt.background = "dark"
+			-- vim.opt.background = "light"
+			--
+			-- or do
+			-- :set background=dark
+			-- :set background=light
 		end,
 	},
 }

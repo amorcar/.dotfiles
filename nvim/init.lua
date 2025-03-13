@@ -5,3 +5,5 @@ require("config.lazy")
 -- require("config.terminal")
 
 vim.cmd.colorscheme("kanagawa-wave")
+-- vim.cmd.colorscheme("base16-black-metal-gorgoroth")
+-- vim.cmd.colorscheme("e-ink")
