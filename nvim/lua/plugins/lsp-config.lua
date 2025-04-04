@@ -63,11 +63,12 @@ return {
 
 			-- vim.keymap.set("n", "K", vim.lsp.buf.hover)
 			-- currently on nightly. this will eventually get included in nvim stable
-			vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename)
-			vim.keymap.set("n", "<leader>lca", vim.lsp.buf.code_action)
-			vim.keymap.set("n", "<leader>lor", vim.lsp.buf.references)
+			vim.keymap.set("n", "grn", vim.lsp.buf.rename)
+			vim.keymap.set("n", "gra", vim.lsp.buf.code_action)
+			vim.keymap.set("v", "gra", vim.lsp.buf.code_action)
+			vim.keymap.set("n", "grr", vim.lsp.buf.references)
 			vim.keymap.set("n", "gri", vim.lsp.buf.implementation)
-			vim.keymap.set("n", "<leader>lds", vim.lsp.buf.document_symbol)
+			vim.keymap.set("n", "gO", vim.lsp.buf.document_symbol)
 			vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help)
 
 			vim.keymap.set("n", "grd", vim.lsp.buf.definition)
