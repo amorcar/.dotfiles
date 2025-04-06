@@ -15,9 +15,14 @@ return {
 				-- automatically after the task exits
 				-- can be "never, "success", or "always". "success" will close the window
 				-- only if the exit code is 0.
-				quit_on_exit = "success",
+				quit_on_exit = "never",
 			})
 
+			-- related keymaps
+			vim.keymap.set("n", "<leader>oo", ":OverseerToggle<CR>", { noremap = true, desc = "Toggle Overseer" })
+			vim.keymap.set("n", "<leader>or", ":OverseerRun<CR>", { noremap = true, desc = "Run an Overseer task" })
+
+			-- Asynchronous :Grep command
 			vim.api.nvim_create_user_command("Grep", function(params)
 				-- Insert args at the '$*' in the grepprg
 				local cmd, num_subs = vim.o.grepprg:gsub("%$%*", params.args)
@@ -42,5 +47,26 @@ return {
 				task:start()
 			end, { nargs = "*", bang = true, complete = "file" })
 		end,
+
+		-- :Make similar to vim-dispatch
+		vim.api.nvim_create_user_command("Make", function(params)
+			-- Insert args at the '$*' in the makeprg
+			local cmd, num_subs = vim.o.makeprg:gsub("%$%*", params.args)
+			if num_subs == 0 then
+				cmd = cmd .. " " .. params.args
+			end
+			local task = require("overseer").new_task({
+				cmd = vim.fn.expandcmd(cmd),
+				components = {
+					{ "on_output_quickfix", open = not params.bang, open_height = 8 },
+					"default",
+				},
+			})
+			task:start()
+		end, {
+			desc = "Run your makeprg as an Overseer task",
+			nargs = "*",
+			bang = true,
+		}),
 	},
 }
