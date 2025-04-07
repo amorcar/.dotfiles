@@ -21,6 +21,7 @@ return {
 			-- related keymaps
 			vim.keymap.set("n", "<leader>oo", ":OverseerToggle<CR>", { noremap = true, desc = "Toggle Overseer" })
 			vim.keymap.set("n", "<leader>or", ":OverseerRun<CR>", { noremap = true, desc = "Run an Overseer task" })
+			vim.keymap.set("n", "<leader>ob", ":OverseerBuild<CR>", { noremap = true, desc = "Build an Overseer task" })
 
 			-- Asynchronous :Grep command
 			vim.api.nvim_create_user_command("Grep", function(params)

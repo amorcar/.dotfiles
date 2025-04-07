@@ -100,3 +100,8 @@ vim.keymap.set("n", "<leader>gcs", "0v/====<CR>$x/>>><CR>dd", opts)
 vim.keymap.set("n", "<leader><leader>x", ":source %<cr>")
 vim.keymap.set("n", "<leader>x", ":.lua<cr>")
 vim.keymap.set("v", "<leader>x", ":lua<cr>")
+
+-- close pretty much any buffer
+vim.keymap.set("n", "Q", function()
+	require("config.utils").smart_buffer_close({ quit_on_empty = false, prune_extra_wins = true })
+end, { noremap = true, silent = true })
