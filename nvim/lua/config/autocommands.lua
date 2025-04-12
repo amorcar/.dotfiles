@@ -49,29 +49,16 @@ vim.api.nvim_create_autocmd("FileType", {
 -- resize neovim split when terminal is resized
 vim.api.nvim_command("autocmd VimResized * wincmd =")
 
--- highlight when yanking text
--- see: `:help vim.highlight.on_yank()`
--- vim.api.nvim_create_autocmd("TextYankPost", {
---   desc = "Highlight when yanking text",
---   group = vim.api.nvim_create_augroup("highligh-yank", { clear = true }),
---   callback = function()
---     vim.highlight.on_yank({ higroup = "Visual", timeout = 250 })
---   end,
--- })
-
--- vim.api.nvim_create_autocmd("Filetype", { pattern = "rust", command = "set colorcolumn=100" })
-
-
 -- Yank-ring util
 local prev_reg0_content = vim.fn.getreg("0")
 vim.api.nvim_create_autocmd("TextYankPost", {
-    callback = function()
-        if vim.v.event.operator == "y" then
-            for i = 9, 2, -1 do
-                vim.fn.setreg(tostring(i), vim.fn.getreg(tostring(i - 1)))
-            end
-            vim.fn.setreg("1", prev_reg0_content)
-            prev_reg0_content = vim.fn.getreg("0")
-        end
-    end,
+  callback = function()
+    if vim.v.event.operator == "y" then
+      for i = 9, 2, -1 do
+        vim.fn.setreg(tostring(i), vim.fn.getreg(tostring(i - 1)))
+      end
+      vim.fn.setreg("1", prev_reg0_content)
+      prev_reg0_content = vim.fn.getreg("0")
+    end
+  end,
 })

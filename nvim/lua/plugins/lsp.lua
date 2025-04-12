@@ -72,7 +72,7 @@ return {
       vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help)
 
       vim.keymap.set("n", "grd", vim.lsp.buf.definition)
-      vim.keymap.set("n", "<leader>lgD", vim.lsp.buf.declaration)
+      vim.keymap.set("n", "grD", vim.lsp.buf.declaration)
       vim.keymap.set("n", "<leader>ltd", vim.lsp.buf.type_definition)
       vim.keymap.set("n", "<leader>lgd", vim.diagnostic.open_float)
       vim.keymap.set("n", "<leader>lfm", vim.lsp.buf.format)
