@@ -1,4 +1,5 @@
-
+# the dotter binary
+dotter
 # this file contains the machine-specific
 # configuration, so there's no point uploading it.
 .dotter/local.toml

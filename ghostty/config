@@ -1,6 +1,6 @@
 theme = Kanagawa Wave
 font-family = JetBrainsMono Nerd Font Mono
-font-size = 14
+font-size = 12
 cursor-style = block
 shell-integration = fish
 shell-integration-features = no-cursor
@@ -24,6 +24,6 @@ macos-icon-ghost-color = dddddd
 macos-icon-screen-color = 000000
 quick-terminal-animation-duration = 0
 quick-terminal-position = bottom
-keybind = ctrl+shift+\=toggle_quick_terminal
+# keybind = ctrl+shift+\=toggle_quick_terminal
 keybind = cmd+t=unbind
 keybind = ctrl+m=text:\x0D

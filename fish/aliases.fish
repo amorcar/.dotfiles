@@ -1,37 +1,36 @@
-# My aliases
-alias reload '. ~/.config/fish/config.fish'
+# Shortcuts
+alias dl="cd ~/Downloads"
+alias dt="cd ~/Desktop"
+alias pl="cd ~/Work/git/pipeliner"
 
-# simple ip
-alias ip1="ipconfig getifaddr en0"
-alias ip2 "ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
-# more details
-alias ip3 "ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
-# external ip
-alias ip4 "curl ipinfo.io/ip"
-#router IP
-alias ip5 "netstat -rn | grep default"
+alias g="git"
+
+alias reload '. ~/.config/fish/config.fish'
 
 # grep with color
 alias grep 'grep --color=auto'
 export GREP_COLOR='0;36'
 
-# Get homebrew installed packages sizes
-alias brew_pack_size 'brew list | xargs brew info | grep Cellar'
-# alias brew_pack_size "bash brew list | xargs brew info | grep Cellar | cut -d'/' -f5,6 | sed 's/\/.*\,//' | sed 's/ / - /' | sed 's/...$//'"
+# Get week number
+alias week='date +%V'
 
 # Flush dns
 alias flush_dns "sudo killall -HUP mDNSResponder"
 
-alias tmd "~/.config/scripts/dev-tmux.sh"
+# local ip
+alias localip="ipconfig getifaddr en0"
+# alias localip "ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+# more details
+alias ipinfo "ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+# external ip
+alias ip "dig +short myip.opendns.com @resolver1.opendns.com"
+# alias ip "curl ipinfo.io/ip"
+#router IP
+alias iproute "netstat -rn -f inet | grep default"
 
-alias dnstest 'zsh ~/.config/scripts/dnstest.sh |sort -k 22 -n'
-
-alias airport '/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
+alias tsw 'task'
+alias tmw 'timew'
 
 alias lzd 'lazydocker'
 alias lzs 'lazysql'
 
-alias gbf 'git branch | grep -v "^\*" | fzf --height=20% --reverse --info=inline | xargs git switch'
-
-alias tsw 'task'
-alias tmw 'timew'

@@ -1,32 +1,48 @@
-[nvim.files]
-"nvim/" = { target = "~/.config/nvim/", type = "symbolic" }
+[settings]
+default_target_type = "automatic"
 
 [alacritty.files]
 "alacritty" = "~/.config/alacritty"
 
+[bin.files]
+bin = "~/.local/bin"
+
+[fish.files]
+"fish" = "~/.config/fish"
+
 [ghostty.files]
 "ghostty" = "~/.config/ghostty"
+
+[git.files]
+"git/gitconfig" = "~/.gitconfig"
+"git/gitignore" = "~/.gitignore"
+
+[homebrew]
+depends = []
+
+[nvim.files]
+"nvim" = { target = "~/.config/nvim/", type = "symbolic" }
 
 [psql.files]
 "psql/psqlrc" = "~/.psqlrc"
 
+[scripts.files]
+scripts = "~/.config/scripts"
+
 [shell.files]
-"fish" = "~/.config/fish"
-"github/gitconfig" = "~/.gitconfig"
-"tmux/tmux.conf" = "~/.tmux.conf"
 "shell/bat" = "~/.config/bat/config"
 "shell/bottom.toml" = "~/.config/bottom/bottom.toml"
 "shell/fd.ignore" = "~/.config/fd/ignore"
 "shell/htoprc" = "~/.config/htop/htoprc"
+"shell/curl" = "~/.curlrc"
+"shell/wget" = "~/.wgetrc"
 
-[org.files]
+[format.files]
+"format/sqlfluff" = "~/.sqlfluff"
+"format/clang" = "~/.clang-format"
+
+[taskwarrior.files]
 task = "~/.config/task"
 
-[scripts.files]
-scripts = "~/.config/scripts"
-
-[bin.files]
-bin = "~/.local/bin"
-
-[sqlfluff.files]
-"sqlfluff/config" = "~/.sqlfluff"
+[tmux.files]
+"tmux/tmux.conf" = "~/.tmux.conf"

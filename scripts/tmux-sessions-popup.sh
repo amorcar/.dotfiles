@@ -32,7 +32,7 @@ function main {
         fi
         sessions=$( \
           tmux list-sessions -F "#{session_name}" |\
-          awk '!/org/{ print $0 }' |\
+          awk '!/org|scratch/{ print $0 }' |\
           fzf \
           --exit-0 \
           --print-query \
