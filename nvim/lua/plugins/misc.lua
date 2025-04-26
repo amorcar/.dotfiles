@@ -50,4 +50,22 @@ return {
 		},
 		cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
 	},
+	{
+		"akinsho/bufferline.nvim",
+		version = "*",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		config = function()
+			local bufferline = require("bufferline")
+			bufferline.setup({
+				options = {
+					mode = "tabs",
+					style_preset = bufferline.style_preset.minimal,
+					always_show_bufferline = false,
+          show_buffer_icons = false,
+          show_buffer_close_icons = false,
+          show_close_icon = false,
+				},
+			})
+		end,
+	},
 }
