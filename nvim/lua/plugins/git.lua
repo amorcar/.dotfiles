@@ -36,6 +36,14 @@ return {
 		"sindrets/diffview.nvim",
 		command = "DiffviewOpen",
 		config = function()
+			require("diffview").setup({
+				view = {
+					merge_tool = {
+						layout = "diff4_mixed",
+						disable_diagnostics = false,
+					},
+				},
+			})
 			local function toggle_diffview(cmd)
 				if next(require("diffview.lib").views) == nil then
 					vim.cmd(cmd)
