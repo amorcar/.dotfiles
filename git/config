@@ -1,18 +1,16 @@
 [user]
-
 	name = amorcar
 	email = alejandro.morales.carreno@gmail.com
 
 [core]
-
   editor = "nvim"
 
   #pager = delta
   #pager = nvim -c DiffviewOpen -
 
   # Use custom `.gitignore` and `.gitattributes`.
-	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
+	excludesfile = ~/.config/git/ignore
+	attributesfile = ~/.config/git/attributes
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error.
 	# [default] trailing-space: looks for spaces at the end of a line
@@ -33,7 +31,6 @@
 
 
 [delta]
-
   navigate = true  # use n and N to move between diff sections
   dark = true      # or light = true, or omit for auto-detection
   side-by-side = true
@@ -41,21 +38,17 @@
 
   
 [color]
-
 	# Use colors in Git commands that are capable of colored output when
 	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
 	ui = auto
 
 [init]
-
   defaultBranch = main
 
 [pull]
-
   rebase = true
 
 [merge]
-
 	tool = nvimdiff
 
   conflictstyle = zdiff3
@@ -64,59 +57,51 @@
 	log = true
 
 [push]
-
 	# https://git-scm.com/docs/git-config#git-config-pushdefault
 	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 
 [difftool]
-
   prompt = true
 
   trustExitCode = true
 
 [difftool "nvimdiff"]
-
   cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [diff]
-
   tool = nvimdiff
 
 	# Detect copies as well as renames.
 	renames = copies
 
 [diff "bin"]
-
 	# Use `hexdump` to diff binary files.
 	textconv = hexdump -v -C
 
 [commit]
-
 	# https://help.github.com/articles/signing-commits-using-gpg/
 	gpgsign = false
 
   verbose = true
 
-[branch]
+  template = ~/.config/git/commit_template
 
+[branch]
 	# Show most recently changed branches first.
 	sort = -committerdate
 
 
 [apply]
-
 	# Detect whitespace errors when applying a patch.
 	whitespace = fix
   
 [help]
-
 	# Automatically correct and execute mistyped commands.
 	autocorrect = 1
 
 [alias]
-
   # View abbreviated SHA, description, and history graph of the latest 20 commits.
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
 

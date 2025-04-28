@@ -14,8 +14,9 @@ bin = "~/.local/bin"
 "ghostty" = "~/.config/ghostty"
 
 [git.files]
-"git/gitconfig" = "~/.gitconfig"
-"git/gitignore" = "~/.gitignore"
+"git/config" = "~/.config/git/config"
+"git/ignore" = "~/.config/git/ignore"
+"git/commit_template" = "~/.config/git/commit_template"
 
 [homebrew]
 depends = []
