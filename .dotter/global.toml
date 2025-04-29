@@ -16,7 +16,7 @@ bin = "~/.local/bin"
 [git.files]
 "git/config" = "~/.config/git/config"
 "git/ignore" = "~/.config/git/ignore"
-"git/commit_template" = "~/.config/git/commit_template"
+"git/message" = "~/.config/git/message"
 
 [homebrew]
 depends = []
