@@ -61,6 +61,9 @@
 [difftool "nvimdiff"]
   cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
+[mergetool "nvimdiff4"]
+  cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c '$wincmd J'
+
 [diff]
   tool = nvimdiff
 	# Detect copies as well as renames.
