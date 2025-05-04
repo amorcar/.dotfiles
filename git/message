@@ -1,16 +1,16 @@
 
-# Title: Summary, imperative, start upper case, don't end with a period
+# Title: If applied, this commit will...
+# Summary, imperative, start upper case, don't end with a period
 # No more than 50 chars. #### 50 chars is here:  #
-# => If applied, this commit will...
 
 # Remember blank line between title and body.
 
-# Body: Explain *what* and *why* (not *how*). Include task ID (Jira issue).
+# Body: Explain why this change is being made
+# Explain *what* and *why* (not *how*). Include task ID (Jira issue).
 # Wrap at 72 chars. ################################## which is here:  #
-# => Explain why this change is being made
 
 # Provide linkds to any tickets, articles or other resources
 
-# => At the end: Include Co-authored-by for all contributors. 
+# At the end: Include Co-authored-by for all contributors. 
 # Include at least one empty line before it. Format: 
 # Co-authored-by: name <user@users.noreply.github.com>
