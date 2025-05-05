@@ -144,14 +144,14 @@ return {
 
 						-- DiffView
 						DiffAdd = { bg = "#2b3328" }, -- added chunks
-						DiffDelete = { bg = "#43242b" }, -- deleted chunks
+						DiffDelete = { bg = "#43242b", fg = -1 }, -- deleted chunks
 
 						DiffviewDiffDelete = { fg = "#16161d" }, -- fill chars
 						DiffviewDiffDeleteDim = { fg = "#32324a" }, -- fill chars
 
 						DiffAddAsDelete = { bg = "#43242b", }, -- updated lines in the old (left) buffer
-						DiffAddText = { bg = '#38542d', fg = "#d4d4d4", bold = true }, -- changed text in the new (right) buffer
-						DiffDeleteText = { bg = '#662534', fg = "#d4d4d4" }, -- changed text in the old (left) buffer
+						DiffAddText = { bg = '#2e4d22', fg = "#d4d4d4", bold = true }, -- changed text in the new (right) buffer
+						DiffDeleteText = { bg = '#6b2233', fg = "#d4d4d4" }, -- changed text in the old (left) buffer
 					}
 				end,
 				theme = "wave", -- Load "wave" theme when 'background' option is not set
