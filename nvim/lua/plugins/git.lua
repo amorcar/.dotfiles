@@ -37,6 +37,7 @@ return {
     command = "DiffviewOpen",
     config = function()
       require("diffview").setup({
+        enhanced_diff_hl = true, -- closer to GitHub's web UI
         view = {
           merge_tool = {
             layout = "diff4_mixed",
@@ -44,20 +45,26 @@ return {
           },
         },
         hooks = {
-          diff_buf_win_enter = function(bufnr, winid, ctx)
-            if ctx.layout_name:match("^diff2") then
-              if ctx.symbol == "a" then
-                vim.opt_local.winhl = table.concat({
-                  "DiffAdd:DiffviewDiffAddAsDelete",
-                  "DiffDelete:DiffviewDiffDelete",
-                }, ",")
-              elseif ctx.symbol == "b" then
-                vim.opt_local.winhl = table.concat({
-                  "DiffDelete:DiffviewDiffDelete",
-                }, ",")
-              end
-            end
-          end,
+        	diff_buf_win_enter = function(bufnr, winid, ctx)
+            -- if in the diff2 layout,
+        		if ctx.layout_name:match("^diff2") then
+              -- set specific highlight groups for extra control
+        			if ctx.symbol == "a" then -- red colors always in the left hand buffer
+        				vim.opt_local.winhl = table.concat({
+        					"DiffAdd:DiffviewDiffAddAsDelete",
+        					"DiffDelete:DiffviewDiffDelete",
+                  "DiffChange:DiffAddAsDelete",
+                  "DiffText:DiffDeleteText",
+        				}, ",")
+        			elseif ctx.symbol == "b" then -- green colors in the right hand buffer
+        				vim.opt_local.winhl = table.concat({
+        					"DiffDelete:DiffviewDiffDelete",
+                  "DiffChange:DiffAdd",
+                  "DiffText:DiffAddText",
+        				}, ",")
+        			end
+        		end
+        	end,
         },
       })
       local function toggle_diffview(cmd)

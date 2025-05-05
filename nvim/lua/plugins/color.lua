@@ -142,26 +142,16 @@ return {
 						PmenuKind = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
 						PmenuKindSel = { fg = "NONE", bg = theme.ui.bg_p2 },
 
-            -- DiffView
-            -- DiffAdd = { bg = '#34462F' },
-            -- DiffDelete = { bg = '#753b3b' },
-            -- DiffChange = { bg = '#2F4146' },
-            -- DiffText = { bg = '#463C2F' },
+						-- DiffView
+						DiffAdd = { bg = "#2b3328" }, -- added chunks
+						DiffDelete = { bg = "#43242b" }, -- deleted chunks
 
-            -- DiffAdded = { fg = colors[3], bold = true },
-            -- DiffRemoved = { fg = colors[2], bold = true },
-            -- DiffChanged = { fg = colors[4], bold = true },
+						DiffviewDiffDelete = { fg = "#16161d" }, -- fill chars
+						DiffviewDiffDeleteDim = { fg = "#32324a" }, -- fill chars
 
-            -- DiffviewWinSeparator = { fg = colors[9] },
-            -- DiffviewDiffDelete = { fg = colors[9] },
-            -- DiffviewFilePanelSelected = { fg = colors[6] },
-
-            -- DiffviewStatusAdded = { fg = colors[3], bold = true },
-            -- DiffviewStatusUntracked = { fg = colors[8], bold = true },
-            -- DiffviewStatusModified = { fg = colors[4], bold = true },
-            -- DiffviewStatusRenamed = { fg = colors[3], bold = true },
-            -- DiffviewStatusDeleted = { fg = colors[2], bold = true },
-            -- DiffviewStatusIgnored = { fg = colors[9], bold = true },
+						DiffAddAsDelete = { bg = "#43242b", }, -- updated lines in the old (left) buffer
+						DiffAddText = { bg = '#38542d', fg = "#d4d4d4", bold = true }, -- changed text in the new (right) buffer
+						DiffDeleteText = { bg = '#662534', fg = "#d4d4d4" }, -- changed text in the old (left) buffer
 					}
 				end,
 				theme = "wave", -- Load "wave" theme when 'background' option is not set

@@ -34,6 +34,7 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.fillchars:append({ fold = " " })
+vim.opt.fillchars:append { diff = "╱" }
 function _G.MyFoldText()
   return vim.fn.getline(vim.v.foldstart) .. " ... " .. vim.fn.getline(vim.v.foldend):gsub("^%s*", "")
 end
