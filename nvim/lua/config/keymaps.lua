@@ -42,16 +42,16 @@ vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { silent = true })
 vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>", { silent = true })
 
 -- move visual lines
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts)
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
+-- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts)
+-- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
 
 -- a better J that keeps the cursor in the same place
 vim.keymap.set("n", "J", "mzJ`z")
 
 -- clipboard yank
-vim.keymap.set("n", "<leader>cy", '"+y', opts)
-vim.keymap.set("x", "<leader>cy", '"+y', opts)
-vim.keymap.set("n", "<leader>cY", '"+Y', opts)
+-- vim.keymap.set("n", "<leader>cy", '"+y', opts)
+-- vim.keymap.set("x", "<leader>cy", '"+y', opts)
+-- vim.keymap.set("n", "<leader>cY", '"+Y', opts)
 
 -- buffer moves
 vim.keymap.set("n", "[b", ":bprevious<cr>zz", opts)

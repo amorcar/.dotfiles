@@ -2,7 +2,7 @@ vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = ";"
 
--- vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = "unnamedplus"
 
 vim.opt.path:append("**")
 vim.opt.timeoutlen = 4000
