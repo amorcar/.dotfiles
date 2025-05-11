@@ -4,8 +4,6 @@
 
 [core]
   editor = "nvim"
-  #pager = delta
-  #pager = nvim -c DiffviewOpen -
   # Use custom `.gitignore` and `.gitattributes`.
 	excludesfile = ~/.config/git/ignore
 	attributesfile = ~/.config/git/attributes
@@ -54,6 +52,25 @@
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 
+[diff]
+  # Run the difftool immediately, don't ask 'are you sure' each time.
+  prompt = false
+  external = difft
+  # Set difftastic as the default difftool
+  tool = difftastic
+
+[pager]
+  # Use a pager if the difftool output is larger than one screenful,
+  # consistent with the behaviour of `git diff`.
+  difftool = true
+
+[difftool "nvimdiff"]
+	cmd = "nvim -c \"DiffviewOpen\""
+
+[difftool "difftastic"]
+  # See `man git-difftool` for a description of MERGED, LOCAL and REMOTE.
+  cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
+
 [difftool]
   prompt = true
   trustExitCode = true
@@ -100,10 +117,6 @@
 	ss = status -s
 	# Show the diff between the latest commit and the current state.
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-	# Commit all changes.
-	ca = !git add ':(exclude,attr:builtin_objectmode=160000)' && git commit -av
-	# Switch to a branch, creating it if necessary.
-	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 	# Interactive branch select
   bi = !"git branch | grep '^[^*]' | fzf --height=20% --reverse --info=inline | xargs git switch"
 	# Show verbose output about tags, branches or remotes
@@ -127,3 +140,9 @@
 	contributors = shortlog --summary --numbered
 	# Show the user email for the current repository.
 	whoami = config user.email
+  # `git log` with patches shown with difftastic.
+  dl = -c diff.external=difft log -p --ext-diff
+  # Show the most recent commit with difftastic.
+  ds = -c diff.external=difft show --ext-diff
+  # `git diff` with difftastic.
+  dft = -c diff.external=difft diff
