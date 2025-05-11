@@ -3,6 +3,7 @@ return {
 	{
 		"stevearc/overseer.nvim",
 		opts = {},
+		enabled = false,
 		config = function()
 			require("overseer").setup({
 				strategy = "terminal",
@@ -69,5 +70,9 @@ return {
 			nargs = "*",
 			bang = true,
 		}),
+	},
+	{
+		"tpope/vim-dispatch",
+		enabled = true,
 	},
 }
