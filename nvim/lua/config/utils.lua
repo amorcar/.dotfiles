@@ -1,23 +1,4 @@
 local M = {}
--- -----------------------------------------------------------------------------
--- Close current buffer with proper window management
---
--- 1. Window Layout Management:
---    - Preserve window layout after buffer closure
---    - When `prune_extra_wins` is enabled, eliminate redundant windows if
---      window count exceeds buffer count
---
--- 2. Buffer Type Handling:
---    - Special handling for special buffers in `buf_config`
---      (help, quickfix, plugin, etc.)
---    - Prompt for confirmation before closing terminal buffer with active jobs
---
--- 3. Buffer Lifecycle Management:
---    - When no normal buffers remain: either quit Neovim (`quit_on_empty=true`)
---      or create a new buffer (`quit_on_empty=false`)
---    - Prompt for saving modified buffers before closing
---    - Select the most appropriate buffer to display after closure
--- -----------------------------------------------------------------------------
 
 -- Special buffer configurations
 local buf_config = {
@@ -292,5 +273,13 @@ function M.smart_buffer_close(user_opts)
   end
 end
 
+function M.branch_name()
+  local branch = vim.fn.system("git branch --show-current 2> /dev/null | tr -d '\n'")
+  if branch ~= "" then
+    return branch
+  else
+    return ""
+  end
+end
 
 return M
