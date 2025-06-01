@@ -41,19 +41,22 @@ set -gx ERL_AFLAGS "-kernel shell_history enabled -kernel shell_history_file_byt
 # My abbreviations
 if status --is-interactive
   # Quick edits
-  abbr --add --global eali 'nvim ~/.config/fish/aliases.fish'
-  abbr --add --global efish 'nvim ~/.config/fish/config.fish'
-  abbr --add --global egitc 'nvim ~/.gitconfig'
-  abbr --add --global envim 'nvim ~/.config/nvim/init.lua'
-  abbr --add --global etmux 'nvim ~/.tmux.conf'
-  abbr --add --global etask 'nvim ~/.config/task/taskrc'
-  abbr --add --global essh 'nvim ~/.ssh/config'
-  abbr --add --global eala 'nvim ~/.config/alacritty/alacritty.toml'
-  abbr --add --global egho 'nvim ~/.config/ghostty/config'
+  abbr --add --global eali '$EDITOR ~/.config/fish/aliases.fish'
+  abbr --add --global efish '$EDITOR ~/.config/fish/config.fish'
+  abbr --add --global egitc '$EDITOR ~/.gitconfig'
+  abbr --add --global envim '$EDITOR ~/.config/nvim/init.lua'
+  abbr --add --global etmux '$EDITOR ~/.tmux.conf'
+  abbr --add --global etask '$EDITOR ~/.config/task/taskrc'
+  abbr --add --global essh '$EDITOR ~/.ssh/config'
+  abbr --add --global eala '$EDITOR ~/.config/alacritty/alacritty.toml'
+  abbr --add --global egho '$EDITOR ~/.config/ghostty/config'
   # abbr --add --global twork '~/.config/scripts/work-tmux.sh'
   # abbr --add --global tdev '~/.config/scripts/dev-tmux.sh'
 
-  abbr --add --global gst 'git status'
+  if command -v git > /dev/null
+    abbr --add --global gs 'git status'
+    abbr --add --global gss 'git status -s'
+  end
 
 
   if command -v nvim > /dev/null

@@ -41,10 +41,13 @@ normal = { family = "MesloLGM Nerd Font" }
 size = 14
 offset = { x = 0, y = 2 }
 
-# ligatures: => <= !=
+# ligatures: => <= != <-> |> <|
 # find installed fonts (macOS): fc-list : family | sort -f
-# "Liga SFMono Nerd Font"
+
+# "ComicShannsMono Nerd Font Mono"
 # "FiraCode Nerd Font Mono"
 # "GohuFont uni14 Nerd Font Mono"
-# "ComicShannsMono Nerd Font Mono"
-# "Iosevka NFM Heavy"
+# "Iosevka NFM"
+# "JetBrainsMono NFM"
+# "Liga SFMono Nerd Font"
+# "MesloLGM Nerd Font"

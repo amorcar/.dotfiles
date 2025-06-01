@@ -4,6 +4,7 @@ alias dt="cd ~/Desktop"
 alias pl="cd ~/Work/git/pipeliner"
 
 alias g="git"
+alias gs="git status"
 
 alias reload '. ~/.config/fish/config.fish'
 

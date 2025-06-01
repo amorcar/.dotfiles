@@ -4,145 +4,102 @@
 
 [core]
   editor = "nvim"
-  # Use custom `.gitignore` and `.gitattributes`.
 	excludesfile = ~/.config/git/ignore
 	attributesfile = ~/.config/git/attributes
-	# Treat spaces before tabs and all kinds of trailing whitespace as an error.
-	# [default] trailing-space: looks for spaces at the end of a line
-	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
-	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
-	# Make `git rebase` safer on macOS.
-	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
-	trustctime = false
-	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
-	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
-	precomposeunicode = false
-	# Speed up commands involving untracked files such as `git status`.
-	# https://git-scm.com/docs/git-update-index#_untracked_cache
-	untrackedCache = true
+  whitespace = error  # threat incorrect whitespace as errors
+	trustctime = false # Make `git rebase` safer on macOS.
+	precomposeunicode = false	# dont files whose names contain non-ASCII symbols as unversioned.
+	untrackedCache = true # Speed up commands involving untracked files such as `git status`.
 
+[apply]
+	whitespace = fix
 
-[delta]
-  navigate = true  # use n and N to move between diff sections
-  dark = true      # or light = true, or omit for auto-detection
-  side-by-side = true
-  line-numbers = false
+[branch]
+	sort = -committerdate  # show most recently changed branches first.
 
-  
 [color]
-	# Use colors in Git commands that are capable of colored output when
-	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
 	ui = auto
+
+[color "branch"]
+  current  = magenta
+  local    = default
+  remote   = yellow
+  upstream = green
+  plain    = blue
+
+[color "diff"]
+  meta       = black bold
+  frag       = magenta
+  context    = white
+  whitespace = yellow reverse
+
+[help]
+	autocorrect = 0  # automatically correct and execute mistyped commands.
 
 [init]
   defaultBranch = main
 
-[pull]
-  rebase = true
-
-[merge]
-	tool = nvimdiff4
-  conflictstyle = zdiff3
-  # Include summaries of merged commits in newly created merge commit messages
-	log = true
-
-[push]
-	# https://git-scm.com/docs/git-config#git-config-pushdefault
-	default = simple
-	# Make `git push` push relevant annotated tags when pushing branches out.
-	followTags = true
+[commit]
+	gpgsign = false  # https://help.github.com/articles/signing-commits-using-gpg/
+  verbose = true
+  template = ~/.config/git/message
 
 [diff]
-  # Run the difftool immediately, don't ask 'are you sure' each time.
   prompt = false
+  context = 3  # less context in diffs
+  renames = copies  # detect copies as renames in diffs
+  interHunkContext = 10  # merge near hunks in diffs
   external = difft
-  # Set difftastic as the default difftool
   tool = difftastic
 
-[pager]
-  # Use a pager if the difftool output is larger than one screenful,
-  # consistent with the behaviour of `git diff`.
-  difftool = true
-
-[difftool "nvimdiff"]
-	cmd = "nvim -c \"DiffviewOpen\""
-
-[difftool "difftastic"]
-  # See `man git-difftool` for a description of MERGED, LOCAL and REMOTE.
-  cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
+[diff "bin"]
+	textconv = hexdump -v -c  # use `hexdump` to diff binary files.
 
 [difftool]
   prompt = true
   trustExitCode = true
 
+[difftool "difftastic"]
+  cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
+
 [difftool "nvimdiff"]
   cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
+[merge]
+	tool = nvimdiff4
+  conflictstyle = zdiff3
+	log = true
 
 [mergetool "nvimdiff4"]
   cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c '$wincmd J'
 
-[diff]
-  tool = nvimdiff
-	# Detect copies as well as renames.
-	renames = copies
+[pager]
+  difftool = true
 
-[diff "bin"]
-	# Use `hexdump` to diff binary files.
-	textconv = hexdump -v -C
+[pull]
+  rebase = true
 
-[commit]
-	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = false
-  verbose = true
-  template = ~/.config/git/message
-
-[branch]
-	# Show most recently changed branches first.
-	sort = -committerdate
-
-[apply]
-	# Detect whitespace errors when applying a patch.
-	whitespace = fix
-  
-[help]
-	# Automatically correct and execute mistyped commands.
-	autocorrect = 1
+[push]
+	default = simple
+	followTags = true
 
 [alias]
-  # View abbreviated SHA, description, and history graph of the latest 20 commits.
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
-	# View the current working tree status.
-	s = status
-	# View the current working tree status using the short format.
-	ss = status -s
-	# Show the diff between the latest commit and the current state.
-	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-	# Interactive branch select
-  bi = !"git branch | grep '^[^*]' | fzf --height=20% --reverse --info=inline | xargs git switch"
-	# Show verbose output about tags, branches or remotes
-	tags = tag -l
+	l = log --pretty=oneline -n 20 --graph --abbrev-commit  # view abbreviated sha, description, and history graph of the latest 20 commits.
+	s = status # view the current working tree status.
+	ss = status -s  # view the current working tree status using the short format.
+	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"  # show the diff between the latest commit and the current state.
+  bi = !"git branch | grep '^[^*]' | fzf --height=20% --reverse --info=inline | xargs git switch"  # Interactive branch select
+	tags = tag -l  # show verbose output about tags, branches or remotes
 	branches = branch --all
 	remotes = remote --verbose
-	# List aliases.
 	aliases = config --get-regexp alias
-	# Amend the currently staged files to the latest commit.
-	amend = commit --amend --reuse-message=HEAD
-	# Credit an author on the latest commit.
-	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
-	# Find commits by source code
-	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
-	# Find commits by commit message
-	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
-	# Remove branches that have already been merged with main.
-	# a.k.a. ‘delete merged’
-	delete-merged = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-	# List contributors with number of commits.
-	contributors = shortlog --summary --numbered
-	# Show the user email for the current repository.
+	amend = commit --amend --reuse-message=head  # amend the currently staged files to the latest commit.
+	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"  # credit an author on the latest commit.
+	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"  # find commits by source code
+	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"  # find commits by commit message
+	delete-merged = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"  # delete merged
+	contributors = shortlog --summary --numbered  # list contributors with number of commits.
 	whoami = config user.email
-  # `git log` with patches shown with difftastic.
-  dl = -c diff.external=difft log -p --ext-diff
-  # Show the most recent commit with difftastic.
-  ds = -c diff.external=difft show --ext-diff
-  # `git diff` with difftastic.
-  dft = -c diff.external=difft diff
+  dl = -c diff.external=difft log -p --ext-diff  # `git log` with patches shown with difftastic.
+  ds = -c diff.external=difft show --ext-diff  # show the most recent commit with difftastic.
+  dft = -c diff.external=difft diff  # `git diff` with difftastic.
