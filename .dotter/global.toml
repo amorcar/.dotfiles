@@ -17,6 +17,7 @@ bin = "~/.local/bin"
 "git/config" = "~/.config/git/config"
 "git/ignore" = "~/.config/git/ignore"
 "git/message" = "~/.config/git/message"
+"git/attributes" = "~/.config/git/attributes"
 
 [homebrew]
 depends = []
