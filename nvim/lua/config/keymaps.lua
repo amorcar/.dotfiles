@@ -60,10 +60,10 @@ vim.keymap.set("n", "[B", ":bfirst<cr>zz", opts)
 vim.keymap.set("n", "]B", ":blast<cr>zz", opts)
 
 -- tab moves
-vim.keymap.set("n", "[t", ":tprevious<cr>zz", opts)
-vim.keymap.set("n", "]t", ":tnext<cr>zz", opts)
-vim.keymap.set("n", "[T", ":tfirst<cr>zz", opts)
-vim.keymap.set("n", "]T", ":tlast<cr>zz", opts)
+vim.keymap.set("n", "[t", ":tabprevious<cr>zz", opts)
+vim.keymap.set("n", "]t", ":tabnext<cr>zz", opts)
+vim.keymap.set("n", "[T", ":tabfirst<cr>zz", opts)
+vim.keymap.set("n", "]T", ":tablast<cr>zz", opts)
 
 -- quicklist moves
 vim.keymap.set("n", "[c", ":cprevious<cr>zz", opts)

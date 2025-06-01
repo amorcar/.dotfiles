@@ -4,7 +4,7 @@ return {
     enabled = true,
     config = function()
       vim.keymap.set("n", "<leader>gof", ":G<CR>", { desc = "git open fugitive" })
-      vim.keymap.set("n", "<leader>gg", ":G<CR><C-w>10-", { desc = "git open fugitive" })
+      vim.keymap.set("n", "<leader>gg", ":G<CR><C-w>5-", { desc = "git open fugitive" })
     end,
   },
   {
@@ -16,13 +16,6 @@ return {
       vim.keymap.set("n", "<leader>gtb", gs.toggle_current_line_blame, { desc = "git toogle blame" })
       vim.keymap.set("n", "<leader>gtd", gs.preview_hunk_inline, { desc = "git toggle delete" })
       vim.keymap.set("n", "<leader>ghp", gs.preview_hunk, { desc = "git hunk preview" })
-      vim.keymap.set(
-        "n",
-        "<leader>gpu",
-        ":G push --set-upstream origin " .. require("config.utils").branch_name(),
-        { desc = "Git Push Upstream <current branch name>" }
-      )
-      vim.keymap.set("n", "<leader>gpp", ":G push", { desc = "git hunk preview" })
       vim.keymap.set("n", "]h", function()
         if vim.wo.diff then
           vim.cmd.normal({ "]h", bang = true })

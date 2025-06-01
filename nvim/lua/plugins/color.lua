@@ -149,9 +149,9 @@ return {
 						DiffviewDiffDelete = { fg = "#16161d" }, -- fill chars
 						DiffviewDiffDeleteDim = { fg = "#32324a" }, -- fill chars
 
-						DiffAddAsDelete = { bg = "#43242b", }, -- updated lines in the old (left) buffer
-						DiffAddText = { bg = '#2e4d22', fg = "#d4d4d4", bold = true }, -- changed text in the new (right) buffer
-						DiffDeleteText = { bg = '#6b2233', fg = "#d4d4d4" }, -- changed text in the old (left) buffer
+						DiffAddAsDelete = { bg = "#43242b" }, -- updated lines in the old (left) buffer
+						DiffAddText = { bg = "#2e4d22", fg = "#d4d4d4", bold = true }, -- changed text in the new (right) buffer
+						DiffDeleteText = { bg = "#6b2233", fg = "#d4d4d4" }, -- changed text in the old (left) buffer
 					}
 				end,
 				theme = "wave", -- Load "wave" theme when 'background' option is not set
@@ -163,6 +163,52 @@ return {
 
 			-- setup must be called before loading
 			vim.cmd("colorscheme kanagawa")
+		end,
+	},
+	{
+		"webhooked/kanso.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("kanso").setup({
+				compile = false, -- enable compiling the colorscheme
+				undercurl = true, -- enable undercurls
+				commentStyle = { italic = true },
+				functionStyle = {},
+				keywordStyle = { italic = true },
+				statementStyle = {},
+				typeStyle = {},
+				transparent = false, -- do not set background color
+				dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+				terminalColors = true, -- define vim.g.terminal_color_{0,17}
+				colors = { -- add/modify theme and palette colors
+					palette = {},
+					theme = { zen = {}, pearl = {}, ink = {}, all = {} },
+				},
+				overrides = function(colors) -- add/modify highlights
+					local theme = colors.theme
+					return {
+						NormalFloat = { bg = "none" },
+						FloatBorder = { bg = "none" },
+						FloatTitle = { bg = "none" },
+						-- DiffView
+						DiffAdd = { bg = "#2b3328" }, -- added chunks
+						DiffDelete = { bg = "#43242b", fg = -1 }, -- deleted chunks
+
+						DiffviewDiffDelete = { fg = theme.ui.bg_dim }, -- fill chars
+						DiffviewDiffDeleteDim = { fg = theme.ui.shade_0 }, -- fill chars
+
+						DiffAddAsDelete = { bg = "#43242b" }, -- updated lines in the old (left) buffer
+						DiffAddText = { bg = "#2e4d22", fg = "#d4d4d4", bold = true }, -- changed text in the new (right) buffer
+						DiffDeleteText = { bg = "#6b2233", fg = "#d4d4d4" }, -- changed text in the old (left) buffer
+          }
+				end,
+				theme = "zen", -- Load "zen" theme
+				background = { -- map the value of 'background' option to a theme
+					dark = "zen", -- try "ink" !
+					light = "pearl",
+				},
+			})
 		end,
 	},
 	{ "RRethy/base16-nvim" },

@@ -46,7 +46,7 @@ return {
 				title = "", -- Custom window title
 			})
 		end)
-		map("n", "<leader>fh", function()
+		map("n", "<leader>hf", function()
 			-- harpoon.ui:toggle_quick_menu(harpoon:list())
 			toggle_telescope(harpoon:list())
 		end)

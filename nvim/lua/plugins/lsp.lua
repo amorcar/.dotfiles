@@ -42,7 +42,8 @@ return {
     lazy = false,
     config = function()
       -- config LSP completions
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local capabilities =
+          require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
       local lspconfig = require("lspconfig")
 
       lspconfig.lua_ls.setup({
@@ -108,7 +109,7 @@ return {
     "jay-babu/mason-null-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
       "nvimtools/none-ls.nvim",
     },
     config = function()
