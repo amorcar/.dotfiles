@@ -1,0 +1,10 @@
+---
+BasedOnStyle: LLVM
+IndentWidth: 4
+# AlignArrayOfStructures: Right
+AlignConsecutiveAssignments: true
+# AlignConsecutiveMacros: true
+# AlignOperands: Align
+# AlwaysBreakAfterDefinitionReturnType: true
+BreakBeforeBraces: Allman
+...

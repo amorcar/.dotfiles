@@ -40,7 +40,10 @@ scripts = "~/.config/scripts"
 
 [format.files]
 "format/sqlfluff" = "~/.sqlfluff"
-"format/clang" = "~/.clang-format"
+
+[clang.files]
+"clang/clang-format" = "~/.clang-format"
+"clang/clangd" = "~/.clangd"
 
 [taskwarrior.files]
 task = "~/.config/task"
