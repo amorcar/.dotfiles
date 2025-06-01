@@ -4,6 +4,7 @@ require("config.autocommands")
 require("config.commands")
 require("config.lazy")
 -- require("config.terminal")
+require("config.quickfix")
 
 vim.cmd.colorscheme("kanagawa-wave")
 -- vim.cmd.colorscheme("base16-black-metal-gorgoroth")
