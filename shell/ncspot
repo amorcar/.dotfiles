@@ -1,0 +1,33 @@
+shuffle = false
+volnorm = true
+use_nerdfont = true
+flip_status_indicators = true
+
+[theme]
+#background = "#181818"
+primary = "#F1F1F1"
+secondary = "#DCDCDC"
+title = "#1ED760"
+playing = "#1ED760"
+playing_selected = "#1ED760"
+#playing_bg = "#181818"
+highlight = "#1DB954"
+highlight_bg = "#000000"
+error = "#FFE4E4"
+error_bg = "#A50000"
+statusbar = "#C1C1C1"
+statusbar_progress = "#00AC4C"
+#statusbar_bg = "#00AC4C"
+cmdline = "#CBFFDE"
+cmdline_bg = "#444444"
+
+[keybindings]
+"g" = "move top"
+"Shift+g" = "move bottom"
+"Ctrl+d" = "move down 10"
+"Ctrl+u" = "move up 10"
+"Shift+q" = "focus queue"
+"Shift+l" = "focus library"
+"Shift+s" = "focus search"
+"Shift+e" = "save"
+"F8" = "playpause"

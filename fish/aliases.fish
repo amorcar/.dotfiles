@@ -1,11 +1,3 @@
-# Shortcuts
-alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
-alias pl="cd ~/Work/git/pipeliner"
-
-alias g="git"
-alias gs="git status"
-
 alias reload '. ~/.config/fish/config.fish'
 
 # grep with color
@@ -35,3 +27,5 @@ alias tmw 'timew'
 alias lzd 'lazydocker'
 alias lzs 'lazysql'
 
+alias play 'echo "playpause" | nc -U /tmp/ncspot-501/ncspot.sock > /dev/null'
+alias pause 'echo "playpause" | nc -U /tmp/ncspot-501/ncspot.sock > /dev/null'

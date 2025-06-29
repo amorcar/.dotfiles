@@ -88,18 +88,23 @@
 	s = status # view the current working tree status.
 	ss = status -s  # view the current working tree status using the short format.
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"  # show the diff between the latest commit and the current state.
-  bi = !"git branch | grep '^[^*]' | fzf --height=20% --reverse --info=inline | xargs git switch"  # Interactive branch select
+  bi = !"git branch | grep '^[^*]' | sk --height=20% --reverse --info=inline | xargs git switch"  # Interactive branch select
 	tags = tag -l  # show verbose output about tags, branches or remotes
 	branches = branch --all
+  recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
+  today = log --since='midnight' --all --no-merges --oneline --author=amorcar
+  yesterday = log --since='yesterday.midnight' --until='midnight' --all --no-merges --oneline --author=amorcar
+  upstream = log --oneline --no-merges HEAD..origin/main
 	remotes = remote --verbose
 	aliases = config --get-regexp alias
 	amend = commit --amend --reuse-message=head  # amend the currently staged files to the latest commit.
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"  # credit an author on the latest commit.
-	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"  # find commits by source code
-	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"  # find commits by commit message
 	delete-merged = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"  # delete merged
 	contributors = shortlog --summary --numbered  # list contributors with number of commits.
 	whoami = config user.email
+  ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ | tail -n +4 | tail -r | tail -n +2 | tail -r ;}; gi"
+	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"  # find commits by source code
+	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"  # find commits by commit message
   dl = -c diff.external=difft log -p --ext-diff  # `git log` with patches shown with difftastic.
   ds = -c diff.external=difft show --ext-diff  # show the most recent commit with difftastic.
   dft = -c diff.external=difft diff  # `git diff` with difftastic.

@@ -25,9 +25,13 @@ function main {
         sessions=$(echo "" | fzf --exit-0 --print-query --reverse)
         retval=$?
     else
+        current_session=$(tmux display-message -p '#S')
+        if [[ "$current_session" == "main" ]]; then 
+            reverse=true                            
+        fi                                          
         sessions=$( \
           tmux list-sessions -F "#{session_name}" |\
-          awk -v cs="$(tmux display-message -p '#S')|org|scratch" '$0 !~ cs { print $0 }' |\
+          awk -v cs="$(tmux display-message -p '#S')" '$0 !~ cs { print $0 }' |\
           fzf \
           --exit-0 \
           --print-query \

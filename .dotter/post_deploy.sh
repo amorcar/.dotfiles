@@ -19,6 +19,9 @@ fi
     fi
   else
     echo '[INFO] homebrew package active in non-macos machine'
+
+  echo 'prevent apple music unwanted launch'
+  launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist
   fi
 {{/if}}
 

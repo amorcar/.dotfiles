@@ -53,7 +53,13 @@ if status --is-interactive
   # abbr --add --global twork '~/.config/scripts/work-tmux.sh'
   # abbr --add --global tdev '~/.config/scripts/dev-tmux.sh'
 
+  # Shortcuts
+  abbr --add --global dl "cd ~/Downloads"
+  abbr --add --global dt "cd ~/Desktop"
+  abbr --add --global pl "cd ~/Work/git/pipeliner"
+
   if command -v git > /dev/null
+    abbr --add --global g 'git'
     abbr --add --global gs 'git status'
     abbr --add --global gss 'git status -s'
   end

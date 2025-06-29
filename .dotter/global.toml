@@ -38,6 +38,7 @@ scripts = "~/.config/scripts"
 "shell/htoprc" = "~/.config/htop/htoprc"
 "shell/curl" = "~/.curlrc"
 "shell/wget" = "~/.wgetrc"
+"shell/ncspot" = "~/.config/ncspot/config.toml"
 
 [format.files]
 "format/sqlfluff" = "~/.sqlfluff"
