@@ -1,6 +1,7 @@
 [user]
 	name = amorcar
 	email = alejandro.morales.carreno@gmail.com
+  signingkey = ~/.ssh/id_rsa.pub
 
 [core]
   editor = "nvim"
@@ -83,12 +84,19 @@
 	default = simple
 	followTags = true
 
+[rerere]
+  enabled = true
+
+[gpg]
+  format = ssh
+
 [alias]
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit  # view abbreviated sha, description, and history graph of the latest 20 commits.
 	s = status # view the current working tree status.
 	ss = status -s  # view the current working tree status using the short format.
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"  # show the diff between the latest commit and the current state.
-  bi = !"git branch | grep '^[^*]' | sk --height=20% --reverse --info=inline | xargs git switch"  # Interactive branch select
+  bi = !"git branch | grep '^[^*]' | fzf --height=20% --reverse --info=inline | xargs git switch"  # Interactive branch select
+  bb = !"~/.config/scripts/better-git-branch.sh"  # Interactive branch select
 	tags = tag -l  # show verbose output about tags, branches or remotes
 	branches = branch --all
   recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
@@ -108,3 +116,5 @@
   dl = -c diff.external=difft log -p --ext-diff  # `git log` with patches shown with difftastic.
   ds = -c diff.external=difft show --ext-diff  # show the most recent commit with difftastic.
   dft = -c diff.external=difft diff  # `git diff` with difftastic.
+[rerere]
+	enabled = true
