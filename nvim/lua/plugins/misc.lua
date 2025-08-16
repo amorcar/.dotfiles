@@ -61,11 +61,27 @@ return {
 					mode = "tabs",
 					style_preset = bufferline.style_preset.minimal,
 					always_show_bufferline = false,
-          show_buffer_icons = false,
-          show_buffer_close_icons = false,
-          show_close_icon = false,
+					show_buffer_icons = false,
+					show_buffer_close_icons = false,
+					show_close_icon = false,
 				},
 			})
 		end,
+	},
+	{
+		"mcauley-penney/visual-whitespace.nvim",
+		init = function()
+			vim.keymap.set({ "n", "v" }, "<leader>vwt", require("visual-whitespace").toggle, {
+				noremap = true,
+				silent = true,
+				desc = "Visual whitespace toggle",
+			})
+		end,
+		config = true,
+		event = "ModeChanged *:[vV\22]", -- optionally, lazy load on entering visual mode
+		opts = {
+			enabled = false,
+			highlight = { link = "NonText" },
+		},
 	},
 }

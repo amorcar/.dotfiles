@@ -152,6 +152,9 @@ return {
 
             DiffviewDiffDelete = { fg = "#16161d" },                 -- fill chars
             DiffviewDiffDeleteDim = { fg = "#32324a" },              -- fill chars
+
+            -- VisualNonText = { link = 'NonText' }, -- from mcauley-penney/visual-whitespace.nvim
+
           }
         end,
         theme = "wave", -- Load "wave" theme when 'background' option is not set
