@@ -41,7 +41,7 @@
   defaultBranch = main
 
 [commit]
-	gpgsign = false  # https://help.github.com/articles/signing-commits-using-gpg/
+	gpgsign = true  # https://help.github.com/articles/signing-commits-using-gpg/
   verbose = true
   template = ~/.config/git/message
 
