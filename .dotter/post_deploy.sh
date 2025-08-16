@@ -10,6 +10,11 @@ else
   echo "[INFO] all files in $BIN_DIR are now executable"
 fi
 
+# if a mac
+if [ "$(uname -s)" = "Darwin" ]; then
+  source .dotter/macos_config.sh
+fi
+
 {{#if dotter.packages.homebrew}}
   if [ "$(uname -s)" = "Darwin" ]; then
     # if homebrew is available
