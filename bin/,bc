@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+
+# n = int(input())
+# w = len("{0:b}".format(n))
+# print("{0:{width}d} {0:{width}o} {0:{width}x} {0:{width}b}".format(n, width=w))
+
+
+import os
+import sys
+
+def main():
+    if len(sys.argv) != 2:
+        print(f"Usage: {os.path.basename(__file__)} <number>")
+        print("Valid formats: binary 0b..., octal 0o..., hex 0x..., decimal [0d]...")
+        sys.exit(1)
+
+    arg = sys.argv[1]
+
+    try:
+        # int() with base=0 will auto-detect format by prefix (0b, 0o, 0x)
+        arg = arg.removeprefix("0d")
+        num = int(arg, 0)
+    except ValueError:
+        print(f"Invalid input: {arg}")
+        sys.exit(1)
+
+    # print(f"Binary     : {bin(num)}")
+    # print(f"Octal      : {oct(num)}")
+    # print(f"Decimal    : {num}")
+    # print(f"Hexadecimal: {hex(num)}")
+    print(f"{bin(num)} {oct(num)} {num} {hex(num)}")
+
+if __name__ == "__main__":
+    main()
+
+
