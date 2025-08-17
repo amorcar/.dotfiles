@@ -43,7 +43,6 @@ return {
       end, { noremap = true, silent = true, desc = "open recent files" })
       -- vim.keymap.set("n", "<leader>ff", telescope_builtin.find_files, { desc = "find files" })
       vim.keymap.set("n", "<leader>fo", telescope_builtin.oldfiles, { desc = "find old files" })
-      -- vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep)
       vim.keymap.set(
         "n",
         "<leader>fg",

@@ -84,6 +84,9 @@
 	default = simple
 	followTags = true
 
+[rebase]
+  updateRefs = true
+
 [rerere]
   enabled = true
 
