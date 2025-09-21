@@ -17,8 +17,8 @@ return {
 					"clangd",
 					"lua_ls",
 					"ruff",
-          "pyright",
-          -- "basedpyright", -- much better
+					"pyright",
+					-- "basedpyright", -- much better
 					"terraformls",
 				},
 			})
@@ -47,15 +47,20 @@ return {
 				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 			local lspconfig = require("lspconfig")
 
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
+			vim.lsp.config("lua_ls", {
+        capabilities = capabilities,
 			})
-			lspconfig.terraformls.setup({
-				capabilities = capabilities,
+			vim.lsp.enable({ "lua_ls" })
+
+			vim.lsp.config("terraformls", {
+        capabilities = capabilities,
 			})
-			lspconfig.clangd.setup({
-				capabilities = capabilities,
+			vim.lsp.enable({ "terraformls" })
+
+			vim.lsp.config("clangd", {
+        capabilities = capabilities,
 			})
+			vim.lsp.enable({ "clangd" })
 
 			vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help)
 			vim.keymap.set("n", "grd", vim.lsp.buf.definition)
