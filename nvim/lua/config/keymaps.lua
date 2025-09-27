@@ -6,9 +6,6 @@ vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", opts)
 vim.keymap.set("n", "<leader>kb", "<cmd>bd<cr>", opts)
 vim.keymap.set("n", "<leader>kt", "<cmd>tabc<cr>", opts)
 
--- toggles between buffers
--- vim.keymap.set("n", "<leader><leader>", "<c-^>", opts)
-
 -- always center search results
 vim.keymap.set("n", "n", "nzz", { silent = true })
 vim.keymap.set("n", "N", "Nzz", { silent = true })
@@ -105,3 +102,8 @@ vim.keymap.set("v", "<leader>x", ":lua<cr>")
 vim.keymap.set("n", "Q", function()
 	require("config.utils").smart_buffer_close({ quit_on_empty = false, prune_extra_wins = true })
 end, { noremap = true, silent = true })
+
+-- quick find
+vim.keymap.set('n', '<leader>ff', ':find<space>', { noremap = true, desc = 'Easy find' })
+vim.keymap.set('n', '<leader>fv', ':vert sf<space>', { noremap = true, desc = 'Easy find on a vert split' })
+vim.keymap.set('n', '<leader>fs', ':sf<space>', { noremap = true, desc = 'Easy find on a split' })

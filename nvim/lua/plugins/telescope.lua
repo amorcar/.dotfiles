@@ -1,4 +1,4 @@
--- telescope
+-- file pickers
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -93,7 +93,7 @@ return {
   },
   {
     "dmtrKovalenko/fff.nvim",
-    enabled=true,
+    enabled=false,
     build = "cargo build --release",
     opts = {
       ui_enabled = false,

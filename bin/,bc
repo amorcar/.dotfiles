@@ -1,36 +1,115 @@
 #!/usr/bin/env python3
-
-# n = int(input())
-# w = len("{0:b}".format(n))
-# print("{0:{width}d} {0:{width}o} {0:{width}x} {0:{width}b}".format(n, width=w))
-
-
-import os
 import sys
+import argparse
+
+
+def format_binary(binary_str: str, separator: str = " ") -> str:
+    """Format binary string (8-bit groups)"""
+    # remove '0b' prefix
+    binary_digits = binary_str[2:]
+
+    # pad to make it divisible by 8
+    while len(binary_digits) % 8 != 0:
+        binary_digits = "0" + binary_digits
+
+    # split into 8-bit chunks
+    bytes_list = []
+    for i in range(0, len(binary_digits), 8):
+        bytes_list.append(binary_digits[i : i + 8])
+
+    return "0b" + separator.join(bytes_list)
+
+
+def get_bit_byte_info(num: int) -> tuple[int, int]:
+    """Get the number of bits and bytes needed to represent the number"""
+    if num == 0:
+        return 1, 1
+
+    # Calculate minimum bits needed
+    bits_needed = num.bit_length()
+
+    # Calculate bytes needed (round up to nearest byte)
+    bytes_needed = (bits_needed + 7) // 8
+
+    return bits_needed, bytes_needed
+
 
 def main():
-    if len(sys.argv) != 2:
-        print(f"Usage: {os.path.basename(__file__)} <number>")
-        print("Valid formats: binary 0b..., octal 0o..., hex 0x..., decimal [0d]...")
-        sys.exit(1)
+    parser = argparse.ArgumentParser(
+        description="Convert numbers between different bases"
+    )
+    parser.add_argument(
+        "number",
+        help="Number to convert (binary 0b..., octal 0o..., hex 0x..., decimal [0d]...)",
+    )
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action="store_true",
+        help="Split bytes with whitespace and show bit/byte count",
+    )
+    parser.add_argument(
+        "-s", "--separator", help="Byte group separator (verbose mode only)"
+    )
+    parser.add_argument(
+        "-H", "--header", action="store_true", help="Print column headers"
+    )
 
-    arg = sys.argv[1]
+    args = parser.parse_args()
 
     try:
         # int() with base=0 will auto-detect format by prefix (0b, 0o, 0x)
-        arg = arg.removeprefix("0d")
+        arg = args.number.removeprefix("0d")
         num = int(arg, 0)
     except ValueError:
-        print(f"Invalid input: {arg}")
+        print(f"Invalid input: {args.number}")
         sys.exit(1)
 
-    # print(f"Binary     : {bin(num)}")
-    # print(f"Octal      : {oct(num)}")
-    # print(f"Decimal    : {num}")
-    # print(f"Hexadecimal: {hex(num)}")
-    print(f"{bin(num)} {oct(num)} {num} {hex(num)}")
+    # Get the representations
+    binary_repr = bin(num)
+    octal_repr = oct(num)
+    decimal_repr = str(num)
+    hex_repr = hex(num)
+
+    # Apply verbose formatting if requested
+    if args.verbose:
+        binary_repr = format_binary(binary_repr, args.separator)
+        bits_needed, bytes_needed = get_bit_byte_info(num)
+        info_suffix = f' "{bits_needed} bits, {bytes_needed} bytes"'
+    else:
+        info_suffix = ""
+
+    # Calculate column widths based on actual content
+    binary_width = max(len("Binary"), len(binary_repr))
+    octal_width = max(len("Octal"), len(octal_repr))
+    decimal_width = max(len("Decimal"), len(decimal_repr))
+    hex_width = max(len("Hexadecimal"), len(hex_repr))
+
+    # Print header if requested
+    if args.header:
+        print(
+            f"{'Binary':<{binary_width}} {'Octal':<{octal_width}} {'Decimal':<{decimal_width}} {'Hexadecimal':<{hex_width}}"
+        )
+        total_width = (
+            binary_width + octal_width + decimal_width + hex_width + 3
+        )  # +3 for spaces between columns
+        if args.verbose:
+            total_width += len(info_suffix)
+        print("-" * total_width)
+
+    # Print the conversions
+    if args.verbose:
+        print(
+            f"{binary_repr:<{binary_width}} {octal_repr:<{octal_width}} {decimal_repr:<{decimal_width}} {hex_repr:<{hex_width}}{info_suffix}"
+        )
+    else:
+        if args.header:
+            print(
+                f"{binary_repr:<{binary_width}} {octal_repr:<{octal_width}} {decimal_repr:<{decimal_width}} {hex_repr:<{hex_width}}"
+            )
+        else:
+            print(f"{binary_repr} {octal_repr} {decimal_repr} {hex_repr}")
+
 
 if __name__ == "__main__":
     main()
-
-

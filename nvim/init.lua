@@ -5,6 +5,7 @@ require("config.commands")
 require("config.lazy")
 -- require("config.terminal")
 require("config.quickfix")
+require("config.find")
 
 vim.cmd.colorscheme("kanagawa-wave")
 -- vim.cmd.colorscheme("base16-black-metal-gorgoroth")

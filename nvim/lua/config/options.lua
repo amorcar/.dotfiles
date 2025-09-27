@@ -4,7 +4,8 @@ vim.g.maplocalleader = ";"
 
 vim.opt.clipboard = "unnamedplus"
 
-vim.opt.path:append("**")
+-- vim.opt.path:append("**")
+vim.opt.grepprg = "rg --vimgrep"
 vim.opt.timeoutlen = 4000
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -14,9 +15,10 @@ vim.opt.scrolloff = 2
 vim.opt.signcolumn = "yes"
 vim.opt.conceallevel = 2
 
-vim.opt.undofile = true
-vim.opt.wildmode = "longest,full"
+vim.opt.wildmenu = true
+vim.opt.wildmode = "noselect:longest:lastused,full"
 vim.opt.wildoptions = "fuzzy"
+vim.opt.undofile = true
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2

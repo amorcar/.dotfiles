@@ -21,11 +21,28 @@ alias ip "dig +short myip.opendns.com @resolver1.opendns.com"
 #router IP
 alias iproute "netstat -rn -f inet | grep default"
 
-alias tsw 'task'
-alias tmw 'timew'
+if command -v task > /dev/null
+  alias tsw 'task'
+end
 
-alias lzd 'lazydocker'
-alias lzs 'lazysql'
+if command -v timew > /dev/null
+  alias tmw 'timew'
+end
 
-alias play 'echo "playpause" | nc -U /tmp/ncspot-501/ncspot.sock > /dev/null'
-alias pause 'echo "playpause" | nc -U /tmp/ncspot-501/ncspot.sock > /dev/null'
+if command -v lazydocker > /dev/null
+  alias lzd 'lazydocker'
+end
+
+if command -v lazysql > /dev/null
+  alias lzs 'lazysql'
+end
+
+if command -v ncspot > /dev/null
+  alias play 'echo "playpause" | nc -U /tmp/ncspot-501/ncspot.sock > /dev/null'
+  alias pause 'echo "playpause" | nc -U /tmp/ncspot-501/ncspot.sock > /dev/null'
+end
+
+if command -v csvlens > /dev/null
+  alias csv 'csvlens'
+end
+
