@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+
+try:
+    import requests
+    import json
+    import subprocess
+
+    def get_ip_address():
+        # Run the dig command
+        command = ['dig', '-4', 'TXT', '+short', 'o-o.myaddr.l.google.com', '@ns1.google.com']
+        result = subprocess.run(command, capture_output=True, text=True)
+
+        # Get the output and remove double quotes
+        if result.returncode == 0:
+            # Split the result into lines and remove quotes
+            output = result.stdout.strip()
+            output = output.replace('"', '')  # Remove double quotes
+            return output
+        else:
+            raise RuntimeError("Couldnt get the IP")
+    # r = requests.get(
+    #         f"https://api.iplocation.net/?ip={
+    #             requests.get('https://ident.me').text
+    #         }"
+    #     ).json()
+    # print(r["country_code2"])
+    headers = {"User-Agent": "keycdn-tools:https://www.marca.com"}
+    r = requests.get(
+        f"https://tools.keycdn.com/geo.json?host={
+            # f"https://api.iplocation.net/?ip={
+            # requests.get('https://ident.me', timeout=1).text
+            get_ip_address()
+        }",
+        headers=headers,
+        timeout=1,
+    ).json()
+    print(r["data"]["geo"]["country_code"])
+except Exception:
+    print("-")

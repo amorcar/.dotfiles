@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# speedtest-cli --no-upload --json | jq -r '.| "d:\(.download / 1000000 * 100 | round / 100)mbps, p:\(.ping)ms"'
+speedtest-cli --json | jq -r '.| "d:\(.download / 1000000 * 100 | round / 100)mbps, u:\(.upload / 1000000 * 100 | round / 100)mbps, p:\(.ping)ms"'
