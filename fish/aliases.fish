@@ -21,6 +21,8 @@ alias ip "dig +short myip.opendns.com @resolver1.opendns.com"
 #router IP
 alias iproute "netstat -rn -f inet | grep default"
 
+alias oil '~/.config/scripts/oil-ssh.sh'
+
 if command -v task > /dev/null
   alias tsw 'task'
 end

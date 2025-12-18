@@ -7,6 +7,7 @@ return {
       vim.keymap.set("n", "<leader>gg", ":G<CR><C-w>5-", { desc = "git open fugitive" })
     end,
   },
+  { "tpope/vim-rhubarb" },
   {
     "lewis6991/gitsigns.nvim",
     config = function()
@@ -103,8 +104,8 @@ return {
     "NeogitOrg/neogit",
     enabled = false,
     dependencies = {
-      "nvim-lua/plenary.nvim",         -- required
-      "sindrets/diffview.nvim",        -- optional - Diff integration
+      "nvim-lua/plenary.nvim",      -- required
+      "sindrets/diffview.nvim",     -- optional - Diff integration
       "nvim-telescope/telescope.nvim", -- optional
     },
     config = function()
@@ -127,20 +128,20 @@ return {
           HEAD_folded = false,
           mode_padding = 3,
           mode_text = {
-            M = "M",     -- modified
-            N = "A",     -- new file
-            A = "A",     -- added
-            D = "D",     -- deleted
-            C = "C",     -- copies
-            U = "U",     -- updated
-            R = "R",     -- renamed
-            DD = "DD",   -- unmerged
-            AU = "AU",   -- unmerged
-            UD = "UD",   -- unmerged
-            UA = "UA",   -- unmerged
-            DU = "DU",   -- unmerged
-            AA = "AA",   -- unmerged
-            UU = "UU",   -- unmerged
+            M = "M", -- modified
+            N = "A", -- new file
+            A = "A", -- added
+            D = "D", -- deleted
+            C = "C", -- copies
+            U = "U", -- updated
+            R = "R", -- renamed
+            DD = "DD", -- unmerged
+            AU = "AU", -- unmerged
+            UD = "UD", -- unmerged
+            UA = "UA", -- unmerged
+            DU = "DU", -- unmerged
+            AA = "AA", -- unmerged
+            UU = "UU", -- unmerged
             ["?"] = "?", -- untracked?
           },
         },
@@ -164,6 +165,12 @@ return {
         },
       })
       vim.keymap.set("n", "<leader>gg", ":Neogit<CR>", { desc = "open neogit" })
+    end,
+  },
+  {
+    "ksaito422/remote-line.nvim",
+    config = function()
+      require("remote-line").setup({})
     end,
   },
 }

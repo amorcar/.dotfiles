@@ -231,4 +231,5 @@ return {
       -- :set background=light
     end,
   },
+  { 'projekt0n/github-nvim-theme', name = 'github-theme' },
 }

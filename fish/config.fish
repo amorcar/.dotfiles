@@ -83,19 +83,19 @@ if status --is-interactive
     abbr -a btbr 'bartib report --today'
   end
 
-  if command -v eza > /dev/null
-    abbr -a l 'eza'
-    abbr -a ls 'eza'
-    abbr -a ll 'eza -l'
-    abbr -a la 'eza -la --icons=always --git --header'
-    abbr -a tree 'eza -T -L 2'
-  else
-    abbr -a l 'ls'
-    abbr -a ll 'ls -lh'
-    abbr -a la 'ls -lha'
+  # if command -v eza > /dev/null
+  #   abbr -a l 'eza'
+  #   abbr -a ls 'eza'
+  #   abbr -a ll 'eza -l'
+  #   abbr -a la 'eza -la --icons=always --git --header'
+  #   abbr -a tree 'eza -T -L 2'
+  # else
+  #   abbr -a l 'ls'
+  #   abbr -a ll 'ls -lh'
+  #   abbr -a la 'ls -lha'
 
-    abbr --add --global lh 'ls -lhaFG'
-  end
+  #   abbr --add --global lh 'ls -lhaFG'
+  # end
 
   if command -v task > /dev/null
     abbr -a t 'task'
@@ -119,6 +119,7 @@ if status --is-interactive
   abbr --add --global tbz 'tar -xvjf' # extract .tar.bz2
 
   abbr --add --global wifi "networkQuality -v"
+  abbr --add --global list-usb "ioreg -p IOUSB -w0 | sed 's/[^o]*o //; s/@.*//' | grep -v '^Root.*'"
 end
 
 eval (direnv hook fish)

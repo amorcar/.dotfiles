@@ -80,9 +80,6 @@ vim.keymap.set("n", "]g", "g,zz", opts)
 vim.keymap.set("n", "[G", "999g,zz", opts)
 vim.keymap.set("n", "]G", "999g;zz", opts)
 
--- on make, dont jump directly to the first quick list location
-vim.keymap.set("n", "<leader>m", ":w | :make!<CR>", opts)
-
 -- zooming split windows
 vim.keymap.set("n", "Zz", "<c-w>_ | <c-w>|", opts)
 vim.keymap.set("n", "Zo", "<c-w>=", opts)
@@ -95,8 +92,6 @@ vim.keymap.set("n", "<leader>gcs", "0v/====<CR>$x/>>><CR>dd", opts)
 
 -- executing lua
 vim.keymap.set("n", "<leader><leader>x", ":source %<cr>")
-vim.keymap.set("n", "<leader>x", ":.lua<cr>")
-vim.keymap.set("v", "<leader>x", ":lua<cr>")
 
 -- close pretty much any buffer
 vim.keymap.set("n", "Q", function()
