@@ -27,6 +27,6 @@ fzf \
   --multi \
   --prompt='URL(s)> ' \
   --reverse \
-  --tmux 'bottom,20%' || true
+  --tmux 'bottom,10%' || true
 
 # vim:sts=2:ts=2:sw=2:et:

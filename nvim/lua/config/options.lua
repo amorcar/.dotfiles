@@ -19,6 +19,7 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = "noselect:longest:lastused,full"
 vim.opt.wildoptions = "fuzzy"
 vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undo" -- in ~/.local/share/nvim/undo
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
