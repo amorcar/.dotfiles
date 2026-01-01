@@ -1,27 +1,37 @@
 #!/usr/bin/env bash
 
+# Parameters
+# $1: The name of the tmux user option to store the pane ID (e.g., "mytoggle")
+# $2: The split dimensions/flags (default: "-v -f -l 20%")
+OPTION_NAME="${1:-toggablepane}"
+SPLIT_ARGS="${2:- -v -f -l 20%}"
 SCRATCH_SESSION="scratch"
-P=$(tmux show -swqv @toggablepane)
 
-# check if pane exists in current window
-if [ -n "$P" ] && tmux lsp -F'#{pane_id}' | grep -q ^"$P"; then
+# Retrieve the specific pane ID for this toggle name
+P=$(tmux show -swqv "@${OPTION_NAME}")
 
-    # check if scratch session exists, create it if not
-    if ! ( tmux list-session -F "#{session_name}" | grep -q "$SCRATCH_SESSION" ); then
-      tmux new-session -d -s "$SCRATCH_SESSION"
+# 1. Check if pane exists in current window
+if [ -n "$P" ] && tmux lsp -F'#{pane_id}' | grep -q "^${P}$"; then
+
+    # Ensure scratch session exists
+    if ! tmux has-session -t "$SCRATCH_SESSION" 2>/dev/null; then
+        tmux new-session -d -s "$SCRATCH_SESSION"
     fi
 
-     # send to a new window in scratch session
-      tmux break-pane -d -s "$P" -t "$SCRATCH_SESSION"
+    # Hide it: send to scratch session
+    # We use break-pane to move it to its own window in the background
+    tmux break-pane -d -s "$P" -t "${SCRATCH_SESSION}:"
 else
-    # if doesnt exist in current session, check if it exists at all somewhere
-    if [ -n "$P" ] && tmux list-panes -a -F "#{pane_id}" | grep -q "^${P}"; then
-        # if pane exists in scratch, bring it here
-        tmux move-pane -v -f -l 20% -d -s "$P" -t ":"
+    # 2. Check if it exists anywhere else (e.g., in scratch)
+    if [ -n "$P" ] && tmux list-panes -a -F "#{pane_id}" | grep -q "^${P}$"; then
+        # Bring it back to current window with specified dimensions
+        # move-pane is the correct command for bringing a pane from another session
+        tmux move-pane ${SPLIT_ARGS} -d -s "$P" -t ":"
     else
-        # else, create the pane
-        P=$(tmux splitw -v -f -l 20% -PF'#{pane_id}')
-        tmux set -sw @toggablepane "$P"
+        # 3. Create the pane if it doesn't exist anywhere
+        # splitw -P returns the new pane ID
+        P=$(tmux splitw ${SPLIT_ARGS} -PF'#{pane_id}')
+        tmux set -sw "@${OPTION_NAME}" "$P"
     fi
     tmux select-pane -t "$P"
 fi
