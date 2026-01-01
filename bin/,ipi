@@ -2,13 +2,14 @@
 
 try:
     import requests
+    from pprint import pprint as pp
 
     def get_info():
         url = "https://geo.myip.link/"
         return requests.get(url).json()
 
     info = get_info()
-    print(f"{info.get('country', '-')}")
+    pp(info)
         
 
 except Exception:
