@@ -18,7 +18,8 @@ return {
           "clangd",
           "lua_ls",
           "ruff",
-          "pyright",
+          "ty",
+          -- "pyright",
           -- "basedpyright", -- much better
           "terraformls",
         },
@@ -63,22 +64,22 @@ return {
       })
       vim.lsp.enable({ "clangd" })
 
-      vim.lsp.config("pyright", {
-        capabilities = capabilities,
-      })
-      vim.lsp.enable({ "pyright" })
-
-      -- -- Optional: Only required if you need to update the language server settings
-      -- vim.lsp.config('ty', {
+      -- vim.lsp.config("pyright", {
       --   capabilities = capabilities,
-      --   settings = {
-      --     ty = {
-      --       -- ty language server settings go here
-      --     }
-      --   }
       -- })
-      -- -- Required: Enable the language server
-      -- vim.lsp.enable('ty')
+      -- vim.lsp.enable({ "pyright" })
+
+      -- Optional: Only required if you need to update the language server settings
+      vim.lsp.config('ty', {
+        capabilities = capabilities,
+        settings = {
+          ty = {
+            -- ty language server settings go here
+          }
+        }
+      })
+      -- Required: Enable the language server
+      vim.lsp.enable('ty')
 
       vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help)
       vim.keymap.set("n", "grd", vim.lsp.buf.definition)
@@ -89,12 +90,6 @@ return {
       vim.keymap.set("n", "<leader>ltd", function()
         vim.diagnostic.enable(not vim.diagnostic.is_enabled())
       end, { silent = true, noremap = true })
-      vim.keymap.set(
-        "n",
-        "<leader>lts",
-        ":syntax off<CR>:TSBufToggle highlight<CR>",
-        { silent = true, noremap = true }
-      )
     end,
   },
   {
@@ -105,7 +100,7 @@ return {
         sources = {
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.prettier,
-          null_ls.builtins.formatting.sql_formatter.with({ command = { "sleek", "--indent-spaces", "2" } }),
+          -- null_ls.builtins.formatting.sql_formatter.with({ command = { "sleek", "--indent-spaces", "2" } }),
         },
       })
     end,
@@ -125,7 +120,10 @@ return {
           "stylua",
           "prettier",
           "eslint",
-          "sleek",
+          -- "sqlfmt",
+          -- "sqlfluff",
+          -- "sleek",
+          -- "sqruff",
         },
       })
     end,

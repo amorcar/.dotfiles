@@ -30,13 +30,13 @@ if [ -n "$P" ] && tmux lsp -F'#{pane_id}' | grep -q "^${P}$"; then
     # using break-pane to move it to its own window in the background
     tmux break-pane -d -s "$P" -t "${SCRATCH_SESSION}:"
 
-    # RESTORE original layout
+    # restore original layout
     SAVED_LAYOUT=$(tmux show -swqv "$LAYOUT_OPTION")
     if [ -n "$SAVED_LAYOUT" ]; then
         tmux select-layout "$SAVED_LAYOUT"
     fi
 else
-    # SAVE current layout before we mess with it
+    # save current layout before we mess with it
     CURRENT_LAYOUT=$(tmux display-message -p '#{window_layout}')
     tmux set -sw "$LAYOUT_OPTION" "$CURRENT_LAYOUT"
     # check if it exists anywhere else (e.g., in scratch)
