@@ -5,7 +5,9 @@ return {
     "williamboman/mason.nvim",
     lazy = false,
     config = function()
-      require("mason").setup()
+      require("mason").setup({
+        PATH = "append",
+      })
     end,
   },
   {
@@ -16,10 +18,11 @@ return {
         ensure_installed = {
           "bashls",
           "clangd",
+          "harper_ls",
           "lua_ls",
           "ruff",
-          "ty",
-          -- "pyright",
+          -- "ty",
+          "pyright",
           -- "basedpyright", -- much better
           "terraformls",
         },
@@ -64,22 +67,34 @@ return {
       })
       vim.lsp.enable({ "clangd" })
 
-      -- vim.lsp.config("pyright", {
-      --   capabilities = capabilities,
-      -- })
-      -- vim.lsp.enable({ "pyright" })
+      vim.lsp.config("pyright", {
+        capabilities = capabilities,
+      })
+      vim.lsp.enable({ "pyright" })
 
       -- Optional: Only required if you need to update the language server settings
-      vim.lsp.config('ty', {
+      -- vim.lsp.config('ty', {
+      --   capabilities = capabilities,
+      --   settings = {
+      --     ty = {
+      --       -- ty language server settings go here
+      --     }
+      --   }
+      -- })
+      -- -- Required: Enable the language server
+      -- vim.lsp.enable('ty')
+
+      vim.lsp.config("harper_ls", {
         capabilities = capabilities,
         settings = {
-          ty = {
-            -- ty language server settings go here
-          }
-        }
+          ["harper-ls"] = {
+            linters = {
+              SentenceCapitalization = true,
+              SpellCheck = true,
+            },
+          },
+        },
       })
-      -- Required: Enable the language server
-      vim.lsp.enable('ty')
 
       vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help)
       vim.keymap.set("n", "grd", vim.lsp.buf.definition)
@@ -128,4 +143,5 @@ return {
       })
     end,
   },
+  -- { "numirias/semshi" },
 }

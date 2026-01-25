@@ -210,7 +210,7 @@ return {
       vim.keymap.set("n", "<localleader>onn", ":ObsidianNew <cr>", { silent = true }),
       vim.keymap.set("n", "<localleader>ofn", ":ObsidianQuickSwitch <cr>", { silent = true }),
       vim.keymap.set("n", "<localleader>oft", ":ObsidianTags <cr>", { silent = true }),
-      vim.keymap.set("n", "<localleader>ood", ":ObsidianDailies <cr>", { silent = true }),
+      vim.keymap.set("n", "<localleader>ood", ":ObsidianDailies -2 1<cr>", { silent = true }),
       vim.keymap.set("n", "<localleader>opl", ":ObsidianLinks <cr>", { silent = true }),
       vim.keymap.set("n", "<localleader>oen", ":ObsidianExtractNote <cr>", { silent = true }),
       vim.keymap.set("n", "<localleader>oat", ":ObsidianTemplate <cr>", { silent = true }),
