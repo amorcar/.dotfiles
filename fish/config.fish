@@ -78,6 +78,7 @@ if status --is-interactive
   end
 
   if command -v bartib > /dev/null
+    set -gx BARTIB_FILE ~/.org/main/btb.log
     abbr -a btb 'bartib'
     abbr -a btbl 'bartib list --today'
     abbr -a btbr 'bartib report --today'

@@ -8,5 +8,3 @@ require("config.quickfix")
 require("config.find")
 
 vim.cmd.colorscheme("kanagawa-wave")
--- vim.cmd.colorscheme("base16-black-metal-gorgoroth")
--- vim.cmd.colorscheme("e-ink")

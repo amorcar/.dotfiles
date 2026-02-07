@@ -110,7 +110,7 @@
 	aliases = config --get-regexp alias
 	amend = commit --amend --reuse-message=head  # amend the currently staged files to the latest commit.
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"  # credit an author on the latest commit.
-	delete-merged = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"  # delete merged
+  delete-merged = "!git fetch --prune && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D"
 	contributors = shortlog --summary --numbered  # list contributors with number of commits.
 	whoami = config user.email
   ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ | tail -n +4 | tail -r | tail -n +2 | tail -r ;}; gi"

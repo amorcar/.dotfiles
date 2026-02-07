@@ -7,11 +7,11 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "mollerhoj/telescope-recent-files.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
     },
     config = function()
       local telescope_builtin = require("telescope.builtin")
 
-      require("telescope").load_extension("recent-files")
       require("telescope").setup({
         defaults = {
           sorting_strategy = "ascending",
@@ -34,8 +34,16 @@ return {
             only_cwd = true,
             show_current_file = false,
           },
+          ui_select = {
+            specific_opts = {
+              codeactions = false,
+            },
+          },
         },
       })
+
+      require("telescope").load_extension("recent-files")
+      require("telescope").load_extension("ui-select")
 
       -- bindings
       vim.keymap.set("n", "<C-p>", function()
@@ -93,13 +101,13 @@ return {
   },
   {
     "dmtrKovalenko/fff.nvim",
-    enabled=false,
+    enabled = false,
     build = "cargo build --release",
     opts = {
       ui_enabled = false,
       max_results = 10,
-      max_threads=8,
-      title = '',
+      max_threads = 8,
+      title = "",
       width = 1,
       height = 0.2,
       preview = {
@@ -115,9 +123,9 @@ return {
         width = 1,
       },
       keymaps = {
-        close = { '<Esc>', '<C-c>' },
-        move_up = { '<Up>', '<C-p>', '<C-k>' },
-        move_down = { '<Down>', '<C-n>', '<C-j>' }
+        close = { "<Esc>", "<C-c>" },
+        move_up = { "<Up>", "<C-p>", "<C-k>" },
+        move_down = { "<Down>", "<C-n>", "<C-j>" },
       },
     },
     keys = {

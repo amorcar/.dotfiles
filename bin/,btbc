@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+export BARTIB_FILE=/Users/alejandromorales/.org/main/btb.log
+
+output="$(bartib current)"
+
+if ! grep -q 'No Activity is currently running' <<<"$output"; then
+  result="$(
+    sed -n '3p' <<<"$output" \
+    | cut -d' ' -f'3-' \
+    | sed -E 's/\xC2\xA0+//g; s/[^,](([0-9]+h )?<?[0-9]+m)/,\1/; s/ ([^ ]+),/,\1,/' \
+    | awk -F',' '{ printf "[%s] %s: %s", $2, $1, $3 }'
+  )"
+else
+  result=""
+fi
+
+echo "$result"
+
