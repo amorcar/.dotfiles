@@ -3,12 +3,14 @@ return {
   {
     "obsidian-nvim/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
+    enabled = true,
     lazy = false,
     ft = "markdown",
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
     opts = {
+      legacy_commands = false,
       workspaces = {
         {
           name = "main",
@@ -35,14 +37,13 @@ return {
         -- Trigger completion at 2 chars.
         min_chars = 1,
       },
-      mappings = {
-        -- Smart action depending on context, either follow link or toggle checkbox.
-        ["<C-space>"] = {
-          action = function()
-            return require("obsidian").util.smart_action()
-          end,
-          opts = { buffer = true, expr = true },
-        },
+      callbacks = {
+        enter_note = function(note)
+          vim.keymap.set("n", "<leader>a", require("obsidian.api").smart_action(), {
+            buffer = true,
+            desc = "Obsidian smart action",
+          })
+        end,
       },
 
       -- Where to put new notes. Valid options are
@@ -97,27 +98,28 @@ return {
       -- Either 'wiki' or 'markdown'.
       preferred_link_style = "wiki",
 
-      -- Optional, customize the frontmatter data.
-      ---@return table
-      note_frontmatter_func = function(note)
-        -- Add the title of the note as an alias.
-        if note.title then
-          note:add_alias(note.title)
-        end
-
-        local out = { id = note.id, aliases = note.aliases, tags = note.tags }
-
-        -- `note.metadata` contains any manually added fields in the frontmatter.
-        -- So here we just make sure those fields are kept in the frontmatter.
-        if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
-          for k, v in pairs(note.metadata) do
-            out[k] = v
+      frontmatter = {
+        enabled = true,
+        func = function(note)
+          -- Add the title of the note as an alias.
+          if note.title then
+            note:add_alias(note.title)
           end
-        end
 
-        return out
-      end,
+          local out = { id = note.id, aliases = note.aliases, tags = note.tags }
 
+          -- `note.metadata` contains any manually added fields in the frontmatter.
+          -- So here we just make sure those fields are kept in the frontmatter.
+          if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+            for k, v in pairs(note.metadata) do
+              out[k] = v
+            end
+          end
+
+          return out
+        end,
+        sort = { "id", "aliases", "tags" },
+      },
       -- Optional, for templates (see below).
       templates = {
         folder = "templates",
@@ -151,11 +153,11 @@ return {
         },
       },
 
-      -- Optional, sort search results by "path", "modified", "accessed", or "created".
-      -- The recommend value is "modified" and `true` for `sort_reversed`, which means, for example,
-      -- that `:ObsidianQuickSwitch` will show the notes sorted by latest modified time
-      sort_by = "accessed",
-      sort_reversed = true,
+      search = {
+        sort_by = "accessed",
+        sort_reversed = true,
+        max_lines = 1000,
+      },
 
       -- Optional, determines how certain commands open notes. The valid options are:
       -- 1. "current" (the default) - to always open in the current window
@@ -169,20 +171,6 @@ return {
         enable = true,      -- set to false to disable all additional syntax features
         update_debounce = 200, -- update delay after a text change (in milliseconds)
         max_file_length = 5000, -- disable UI features for files with more than this many lines
-        -- Define how various check-boxes are displayed
-        checkboxes = {
-          -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
-          [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-          ["x"] = { char = "", hl_group = "ObsidianDone" },
-          [">"] = { char = "", hl_group = "ObsidianRightArrow" },
-          ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-          ["!"] = { char = "", hl_group = "ObsidianImportant" },
-          -- Replace the above with this if you don't have a patched font:
-          -- [" "] = { char = "☐", hl_group = "ObsidianTodo" },
-          -- ["x"] = { char = "✔", hl_group = "ObsidianDone" },
-
-          -- You can also add more custom ones...
-        },
         -- Use bullet marks for non-checkbox lists.
         bullets = { char = "•", hl_group = "ObsidianBullet" },
         external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
@@ -207,13 +195,20 @@ return {
           ObsidianHighlightText = { bg = "#75662e" },
         },
       },
-      vim.keymap.set("n", "<localleader>onn", ":ObsidianNew <cr>", { silent = true }),
-      vim.keymap.set("n", "<localleader>ofn", ":ObsidianQuickSwitch <cr>", { silent = true }),
-      vim.keymap.set("n", "<localleader>oft", ":ObsidianTags <cr>", { silent = true }),
-      vim.keymap.set("n", "<localleader>ood", ":ObsidianDailies -2 1<cr>", { silent = true }),
-      vim.keymap.set("n", "<localleader>opl", ":ObsidianLinks <cr>", { silent = true }),
-      vim.keymap.set("n", "<localleader>oen", ":ObsidianExtractNote <cr>", { silent = true }),
-      vim.keymap.set("n", "<localleader>oat", ":ObsidianTemplate <cr>", { silent = true }),
+
+      checkbox = {
+        enabled = true,
+        create_new = true,
+        order = { " ", "~", "!", ">", "x" },
+      },
+
+      vim.keymap.set("n", "<localleader>onn", ":Obsidian new <cr>", { silent = true }),
+      vim.keymap.set("n", "<localleader>ofn", ":Obsidian quick_switch <cr>", { silent = true }),
+      vim.keymap.set("n", "<localleader>oft", ":Obsidian tags <cr>", { silent = true }),
+      vim.keymap.set("n", "<localleader>ood", ":Obsidian dailies -2 1<cr>", { silent = true }),
+      vim.keymap.set("n", "<localleader>opl", ":Obsidian links <cr>", { silent = true }),
+      vim.keymap.set("n", "<localleader>oen", ":Obsidian extract_note <cr>", { silent = true }),
+      vim.keymap.set("n", "<localleader>oat", ":Obsidian template <cr>", { silent = true }),
     },
   },
   {
