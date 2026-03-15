@@ -101,6 +101,7 @@ return {
       vim.keymap.set("n", "grD", vim.lsp.buf.declaration)
       vim.keymap.set("n", "<leader>ltd", vim.lsp.buf.type_definition)
       vim.keymap.set("n", "<leader>lgd", vim.diagnostic.open_float)
+      vim.keymap.set("n", "grq", vim.diagnostic.open_float)
       vim.keymap.set("n", "<leader>lfm", vim.lsp.buf.format)
       vim.keymap.set("n", "<leader>ltd", function()
         vim.diagnostic.enable(not vim.diagnostic.is_enabled())
