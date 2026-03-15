@@ -13,7 +13,7 @@ SPLIT_ARGS="${2:- -v -f -l 20%}"
 SHELL_COMMAND="${3:-}"
 
 # where to store the pane when hidden
-SCRATCH_SESSION="scratch"
+SCRATCH_SESSION="backend"
 
 # retrieve the specific pane id for this toggle name
 P=$(tmux show -swqv "@${OPTION_NAME}")

@@ -31,7 +31,7 @@ function main {
         fi                                          
         sessions=$( \
           tmux list-sessions -F "#{session_name}" |\
-          awk -v cs="$(tmux display-message -p '#S')" '$0 !~ cs { print $0 }' |\
+          awk -v cs="$(tmux display-message -p '#S')|backend" '$0 !~ cs { print $0 }' |\
           fzf \
           --exit-0 \
           --print-query \
