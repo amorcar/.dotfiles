@@ -106,6 +106,7 @@
   today = log --since='midnight' --all --no-merges --oneline --author=amorcar
   yesterday = log --since='yesterday.midnight' --until='midnight' --all --no-merges --oneline --author=amorcar
   upstream = log --oneline --no-merges HEAD..origin/main
+  update-branch = !git fetch && git fetch origin main:main && git merge origin/$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
 	remotes = remote --verbose
 	aliases = config --get-regexp alias
 	amend = commit --amend --reuse-message=head  # amend the currently staged files to the latest commit.
