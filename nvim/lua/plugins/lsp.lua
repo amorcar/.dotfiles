@@ -21,8 +21,8 @@ return {
           "harper_ls",
           "lua_ls",
           "ruff",
-          -- "ty",
-          "pyright",
+          "ty",
+          -- "pyright",
           -- "basedpyright", -- much better
           "terraformls",
         },
@@ -47,45 +47,32 @@ return {
     },
     lazy = false,
     config = function()
-      -- config LSP completions
       local capabilities =
           require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-      local lspconfig = require("lspconfig")
+      local project_root = vim.fn.getcwd()
 
-      vim.lsp.config("lua_ls", {
+      vim.lsp.config("lua_ls", { capabilities = capabilities })
+      vim.lsp.enable("lua_ls")
+
+      vim.lsp.config("terraformls", { capabilities = capabilities })
+      vim.lsp.enable("terraformls")
+
+      vim.lsp.config("clangd", { capabilities = capabilities })
+      vim.lsp.enable("clangd")
+
+      vim.lsp.config("ty", {
         capabilities = capabilities,
+        root_dir = project_root,
+        cmd_env = { VIRTUAL_ENV = project_root .. "/.venv" },
       })
-      vim.lsp.enable({ "lua_ls" })
+      vim.lsp.enable("ty")
 
-      vim.lsp.config("terraformls", {
-        capabilities = capabilities,
-      })
-      vim.lsp.enable({ "terraformls" })
-
-      vim.lsp.config("clangd", {
-        capabilities = capabilities,
-      })
-      vim.lsp.enable({ "clangd" })
-
-      vim.lsp.config("pyright", {
-        capabilities = capabilities,
-      })
-      vim.lsp.enable({ "pyright" })
-
-      -- Optional: Only required if you need to update the language server settings
-      -- vim.lsp.config('ty', {
-      --   capabilities = capabilities,
-      --   settings = {
-      --     ty = {
-      --       -- ty language server settings go here
-      --     }
-      --   }
-      -- })
-      -- -- Required: Enable the language server
-      -- vim.lsp.enable('ty')
+      vim.lsp.config("ruff", { capabilities = capabilities, root_dir = project_root })
+      vim.lsp.enable("ruff")
 
       vim.lsp.config("harper_ls", {
         capabilities = capabilities,
+        root_dir = project_root,
         settings = {
           ["harper-ls"] = {
             linters = {

@@ -39,7 +39,7 @@ return {
       },
       callbacks = {
         enter_note = function(note)
-          vim.keymap.set("n", "<leader>a", require("obsidian.api").smart_action(), {
+          vim.keymap.set("n", "<C-space>", require("obsidian.api").smart_action(), {
             buffer = true,
             desc = "Obsidian smart action",
           })
@@ -86,17 +86,6 @@ return {
       --  * "prepend_note_path", e.g. '[[foo-bar.md|Foo Bar]]'
       --  * "use_path_only", e.g. '[[foo-bar.md]]'
       -- Or you can set it to a function that takes a table of options and returns a string, like this:
-      wiki_link_func = function(opts)
-        return require("obsidian.util").wiki_link_id_prefix(opts)
-      end,
-
-      -- Optional, customize how markdown links are formatted.
-      markdown_link_func = function(opts)
-        return require("obsidian.util").markdown_link(opts)
-      end,
-
-      -- Either 'wiki' or 'markdown'.
-      preferred_link_style = "wiki",
 
       frontmatter = {
         enabled = true,
