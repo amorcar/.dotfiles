@@ -94,6 +94,7 @@
   format = ssh
 
 [alias]
+  wt = worktree
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit  # view abbreviated sha, description, and history graph of the latest 20 commits.
 	s = status # view the current working tree status.
 	ss = status -s  # view the current working tree status using the short format.
