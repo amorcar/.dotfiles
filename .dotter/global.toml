@@ -25,6 +25,9 @@ depends = []
 [nvim.files]
 "nvim" = { target = "~/.config/nvim/", type = "symbolic" }
 
+[vim.files]
+"vimrc" = { target = "~/.vimrc", type = "symbolic" }
+
 [psql.files]
 "psql/psqlrc" = "~/.psqlrc"
 
