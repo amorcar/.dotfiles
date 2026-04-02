@@ -62,6 +62,7 @@ if status --is-interactive
     abbr --add --global g 'git'
     abbr --add --global gs 'git status'
     abbr --add --global gss 'git status -s'
+    abbr --add --global gwt 'git worktree'
   end
 
 
@@ -88,7 +89,7 @@ if status --is-interactive
     abbr -a l 'eza'
     abbr -a ls 'eza'
     abbr -a ll 'eza -l'
-    abbr -a la 'eza -la --icons=always --git --header'
+    abbr -a la 'eza -la --git'
     abbr -a tree 'eza -T -L 2'
   else
     abbr -a l 'ls'

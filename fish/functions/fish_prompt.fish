@@ -1,35 +1,36 @@
-# This function is run every time fish displays a new prompt.
 function fish_prompt
+    # Fast worktree check (reusing our optimized method)
+    set -l in_worktree false
+    if command git --no-optional-locks rev-parse --is-inside-work-tree >/dev/null 2>&1
+        set -l git_dir (command git --no-optional-locks rev-parse --git-dir 2>/dev/null)
+        set -l common_dir (command git --no-optional-locks rev-parse --git-common-dir 2>/dev/null)
+        if test "$git_dir" != "$common_dir"
+            set in_worktree true
+        end
+    end
 
-  set vimModeLen 2 # appears at beginning of prompt (described later)
-  set remaining (math "$COLUMNS - $vimModeLen")
+    set_color brgreen
 
-  # Display the current time
-  # set time_prompt (date +%H:%M)
-  # set time_prompt_length (string length time_prompt)
-  # set reamining (math "$remaining - $time_prompt_length")
-  # set_color brblack
-  # echo -n "[$time_prompt] "
+    # Directory logic
+    if test "$in_worktree" = "true"
+        # Print parent/current (e.g., repo_name/branch_name)
+        set -l parent_dir (basename (dirname $PWD))
+        set -l current_dir (basename $PWD)
+        echo -n "$parent_dir/$current_dir"
+        
+    else if test "$PWD" = "$HOME"
+        # Print ~ if exactly in the home directory
+        echo -n "~"
+        
+    else
+        # Print just the current directory name for normal folders
+        echo -n (basename $PWD)
+    end
 
-  # Display working directory.
-  set_color brgreen
-  set pwdLen (string length $PWD)
+    # Display the end of the prompt symbol
+    set_color --bold brgreen
+    echo -n ":"
+    echo -n ' '
 
-  if test (basename $PWD) != $USER
-    echo -n (basename $PWD)
-  else
-    echo -n (pwd | sed -e "s|^$HOME|~|")
-  end
-  set remaining (math "$remaining - $pwdLen")
-
-  # display the end of the prompt symbol
-  # echo -n ' '
-  set_color --bold brgreen
-  # echo -n ">"
-  echo -n ":"
-
-  echo -n ' '
-
-  set_color normal
-
+    set_color normal
 end
