@@ -1,6 +1,6 @@
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<leader>yc", "yygccp", { noremap = true, desc = "duplicate and comment line" })
+vim.keymap.set("n", "<leader>yc", "yygccp", { remap = true, desc = "duplicate and comment line" })
 
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", opts)
 vim.keymap.set("n", "<leader>kb", "<cmd>bd<cr>", opts)
@@ -26,11 +26,7 @@ vim.keymap.set("n", "<C-i>", "<C-i>zz", opts)
 -- vim.keymap.set("n", "/", "/\\v")
 -- vim.keymap.set("c", "%s/", "%sm/")
 
--- make j and k move by visual line, not actual line, when text is soft-wrapped
-vim.keymap.set("n", "j", "gj", opts)
-vim.keymap.set("n", "k", "gk", opts)
-
--- include numbered movement into jumplist
+-- include numbered movement into jumplist (also uses gj/gk for visual line movement)
 vim.keymap.set("n", "k", [[(v:count > 1 ? "m'" . v:count : "g") . 'k']], { expr = true })
 vim.keymap.set("n", "j", [[(v:count > 1 ? "m'" . v:count : "g") . 'j']], { expr = true })
 

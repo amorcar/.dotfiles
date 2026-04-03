@@ -14,7 +14,7 @@ return {
       vim.keymap.set({ "i", "s" }, "<C-l>", function()
         ls.jump(1)
       end, { silent = true })
-      vim.keymap.set({ "i", "s" }, "<C-h>", function()
+      vim.keymap.set({ "i", "s" }, "<C-j>", function()
         ls.jump(-1)
       end, { silent = true })
       require("luasnip.loaders.from_lua").load({

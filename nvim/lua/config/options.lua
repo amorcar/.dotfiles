@@ -35,7 +35,7 @@ vim.opt.laststatus = 0
 vim.opt.ruler = false
 vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.fillchars:append({ fold = " " })
 vim.opt.fillchars:append { diff = "╱" }
 function _G.MyFoldText()
@@ -54,8 +54,4 @@ vim.opt.diffopt:append("indent-heuristic")
 
 vim.opt.exrc = true
 
---let g:tmux_navigator_disable_when_zoomed = 0
-vim.cmd([[
-  let g:tmux_navigator_no_mappings = 1
-  set shell=/bin/zsh
-]])
+vim.opt.shell = "/opt/homebrew/bin/fish"
