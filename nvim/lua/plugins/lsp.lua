@@ -85,6 +85,7 @@ return {
       vim.lsp.enable("harper_ls")
 
       vim.lsp.inlay_hint.enable(false)
+      vim.diagnostic.config({ virtual_text = true, virtual_lines = true })
 
       -- Auto-show function signature when typing (
       -- Uses hover on the function name since ty doesn't support
@@ -128,15 +129,26 @@ return {
       vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help)
       vim.keymap.set("n", "grd", vim.lsp.buf.definition)
       vim.keymap.set("n", "grD", vim.lsp.buf.declaration)
-      vim.keymap.set("n", "<leader>lty", vim.lsp.buf.type_definition)
+      -- grt (type definition) is built-in in 0.12
       vim.keymap.set("n", "<leader>lgd", vim.diagnostic.open_float)
       vim.keymap.set("n", "grq", vim.diagnostic.open_float)
       vim.keymap.set("n", "<leader>lfm", vim.lsp.buf.format)
       vim.keymap.set("n", "<leader>ltd", function()
-        vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+        local enabled = vim.diagnostic.is_enabled({ bufnr = 0 })
+        vim.diagnostic.enable(not enabled, { bufnr = 0 })
       end, { silent = true, noremap = true })
       vim.keymap.set("n", "<leader>lih", function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+      end, { silent = true, noremap = true })
+      vim.keymap.set("n", "<leader>lth", function()
+        local clients = vim.lsp.get_clients({ name = "harper_ls" })
+        if #clients > 0 then
+          for _, client in ipairs(clients) do
+            vim.lsp.stop_client(client.id)
+          end
+        else
+          vim.lsp.enable("harper_ls")
+        end
       end, { silent = true, noremap = true })
     end,
   },

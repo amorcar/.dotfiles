@@ -37,37 +37,17 @@ return {
 
       require("nvim-treesitter").install(ensure_installed, { max_jobs = 8 })
 
-      local group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true })
-      -- Enable highlighting on FileType
+      -- Treesitter highlighting is built-in in 0.12 for installed parsers.
+      -- Only need a FileType autocmd for indentation (not built-in yet).
       vim.api.nvim_create_autocmd("FileType", {
-        -- pattern = { "<filetype>" },
-        group = group,
-        desc = "Enable treesitter highlighting and indentation",
+        group = vim.api.nvim_create_augroup("TreesitterIndent", { clear = true }),
+        desc = "Enable treesitter indentation",
         callback = function(event)
           local buf = event.buf
-          local filetype = event.match
-
-          local language = vim.treesitter.language.get_lang(filetype) or filetype
-          -- if not vim.tbl_contains(ensure_installed, event.match) then
-          --   return
-          -- end
-          if not vim.treesitter.language.add(language) then
-            return
+          local language = vim.treesitter.language.get_lang(event.match) or event.match
+          if vim.treesitter.language.add(language) then
+            vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
           end
-
-          -- Start highlighting immediately (works if parser exists)
-          -- vim.treesitter.start()
-          -- pcall(vim.treesitter.start, buf, lang)
-          vim.treesitter.start(buf, language)
-
-          -- Enable treesitter indentation
-          vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-
-          -- Folding
-          -- vim.wo[0][0].foldmethod = "expr"
-          -- vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-          vim.wo.foldmethod = "expr"
-          vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         end,
       })
 
