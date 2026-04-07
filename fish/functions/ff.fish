@@ -5,13 +5,13 @@ function ff --description "Fuzzy cd to anywhere with preview"
         set name '*'
     end
 
-    if [ "x$argv[2]" != "x" ]; then
+    if [ "x$argv[2]" != "x" ]
         set path "$argv[2]"
     else
         set path "$HOME"
     end
 
     # set dir (find "$HOME" -type d -name "$name" | fzf --ansi --preview="ls -lAFhG (echo {+1})" --preview-window="up:60%")
-    set dir (fd --full-path $path --type d | fzf --ansi --preview="ls -lAFhG (echo {+1})" --preview-window="up:60%") 2&> /dev/null
+    set dir (fd --full-path $path --type d 2>/dev/null | fzf --ansi --preview="ls -lAFhG (echo {+1})" --preview-window="up:60%")
     cd "$dir"
 end
