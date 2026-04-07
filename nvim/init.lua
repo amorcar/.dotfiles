@@ -8,3 +8,6 @@ require("config.quickfix")
 require("config.find")
 
 vim.cmd.colorscheme("kanagawa-wave")
+
+-- Built-in optional plugins
+vim.cmd.packadd("nvim.undotree")

@@ -145,20 +145,17 @@ return {
 			})
 
 			-- debugger keymaps
-			-- vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, {})
-			vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, {})
-			-- vim.keymap.set("n", "<leader>dr", dap.continue, {})
-			-- vim.keymap.set("n", "<leader>dB", dap.set_breakpoint, {vim.fn.input("Breakpoint condition: ")})
-			vim.keymap.set("n", "<leader>dc", dap.continue, {})
-			vim.keymap.set("n", "<leader>dsi", dap.step_into, {})
-			vim.keymap.set("n", "<F8>", dap.step_into, {})
-			vim.keymap.set("n", "<leader>dso", dap.step_over, {})
-			vim.keymap.set("n", "<F9>", dap.step_over, {})
-			vim.keymap.set("n", "<leader>dsu", dap.step_out, {})
-			vim.keymap.set("n", "<Leader>dtr", dap.repl.toggle, {})
-			vim.keymap.set("n", "<leader>dtu", dapui.toggle, {})
-			vim.keymap.set("n", "<leader>dsj", "<cmd>lua require('dap').down()<cr>", {})
-			vim.keymap.set("n", "<leader>dsk", "<cmd>lua require('dap').up()<cr>")
+			vim.keymap.set("n", "<leader>dtb", dap.toggle_breakpoint, { desc = "Debug toggle breakpoint" })
+			vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Debug continue" })
+			vim.keymap.set("n", "<leader>dsi", dap.step_into, { desc = "Debug step into" })
+			vim.keymap.set("n", "<F8>", dap.step_into, { desc = "Debug step into" })
+			vim.keymap.set("n", "<leader>dso", dap.step_over, { desc = "Debug step over" })
+			vim.keymap.set("n", "<F9>", dap.step_over, { desc = "Debug step over" })
+			vim.keymap.set("n", "<leader>dsu", dap.step_out, { desc = "Debug step out" })
+			vim.keymap.set("n", "<Leader>dtr", dap.repl.toggle, { desc = "Debug toggle REPL" })
+			vim.keymap.set("n", "<leader>dtu", dapui.toggle, { desc = "Debug toggle UI" })
+			vim.keymap.set("n", "<leader>dnj", "<cmd>lua require('dap').down()<cr>", { desc = "Debug navigate stack down" })
+			vim.keymap.set("n", "<leader>dnk", "<cmd>lua require('dap').up()<cr>", { desc = "Debug navigate stack up" })
 		end,
 	},
 	{

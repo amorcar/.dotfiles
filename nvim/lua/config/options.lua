@@ -55,3 +55,4 @@ vim.opt.diffopt:append("indent-heuristic")
 vim.opt.exrc = true
 
 vim.opt.shell = "/opt/homebrew/bin/fish"
+

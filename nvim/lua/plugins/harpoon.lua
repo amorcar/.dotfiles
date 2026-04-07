@@ -45,11 +45,11 @@ return {
 				border = "none", -- Window border style
 				title = "", -- Custom window title
 			})
-		end)
+		end, { desc = "Harpoon quick menu" })
 		map("n", "<leader>hf", function()
 			-- harpoon.ui:toggle_quick_menu(harpoon:list())
 			toggle_telescope(harpoon:list())
-		end)
+		end, { desc = "Harpoon find (telescope)" })
 		map("n", "<leader>ha", function()
 			harpoon:list():add()
 		end, { desc = "Harpoon: add buffer" })

@@ -4,7 +4,6 @@ return {
     "obsidian-nvim/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
     enabled = true,
-    lazy = false,
     ft = "markdown",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -191,13 +190,15 @@ return {
         order = { " ", "~", "!", ">", "x" },
       },
 
-      vim.keymap.set("n", "<localleader>onn", ":Obsidian new <cr>", { silent = true }),
-      vim.keymap.set("n", "<localleader>ofn", ":Obsidian quick_switch <cr>", { silent = true }),
-      vim.keymap.set("n", "<localleader>oft", ":Obsidian tags <cr>", { silent = true }),
-      vim.keymap.set("n", "<localleader>ood", ":Obsidian dailies -2 1<cr>", { silent = true }),
-      vim.keymap.set("n", "<localleader>opl", ":Obsidian links <cr>", { silent = true }),
-      vim.keymap.set("n", "<localleader>oen", ":Obsidian extract_note <cr>", { silent = true }),
-      vim.keymap.set("n", "<localleader>oat", ":Obsidian template <cr>", { silent = true }),
+    },
+    keys = {
+      { "<localleader>onn", ":Obsidian new <cr>", desc = "Obsidian new note", silent = true },
+      { "<localleader>ofn", ":Obsidian quick_switch <cr>", desc = "Obsidian quick switch", silent = true },
+      { "<localleader>oft", ":Obsidian tags <cr>", desc = "Obsidian find tags", silent = true },
+      { "<localleader>ood", ":Obsidian dailies -2 1<cr>", desc = "Obsidian dailies", silent = true },
+      { "<localleader>opl", ":Obsidian links <cr>", desc = "Obsidian links", silent = true },
+      { "<localleader>oen", ":Obsidian extract_note <cr>", desc = "Obsidian extract note", silent = true },
+      { "<localleader>oat", ":Obsidian template <cr>", desc = "Obsidian template", silent = true },
     },
   },
   {
@@ -220,7 +221,9 @@ return {
         },
       },
     },
-    vim.keymap.set("n", "<localleader>tz", ":ZenMode <cr>", { silent = true }),
+    keys = {
+      { "<localleader>tz", ":ZenMode <cr>", desc = "Toggle zen mode", silent = true },
+    },
   },
   {
     "OXY2DEV/markview.nvim",

@@ -39,11 +39,9 @@ return {
       { "<M-l>", "<cmd>TmuxNavigateRight<cr>" },
       { "<M-w>", "<cmd>TmuxNavigatePrevious<cr>" },
     },
-    config = function()
-      vim.cmd([[
-        let g:tmux_navigator_no_mappings = 1
-        let g:tmux_navigator_disable_when_zoomed = 1
-      ]])
+    init = function()
+      vim.g.tmux_navigator_no_mappings = 1
+      vim.g.tmux_navigator_disable_when_zoomed = 1
     end,
   },
   {
@@ -59,16 +57,12 @@ return {
         let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
         let g:slime_dont_ask_default = 1
 
-        "send visual selection
-        xmap <leader>s <Plug>SlimeRegionSend
-        "send based on motion or text object
-        nmap <leader>s <Plug>SlimeMotionSend
-        "send line
-        nmap <leader>ss <Plug>SlimeLineSend
-
-        let g:slime_cell_delimiter = "#%%"
-        nmap <leader>sc <Plug>SlimeSendCell
       ]])
+      vim.g.slime_cell_delimiter = "#%%"
+      vim.keymap.set("x", "<leader>s", "<Plug>SlimeRegionSend", { desc = "Slime send region" })
+      vim.keymap.set("n", "<leader>s", "<Plug>SlimeMotionSend", { desc = "Slime send motion" })
+      vim.keymap.set("n", "<leader>ss", "<Plug>SlimeLineSend", { desc = "Slime send line" })
+      vim.keymap.set("n", "<leader>sc", "<Plug>SlimeSendCell", { desc = "Slime send cell" })
     end,
   },
 }

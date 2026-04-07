@@ -11,7 +11,7 @@ return {
       "MunifTanjim/nui.nvim",
     },
     keys = {
-      { "<leader>b", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Toggle file explorer" },
     },
     config = function()
       require("neo-tree").setup({
@@ -81,6 +81,7 @@ return {
         },
       })
       vim.keymap.set("n", "<C->", "<CMD>10 sp|Oil<CR>", { desc = "Open parent directory" })
+      -- complements built-in - (netrw parent dir); Oil replaces netrw
       vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
     end,
   },

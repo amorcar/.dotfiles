@@ -3,7 +3,6 @@ fish_add_path "$HOME/.cargo/bin"
 fish_add_path "/opt/homebrew/bin"
 fish_add_path "/opt/homebrew/sbin"
 fish_add_path "$HOME/.fzf/bin"
-fish_add_path "/opt/homebrew/Cellar/docker/23.0.5/bin"
 
 ## Environment
 # Shell only exists after the 10th consecutive Ctrl-d
@@ -15,12 +14,6 @@ set fish_greeting
 set -gx EDITOR nvim
 # set -g IGNOREEOF 3
 
-set -g NVM_DIR ~/.nvm
-# bass source /opt/homebrew/opt/nvm/nvm.sh # This loads nvm
-# bass sourcen/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm # This loads nvm bash_completion
-
-set -gx HISTSIZE 10000
-set -gx HISTCONTROL ignoredups
 
 set -gx DIRENV_LOG_FORMAT
 
@@ -123,5 +116,7 @@ if status --is-interactive
   abbr --add --global list-usb "ioreg -p IOUSB -w0 | sed 's/[^o]*o //; s/@.*//' | grep -v '^Root.*'"
 end
 
-eval (direnv hook fish)
-eval (uv generate-shell-completion fish)
+if status --is-interactive
+  command -v direnv > /dev/null; and eval (direnv hook fish)
+  command -v uv > /dev/null; and eval (uv generate-shell-completion fish)
+end

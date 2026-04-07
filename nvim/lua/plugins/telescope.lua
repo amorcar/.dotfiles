@@ -45,34 +45,14 @@ return {
       require("telescope").load_extension("recent-files")
       require("telescope").load_extension("ui-select")
 
-      -- <C-p>, <leader>ff, <leader>fg, <leader>fz, <leader>fc are mapped by fff.nvim
-      vim.keymap.set("n", "<leader>fbo", telescope_builtin.buffers, { desc = "find buffers opened" })
-      vim.keymap.set(
-        "n",
-        "<leader>fbg",
-        telescope_builtin.current_buffer_fuzzy_find,
-        { desc = "find buffers grep" }
-      )
-      vim.keymap.set("n", "<leader>q", function()
-        telescope_builtin.diagnostics({ bufnr = 0 })
-      end, { desc = "show diagnostics" })
-      vim.keymap.set(
-        "n",
-        "<leader>fds",
-        telescope_builtin.lsp_document_symbols,
-        { desc = "find document symbols" }
-      )
-      vim.keymap.set(
-        "n",
-        "<leader>fps",
-        telescope_builtin.lsp_dynamic_workspace_symbols,
-        { desc = "find project symbols" }
-      )
-      -- vim.keymap.set("n", "<leader>gd", telescope_builtin.lsp_definitions)
-      vim.keymap.set("n", "<leader>fvt", telescope_builtin.colorscheme, { desc = "find vim themes" })
-      vim.keymap.set("n", "<leader>fvc", telescope_builtin.commands, { desc = "find vim commands" })
-      vim.keymap.set("n", "<leader>fvh", telescope_builtin.help_tags, { desc = "find vim help pages" })
-      vim.keymap.set("n", "<leader>fvm", telescope_builtin.marks, { desc = "find vim marks" })
+      -- <C-p>, <leader>ff, <leader>fgp, <leader>fgz, <leader>fgw are mapped by fff.nvim
+      vim.keymap.set("n", "<leader>fb", telescope_builtin.buffers, { desc = "Find buffers" })
+      vim.keymap.set("n", "<leader>fbs", telescope_builtin.lsp_document_symbols, { desc = "Find buffer symbols" })
+      vim.keymap.set("n", "<leader>fps", telescope_builtin.lsp_dynamic_workspace_symbols, { desc = "Find project symbols" })
+      vim.keymap.set("n", "<leader>fvt", telescope_builtin.colorscheme, { desc = "Find vim themes" })
+      vim.keymap.set("n", "<leader>fvc", telescope_builtin.commands, { desc = "Find vim commands" })
+      vim.keymap.set("n", "<leader>fvh", telescope_builtin.help_tags, { desc = "Find vim help" })
+      vim.keymap.set("n", "<leader>fvm", telescope_builtin.marks, { desc = "Find vim marks" })
     end,
   },
   {
@@ -197,18 +177,21 @@ return {
       end
 
       vim.keymap.set("n", "<leader>ff", function() fff_telescope_picker("Find files") end,
-        { desc = "Find files (fff)" })
+        { desc = "Find files" })
       vim.keymap.set("n", "<C-p>", function() fff_telescope_picker("Find files") end,
-        { desc = "Find files (fff)" })
-      vim.keymap.set("n", "<leader>fg", function() fff_telescope_grep("Grep") end,
-        { desc = "Grep (fff)" })
-      vim.keymap.set("n", "<leader>fz", function() fff_telescope_grep("Fuzzy grep", "fuzzy") end,
-        { desc = "Fuzzy grep (fff)" })
-      vim.keymap.set("n", "<leader>fr", function() fff_telescope_grep("Regex grep", "regex") end,
-        { desc = "Regex grep (fff)" })
-      vim.keymap.set("n", "<leader>fc", function()
+        { desc = "Find files" })
+      vim.keymap.set("n", "<leader>fgp", function() fff_telescope_grep("Grep") end,
+        { desc = "Find grep project" })
+      vim.keymap.set("n", "<leader>fgb", function()
+        require("telescope.builtin").current_buffer_fuzzy_find()
+      end, { desc = "Find grep in buffer" })
+      vim.keymap.set("n", "<leader>fgz", function() fff_telescope_grep("Fuzzy grep", "fuzzy") end,
+        { desc = "Find grep fuzzy" })
+      vim.keymap.set("n", "<leader>fgr", function() fff_telescope_grep("Regex grep", "regex") end,
+        { desc = "Find grep regex" })
+      vim.keymap.set("n", "<leader>fgw", function()
         fff_telescope_grep("Grep word", "plain", vim.fn.expand("<cword>"))
-      end, { desc = "Grep current word (fff)" })
+      end, { desc = "Find grep word under cursor" })
     end,
   },
 }
