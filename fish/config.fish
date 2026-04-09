@@ -55,7 +55,7 @@ if status --is-interactive
     abbr --add --global g 'git'
     abbr --add --global gs 'git status'
     abbr --add --global gss 'git status -s'
-    abbr --add --global gwt 'git worktree'
+    # abbr --add --global gwt 'git worktree'
   end
 
 

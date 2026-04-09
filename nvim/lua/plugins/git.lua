@@ -78,10 +78,10 @@ function M.setup()
     toggle_diffview("DiffviewFileHistory %")
   end, { desc = "Git diff file history" })
   vim.keymap.set("n", "<leader>gpr", function()
-    toggle_diffview("DiffviewOpen origin/HEAD...HEAD")
+    toggle_diffview("DiffviewOpen origin/main...HEAD")
   end, { desc = "Git PR review diff" })
   vim.keymap.set("n", "<leader>gpc", function()
-    toggle_diffview("DiffviewFileHistory --range=origin/HEAD...HEAD --right-only --no-merges")
+    toggle_diffview("DiffviewFileHistory --range=origin/main...HEAD --right-only --no-merges")
   end, { desc = "Git PR review commits" })
 
   -- remote-line
