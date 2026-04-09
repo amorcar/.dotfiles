@@ -8,6 +8,12 @@ local gh = function(x) return "https://github.com/" .. x end
 -- TODO: currently breaks cmdline input — investigate compatibility
 -- require("vim._core.ui2").enable({})
 
+-- Pack management keymaps
+-- to delete a plugin after removing from config: :lua vim.pack.del({ 'nameOfPlugin' })
+vim.keymap.set("n", "<leader>pu", function() vim.pack.update() end, { desc = "Pack update" })
+vim.keymap.set("n", "<leader>pr", function() vim.pack.update(nil, { target = "lockfile", force = true }) end, { desc = "Pack restore to lockfile" })
+vim.keymap.set("n", "<leader>pi", function() vim.pack.update(nil, { offline = true }) end, { desc = "Pack info" })
+
 -- Build step for fff.nvim and treesitter on install/update
 vim.api.nvim_create_autocmd("PackChanged", {
   callback = function(ev)
