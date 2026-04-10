@@ -12,5 +12,6 @@ Thumbs.db
 wt/
 wts/
 worktrees/
+.worktrees/
 
 **/.claude/settings.local.json

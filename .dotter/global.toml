@@ -55,3 +55,6 @@ task = "~/.config/task"
 
 [tmux.files]
 "tmux/tmux.conf" = "~/.tmux.conf"
+
+[ai.files]
+"agents" = { target = "~/.agents/", type = "symbolic" }

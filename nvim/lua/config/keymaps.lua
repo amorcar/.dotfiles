@@ -1,10 +1,10 @@
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<leader>yc", "yygccp", { remap = true, desc = "duplicate and comment line" })
+vim.keymap.set("n", "<leader>yc", "yygccp", { remap = true, desc = "Duplicate and comment line" })
 
-vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", opts)
-vim.keymap.set("n", "<leader>kb", "<cmd>bd<cr>", opts)
-vim.keymap.set("n", "<leader>kt", "<cmd>tabc<cr>", opts)
+vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { noremap = true, silent = true, desc = "Save file" })
+vim.keymap.set("n", "<leader>bc", "<cmd>bd<cr>", { noremap = true, silent = true, desc = "Buffer close" })
+vim.keymap.set("n", "<leader>tc", "<cmd>tabc<cr>", { noremap = true, silent = true, desc = "Tab close" })
 
 -- always center search results
 vim.keymap.set("n", "n", "nzz", { silent = true })
@@ -38,7 +38,7 @@ vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>", { silent = true })
 -- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts)
 -- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
 
--- a better J that keeps the cursor in the same place
+-- shadows built-in J (join lines); this version preserves cursor position
 vim.keymap.set("n", "J", "mzJ`z")
 
 -- clipboard yank
@@ -80,21 +80,19 @@ vim.keymap.set("n", "]G", "999g;zz", opts)
 vim.keymap.set("n", "Zz", "<c-w>_ | <c-w>|", opts)
 vim.keymap.set("n", "Zo", "<c-w>=", opts)
 
--- easy git conflit selection
-vim.keymap.set("n", "<leader>fc", "/<<<<CR>", opts)
-vim.keymap.set("n", "<leader>gcu", "dd/|||<CR>0v/>>><CR>$x", opts)
-vim.keymap.set("n", "<leader>gcb", "0v/|||<CR>$x/====<CR>0v/>>><CR>$x", opts)
-vim.keymap.set("n", "<leader>gcs", "0v/====<CR>$x/>>><CR>dd", opts)
+-- git conflict selection
+vim.keymap.set("n", "<leader>fc", "/<<<<CR>", { noremap = true, silent = true, desc = "Find git conflict marker" })
+vim.keymap.set("n", "<leader>gcu", "dd/|||<CR>0v/>>><CR>$x", { noremap = true, silent = true, desc = "Git conflict use upstream" })
+vim.keymap.set("n", "<leader>gcb", "0v/|||<CR>$x/====<CR>0v/>>><CR>$x", { noremap = true, silent = true, desc = "Git conflict use both" })
+vim.keymap.set("n", "<leader>gcs", "0v/====<CR>$x/>>><CR>dd", { noremap = true, silent = true, desc = "Git conflict use self" })
 
 -- executing lua
-vim.keymap.set("n", "<leader><leader>x", ":source %<cr>")
+vim.keymap.set("n", "<leader><leader>x", ":source %<cr>", { desc = "Source current file" })
 
--- close pretty much any buffer
+-- undotree
+vim.keymap.set("n", "<leader>u", "<cmd>Undotree<cr>", { desc = "Open undotree" })
+
+-- shadows built-in Q (Ex mode)
 vim.keymap.set("n", "Q", function()
 	require("config.utils").smart_buffer_close({ quit_on_empty = false, prune_extra_wins = true })
-end, { noremap = true, silent = true })
-
--- quick find
-vim.keymap.set('n', '<leader>ff', ':find<space>', { noremap = true, desc = 'Easy find' })
-vim.keymap.set('n', '<leader>fv', ':vert sf<space>', { noremap = true, desc = 'Easy find on a vert split' })
-vim.keymap.set('n', '<leader>fs', ':sf<space>', { noremap = true, desc = 'Easy find on a split' })
+end, { noremap = true, silent = true, desc = "Smart close buffer" })

@@ -2,7 +2,7 @@ alias reload '. ~/.config/fish/config.fish'
 
 # grep with color
 alias grep 'grep --color=auto'
-export GREP_COLOR='0;36'
+set -gx GREP_COLOR '0;36'
 
 # Get week number
 alias week='date +%V'
@@ -40,11 +40,16 @@ if command -v lazysql > /dev/null
 end
 
 if command -v ncspot > /dev/null
-  alias play 'echo "playpause" | nc -U /tmp/ncspot-501/ncspot.sock > /dev/null'
-  alias pause 'echo "playpause" | nc -U /tmp/ncspot-501/ncspot.sock > /dev/null'
+  alias play "echo 'playpause' | nc -U /tmp/ncspot-(id -u)/ncspot.sock > /dev/null"
+  alias pause "echo 'playpause' | nc -U /tmp/ncspot-(id -u)/ncspot.sock > /dev/null"
 end
 
 if command -v csvlens > /dev/null
   alias csv 'csvlens'
+end
+
+
+if command -v uv > /dev/null
+  alias ipython 'PREFECT_API_URL="http://127.0.0.1:4200/api" ENVIRONMENT=prod uv run ipython'
 end
 

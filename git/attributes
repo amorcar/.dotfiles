@@ -60,7 +60,7 @@
 
 # Serialisation
 *.json     text
-*.toml     text
+*.toml     text diff=toml
 *.xml      text
 *.yaml     text
 *.yml      text
@@ -128,11 +128,7 @@
 # (among others).
 
 
-# Auto detect text files and perform normalization
-*          text=auto
-
 *.rs       text diff=rust
-*.toml     text diff=toml
 Cargo.lock text
 
 # Sources

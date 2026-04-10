@@ -1,9 +1,3 @@
-return {
-	{ "rust-lang/rust.vim" },
-	{
-		"mrcjkb/rustaceanvim",
-		version = "^6", -- Recommended
-		lazy = false, -- This plugin is already lazy
-		ft = { "rust" },
-	},
-}
+-- rust.vim and rustaceanvim are loaded via vim.pack.add() in pack.lua
+-- No additional setup needed; rustaceanvim configures itself.
+-- Rust-specific keymaps are in after/ftplugin/rust.lua.

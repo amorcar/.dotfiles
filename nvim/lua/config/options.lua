@@ -3,9 +3,9 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ";"
 
 vim.opt.clipboard = "unnamedplus"
-
 -- vim.opt.path:append("**")
 vim.opt.grepprg = "rg --vimgrep"
+vim.opt.updatetime = 4000
 vim.opt.timeoutlen = 4000
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -55,3 +55,4 @@ vim.opt.diffopt:append("indent-heuristic")
 vim.opt.exrc = true
 
 vim.opt.shell = "/opt/homebrew/bin/fish"
+
