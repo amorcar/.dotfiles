@@ -24,33 +24,77 @@ local function parse_pg_service(service_name)
   return in_section and result or nil
 end
 
--- Find psql in the process list by matching the temp file PID.
--- psql temp files are named psql.edit.<PID>.sql where PID is the psql process.
--- Falls back to grepping for psql on the same tty.
-local function find_psql_cmd()
-  -- Try to extract psql PID from temp file name (psql.edit.<PID>.sql)
-  local psql_pid = vim.fn.expand("%:t"):match("psql%.edit%.(%d+)")
+-- Parse clickhouse client config.xml for a named connection or top-level defaults.
+-- Returns table with hostname, port, user, password, database (any may be nil).
+local function parse_ch_config(connection_name)
+  local path = vim.env.HOME .. "/.clickhouse-client/config.xml"
+  local f = io.open(path, "r")
+  if not f then return nil end
+  local xml = f:read("*a")
+  f:close()
 
-  if psql_pid then
-    local h = io.popen("ps -o command= -p " .. psql_pid .. " 2>/dev/null")
-    if h then
-      local cmd = h:read("*a"):gsub("^%s+", ""):gsub("%s+$", "")
-      h:close()
-      if cmd ~= "" then return cmd end
-    end
-    -- Per-PID query failed (macOS), grep full ps output
-    local h2 = io.popen("ps 2>/dev/null")
-    if h2 then
-      local output = h2:read("*a")
-      h2:close()
-      for line in output:gmatch("[^\n]+") do
-        if line:match("^%s*" .. psql_pid .. "%s") and line:match("psql") then
-          return line:match("psql.*$")
-        end
+  -- Helper: extract tag value from XML string
+  local function tag(str, name)
+    return str:match("<" .. name .. ">(.-)</" .. name .. ">")
+  end
+
+  -- If connection_name given, find that <connection> block
+  if connection_name then
+    for block in xml:gmatch("<connection>(.-)</connection>") do
+      if tag(block, "name") == connection_name then
+        return {
+          hostname = tag(block, "hostname") or tag(block, "host"),
+          port = tag(block, "port"),
+          user = tag(block, "user"),
+          password = tag(block, "password"),
+          database = tag(block, "database"),
+          secure = tag(block, "secure"),
+        }
       end
     end
   end
 
+  -- Fall back to top-level settings (outside <connections_credentials>)
+  -- Strip the connections_credentials block first to avoid matching nested tags
+  local top = xml:gsub("<connections_credentials>.-</connections_credentials>", "")
+  return {
+    hostname = tag(top, "hostname") or tag(top, "host"),
+    port = tag(top, "port"),
+    user = tag(top, "user"),
+    password = tag(top, "password"),
+    database = tag(top, "database"),
+    secure = tag(top, "secure"),
+  }
+end
+
+-- Grep ps output for a process matching pattern on the same tty
+local function find_process_cmd(pattern)
+  local h = io.popen("ps 2>/dev/null")
+  if not h then return nil end
+  local output = h:read("*a")
+  h:close()
+  for line in output:gmatch("[^\n]+") do
+    if line:match(pattern) and not line:match("grep") and not line:match("nvim") then
+      return line:match("%d+:%S+%s+(.+)$")
+    end
+  end
+  return nil
+end
+
+-- Find psql in process list by PID embedded in temp file name
+local function find_psql_cmd()
+  local psql_pid = vim.fn.expand("%:t"):match("psql%.edit%.(%d+)")
+  if not psql_pid then return nil end
+
+  local h = io.popen("ps 2>/dev/null")
+  if not h then return nil end
+  local output = h:read("*a")
+  h:close()
+  for line in output:gmatch("[^\n]+") do
+    if line:match("^%s*" .. psql_pid .. "%s") and line:match("psql") then
+      return line:match("psql.*$")
+    end
+  end
   return nil
 end
 
@@ -66,41 +110,65 @@ local function build_pg_url(host, port, user, dbname, password)
   return string.format("postgresql://%s@%s:%s/%s", user, host, port, dbname)
 end
 
--- Auto-detect dadbod connection when opened from psql (\e).
-if not vim.b.db or vim.b.db == "" then
-  local parent_cmd = find_psql_cmd()
+-- Build clickhouse dadbod URL (dadbod uses native protocol via clickhouse-client)
+local function build_ch_url(host, port, user, password, dbname, secure)
+  host = host or "localhost"
+  port = port or "9000"
+  user = user or "default"
+  dbname = dbname or "default"
+  local auth = password and (user .. ":" .. password) or user
+  local url = string.format("clickhouse://%s@%s:%s/%s", auth, host, port, dbname)
+  if secure == "1" or secure == "true" then
+    url = url .. "?secure=1"
+  end
+  return url
+end
 
-  if parent_cmd then
-    -- Check for postgresql:// URL in args
-    local url = parent_cmd:match("postgresql://[^%s]+") or parent_cmd:match("postgres://[^%s]+")
+-- Auto-detect dadbod connection when opened from psql (\e) or clickhouse (opt+e).
+if not vim.b.db or vim.b.db == "" then
+
+  -- Try psql
+  local psql_cmd = find_psql_cmd()
+  if psql_cmd then
+    local url = psql_cmd:match("postgresql://[^%s]+") or psql_cmd:match("postgres://[^%s]+")
     if url then
       vim.b.db = url
     else
-      -- Check for service=NAME
-      local service = parent_cmd:match("service=(%S+)")
+      local service = psql_cmd:match("service=(%S+)")
       if service then
         local svc = parse_pg_service(service)
         if svc then
           vim.b.db = build_pg_url(svc.host, svc.port, svc.user, svc.dbname, svc.password)
         end
       else
-        -- Parse explicit flags
-        local host = parent_cmd:match("%-h%s+(%S+)") or parent_cmd:match("%-%-host[= ](%S+)")
-        local port = parent_cmd:match("%-p%s+(%d+)") or parent_cmd:match("%-%-port[= ](%d+)")
-        local user = parent_cmd:match("%-U%s+(%S+)") or parent_cmd:match("%-%-username[= ](%S+)")
-        local dbname = parent_cmd:match("%-d%s+(%S+)") or parent_cmd:match("%-%-dbname[= ](%S+)")
-
+        local host = psql_cmd:match("%-h%s+(%S+)") or psql_cmd:match("%-%-host[= ](%S+)")
+        local port = psql_cmd:match("%-p%s+(%d+)") or psql_cmd:match("%-%-port[= ](%d+)")
+        local user = psql_cmd:match("%-U%s+(%S+)") or psql_cmd:match("%-%-username[= ](%S+)")
+        local dbname = psql_cmd:match("%-d%s+(%S+)") or psql_cmd:match("%-%-dbname[= ](%S+)")
         if not dbname then
-          dbname = parent_cmd:match("%s([%w_%-]+)%s*$")
+          dbname = psql_cmd:match("%s([%w_%-]+)%s*$")
           if dbname and dbname:match("^%-") then dbname = nil end
         end
-
         vim.b.db = build_pg_url(
-          host or vim.env.PGHOST,
-          port or vim.env.PGPORT,
-          user or vim.env.PGUSER,
-          dbname or vim.env.PGDATABASE
+          host or vim.env.PGHOST, port or vim.env.PGPORT,
+          user or vim.env.PGUSER, dbname or vim.env.PGDATABASE
         )
+      end
+    end
+  end
+
+  -- Try clickhouse
+  if not vim.b.db or vim.b.db == "" then
+    local is_ch_file = vim.fn.expand("%:t"):match("^clickhouse_client_editor_")
+    if is_ch_file then
+      -- Try to get --connection name from ps (may be visible if before --password)
+      local ch_cmd = find_process_cmd("clickhouse client")
+      local connection_name = ch_cmd and ch_cmd:match("%-%-connection%s+(%S+)")
+
+      -- Parse config.xml for connection details (named or top-level defaults)
+      local ch = parse_ch_config(connection_name)
+      if ch and ch.hostname then
+        vim.b.db = build_ch_url(ch.hostname, ch.port, ch.user, ch.password, ch.database, ch.secure)
       end
     end
   end
