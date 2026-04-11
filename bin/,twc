@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Timewarrior current task for tmux status bar.
+# Shows: [duration] tag  (e.g. "[1h 23m] eng-609")
+# Shows nothing if no active tracking.
+
+active=$(timew get dom.active 2>/dev/null)
+
+if [ "$active" = "1" ]; then
+  # Get the active interval (last entry has no "end")
+  entry=$(timew export 2>/dev/null | python3 -c "
+import sys, json
+from datetime import datetime, timezone
+data = json.load(sys.stdin)
+for e in data:
+    if 'end' not in e:
+        start = datetime.strptime(e['start'], '%Y%m%dT%H%M%SZ').replace(tzinfo=timezone.utc)
+        delta = datetime.now(timezone.utc) - start
+        hours, remainder = divmod(int(delta.total_seconds()), 3600)
+        minutes = remainder // 60
+        dur = f'{hours}h {minutes}m' if hours > 0 else f'{minutes}m'
+        tags = ' '.join(e.get('tags', ['']))
+        print(f'[{dur}] {tags}')
+        break
+")
+  echo "$entry"
+fi
