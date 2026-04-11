@@ -45,6 +45,7 @@ scripts = "~/.config/scripts"
 
 [format.files]
 "format/sqlfluff" = "~/.sqlfluff"
+"format/sql-formatter.json" = "~/.config/sql-formatter.json"
 
 [clang.files]
 "clang/clang-format" = "~/.clang-format"

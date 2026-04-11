@@ -132,6 +132,12 @@ function M.setup()
     sources = {
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.formatting.prettier,
+      null_ls.builtins.formatting.sql_formatter.with({
+        extra_args = {
+          "--language", "postgresql",
+          "--config", vim.fn.expand("~/.config/sql-formatter.json"),
+        },
+      }),
     },
   })
 
@@ -143,6 +149,7 @@ function M.setup()
       "stylua",
       "prettier",
       "eslint",
+      "sql_formatter",
     },
   })
 end
