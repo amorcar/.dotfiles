@@ -14,6 +14,7 @@ function M.pre_setup()
   vim.g.db_ui_execute_on_save = 0
   vim.g.db_ui_debug = 0
   vim.g.db_ui_force_echo_notifications = 1
+  vim.g.db_ui_save_location = vim.fn.expand("~/.local/share/sql")
 end
 
 function M.setup()
