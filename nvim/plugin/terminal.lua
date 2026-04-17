@@ -1,6 +1,5 @@
-local M = {}
-
-function M.setup()
+-- Toggleterm terminal (deferred: runs after VimEnter)
+require("config.lazyload").on_vim_enter(function()
   require("toggleterm").setup({
     shell = '/opt/homebrew/bin/fish',
     size = function(term)
@@ -19,6 +18,4 @@ function M.setup()
 
     direction = "horizontal",
   })
-end
-
-return M
+end)

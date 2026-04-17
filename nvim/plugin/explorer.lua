@@ -1,6 +1,5 @@
-local M = {}
-
-function M.setup()
+-- Neo-tree and Oil file explorers (deferred: runs after VimEnter)
+require("config.lazyload").on_vim_enter(function()
   -- neo-tree
   require("neo-tree").setup({
     close_if_last_window = true,
@@ -52,6 +51,4 @@ function M.setup()
   vim.keymap.set("n", "<C->", "<CMD>10 sp|Oil<CR>", { desc = "Open parent directory" })
   -- complements built-in - (netrw parent dir); Oil replaces netrw
   vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-end
-
-return M
+end)

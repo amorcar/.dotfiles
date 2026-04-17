@@ -1,6 +1,5 @@
-local M = {}
-
-function M.setup()
+-- DAP debugger, dap-ui, mason-nvim-dap, dap-python (deferred: runs after VimEnter)
+require("config.lazyload").on_vim_enter(function()
   local dap = require("dap")
   local dapui = require("dapui")
 
@@ -107,6 +106,4 @@ function M.setup()
   -- dap-python
   local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
   require("dap-python").setup(path)
-end
-
-return M
+end)

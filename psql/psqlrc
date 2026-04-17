@@ -45,7 +45,6 @@
 \set COMP_KEYWORD_CASE upper
 
 -- Snippets
-\set snippets_path '~/Developer/sql/snippets/'
 \set version 'SELECT version();'
 \set extensions 'select * from pg_available_extensions;'
 \set cache_hit 'SELECT sum(heap_blks_read) as heap_read, sum(heap_blks_hit)  as heap_hit, sum(heap_blks_hit) / (sum(heap_blks_hit) + sum(heap_blks_read)) as ratio FROM pg_statio_user_tables;'
@@ -62,6 +61,9 @@
 \set autovacuums 'select pid, now() - query_start as duration, query from pg_stat_activity where query like ''autovac%'';'
 \set active_queries 'select application_name,pid,state,now() - xact_start as xact_elapsed,query,wait_event,wait_event_type FROM pg_stat_activity WHERE state != ''idle'' order by xact_start;'
 \set lock_monitor 'SELECT COALESCE(blockingl.relation::regclass::text, blockingl.locktype) AS locked_item, now() - blockeda.query_start AS waiting_duration, blockeda.pid AS blocked_pid, blockeda.query AS blocked_query, blockedl.mode AS blocked_mode, blockinga.pid AS blocking_pid, blockinga.query AS blocking_query, blockingl.mode AS blocking_mode FROM pg_locks blockedl JOIN pg_stat_activity blockeda ON blockedl.pid = blockeda.pid JOIN pg_locks blockingl ON (blockingl.transactionid = blockedl.transactionid OR blockingl.relation = blockedl.relation AND blockingl.locktype = blockedl.locktype) AND blockedl.pid <> blockingl.pid JOIN pg_stat_activity blockinga ON blockingl.pid = blockinga.pid AND blockinga.datid = blockeda.datid WHERE NOT blockedl.granted AND blockinga.datname = current_database();'
+\set connections 'SELECT usename, application_name, client_addr, state, count(*) FROM pg_stat_activity GROUP BY 1, 2, 3, 4 ORDER BY 5 DESC;'
+\set vacuum_stats 'SELECT schemaname, relname, n_live_tup, n_dead_tup, ROUND(n_dead_tup::numeric / NULLIF(n_live_tup, 0) * 100, 2) AS dead_pct, last_vacuum, last_autovacuum, last_analyze, last_autoanalyze FROM pg_stat_user_tables ORDER BY n_dead_tup DESC;'
+\set row_counts 'SELECT schemaname, relname, reltuples::bigint AS approx_rows, pg_size_pretty(pg_total_relation_size(schemaname || ''.'' || relname)) AS total_size FROM pg_stat_user_tables JOIN pg_class ON relname = pg_class.relname ORDER BY reltuples DESC;'
 
 \set dba '\\i /Users/alejandromorales/.psql/postgres_dba/start.psql'
 

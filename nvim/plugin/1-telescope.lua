@@ -1,6 +1,5 @@
-local M = {}
-
-function M.setup()
+-- Telescope, fff.nvim pickers and keymaps (deferred: runs after VimEnter)
+require("config.lazyload").on_vim_enter(function()
   local telescope_builtin = require("telescope.builtin")
 
   require("telescope").setup({
@@ -175,6 +174,4 @@ function M.setup()
   vim.keymap.set("n", "<leader>fgw", function()
     fff_telescope_grep("Grep word", "plain", vim.fn.expand("<cword>"))
   end, { desc = "Find grep word under cursor" })
-end
-
-return M
+end)

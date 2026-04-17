@@ -1,6 +1,5 @@
-local M = {}
-
-function M.setup()
+-- Fugitive, gitsigns, diffview, remote-line (deferred: runs after VimEnter)
+require("config.lazyload").on_vim_enter(function()
   -- fugitive
   vim.keymap.set("n", "<leader>gG", ":G<CR>", { desc = "Git status fugitive (full)" })
   vim.keymap.set("n", "<leader>gg", ":G<CR><C-w>5-", { desc = "Git status (fugitive)" })
@@ -86,6 +85,4 @@ function M.setup()
 
   -- remote-line
   require("remote-line").setup({})
-end
-
-return M
+end)

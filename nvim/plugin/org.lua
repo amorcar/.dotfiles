@@ -1,6 +1,5 @@
-local M = {}
-
-function M.setup()
+-- Obsidian and zen-mode (deferred: runs after VimEnter)
+require("config.lazyload").on_vim_enter(function()
   -- obsidian
   require("obsidian").setup({
     legacy_commands = false,
@@ -142,6 +141,4 @@ function M.setup()
     },
   })
   vim.keymap.set("n", "<localleader>tz", ":ZenMode <cr>", { silent = true, desc = "Toggle zen mode" })
-end
-
-return M
+end)

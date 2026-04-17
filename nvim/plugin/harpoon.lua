@@ -1,6 +1,5 @@
-local M = {}
-
-function M.setup()
+-- Harpoon quick-menu and telescope picker (deferred: runs after VimEnter)
+require("config.lazyload").on_vim_enter(function()
   local harpoon = require("harpoon")
   harpoon:setup({
     settings = {
@@ -53,6 +52,4 @@ function M.setup()
   map("n", "<leader>h4", function()
     harpoon:list():select(4)
   end, { desc = "Harpoon: buffer 4" })
-end
-
-return M
+end)
