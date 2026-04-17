@@ -72,7 +72,7 @@ vim.pack.add({
   gh("mollerhoj/telescope-recent-files.nvim"),
   gh("nvim-telescope/telescope-ui-select.nvim"),
   { src = gh("nvim-telescope/telescope.nvim"), version = vim.version.range("0.1") },
-  gh("dmtrKovalenko/fff.nvim"),
+  -- gh("dmtrKovalenko/fff.nvim"),  -- temporarily disabled
 
   -- Git
   gh("tpope/vim-fugitive"),
